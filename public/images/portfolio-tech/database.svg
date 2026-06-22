@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="db-grad" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B794D3"/>
+      <stop offset="1" stop-color="#300290"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="32" cy="16" rx="20" ry="7" stroke="url(#db-grad)" stroke-width="2.5"/>
+  <path d="M12 16v10c0 3.9 8.95 7 20 7s20-3.1 20-7V16" stroke="url(#db-grad)" stroke-width="2.5"/>
+  <path d="M12 26v10c0 3.9 8.95 7 20 7s20-3.1 20-7V26" stroke="url(#db-grad)" stroke-width="2.5"/>
+  <path d="M12 36v10c0 3.9 8.95 7 20 7s20-3.1 20-7V36" stroke="url(#db-grad)" stroke-width="2.5"/>
+  <ellipse cx="32" cy="46" rx="20" ry="7" stroke="url(#db-grad)" stroke-width="2.5"/>
+  <path d="M32 23v20" stroke="#8E63AB" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+</svg>

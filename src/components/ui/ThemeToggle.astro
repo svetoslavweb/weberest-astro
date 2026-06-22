@@ -1,0 +1,38 @@
+<button
+  type="button"
+  class="theme-toggle"
+  data-theme-toggle
+  aria-label="Смени тема (тъмна / светла)"
+  title="Смени тема"
+>
+  <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">☾</span>
+  <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">☀</span>
+</button>
+
+<script is:inline>
+  (function () {
+    const key = 'weberest-theme';
+    const root = document.documentElement;
+    const stored = localStorage.getItem(key);
+    const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    root.setAttribute('data-theme', stored || preferred);
+
+    function syncIcons() {
+      document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+        const theme = root.getAttribute('data-theme');
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Включи светла тема' : 'Включи тъмна тема');
+      });
+    }
+
+    syncIcons();
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-theme-toggle]');
+      if (!btn) return;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(key, next);
+      syncIcons();
+    });
+  })();
+</script>

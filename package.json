@@ -1,0 +1,30 @@
+{
+  "name": "weberest-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run sync:portfolio-images && astro build",
+    "preview": "astro preview",
+    "migrate": "node scripts/migrate-wordpress.mjs",
+    "migrate:images": "node scripts/migrate-images.mjs",
+    "sync:blog-images": "node scripts/sync-blog-images.mjs",
+    "sync:portfolio-images": "node scripts/sync-portfolio-images.mjs",
+    "audit:portfolio-images": "node scripts/audit-portfolio-images.mjs",
+    "sync:portfolio-categories": "node scripts/sync-portfolio-categories.mjs",
+    "update:portfolio-meta": "node scripts/update-portfolio-meta.mjs",
+    "seo-audit": "node scripts/seo-audit.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.3.1",
+    "astro": "^5.7.10",
+    "sass": "^1.86.3",
+    "turndown": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/turndown": "^5.0.5",
+    "typescript": "^5.8.3"
+  }
+}

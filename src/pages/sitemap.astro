@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '@config/site';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+const pages = await getCollection('pages');
+const blog = await getCollection('blog');
+const portfolio = await getCollection('portfolio');
+
+const pageTitle = 'Карта на сайта';
+const pageDescription = 'Карта на сайта на Weberest.';
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: '/sitemap/' });
+---
+
+<BaseLayout
+  title="Карта на сайта - Weberest"
+  description={pageDescription}
+  canonical="/sitemap/"
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(pageTitle, pageDescription, 'https://www.weberest.com/bg/sitemap/'),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="content-page">
+    <InnerPageHeader title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} />
+    <ul class="sitemap-list">
+      <li><a href="/bg/">Начало</a></li>
+      {siteConfig.nav.flatMap((item) => [
+        <li><a href={`/bg${item.href}`}>{item.label}</a></li>,
+        ...(item.children?.map((child) => <li><a href={`/bg${child.href}`}>{child.label}</a></li>) ?? []),
+      ])}
+      {pages.map((page) => (
+        <li><a href={`/bg/${page.data.wpSlug ?? page.id}/`}>{page.data.title}</a></li>
+      ))}
+      {blog.map((post) => (
+        <li><a href={`/bg/${post.data.wpSlug ?? post.id}/`}>{post.data.title}</a></li>
+      ))}
+      {portfolio.map((item) => (
+        <li><a href={`/bg/website-klienti/${item.data.wpSlug ?? item.id}/`}>{item.data.title}</a></li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

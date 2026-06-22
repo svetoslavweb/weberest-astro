@@ -1,0 +1,145 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import {
+  canonicalPortfolioCategory,
+  collectPortfolioCategories,
+  getPortfolioCategoryLabel,
+} from '@config/portfolio-categories';
+
+interface Props {
+  items: CollectionEntry<'portfolio'>[];
+  activeCategory?: string | null;
+}
+
+const { items, activeCategory = null } = Astro.props;
+const categories = collectPortfolioCategories(items.flatMap((item) => item.data.categories ?? []));
+const normalizedActive = activeCategory ? canonicalPortfolioCategory(activeCategory) : null;
+---
+
+<div class="portfolio-filters-wrap">
+  <div class="portfolio-filters" role="tablist" aria-label="Филтри по категория" data-portfolio-filters>
+    <a
+      href="/bg/website-klienti/"
+      class="portfolio-filters__link"
+      data-category=""
+      aria-current={!normalizedActive ? 'true' : undefined}
+    >
+      Всички
+    </a>
+    {
+      categories.map((category) => (
+        <a
+          href={`/bg/website-klienti/?category=${encodeURIComponent(category)}`}
+          class="portfolio-filters__link"
+          data-category={category}
+          aria-current={normalizedActive === category ? 'true' : undefined}
+        >
+          {getPortfolioCategoryLabel(category)}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<div class="portfolio-grid" data-portfolio-grid>
+  {
+    items.map((item) => {
+      const itemCategories = (item.data.categories ?? []).map(canonicalPortfolioCategory);
+      const isVisible = !normalizedActive || itemCategories.includes(normalizedActive);
+
+      return (
+        <a
+          href={`/bg/website-klienti/${item.data.wpSlug ?? item.id}/`}
+          class="portfolio-card"
+          data-categories={JSON.stringify(itemCategories)}
+          hidden={!isVisible || undefined}
+        >
+          <div class="portfolio-card__media">
+            {item.data.featuredImage ? (
+              <img
+                src={item.data.featuredImage}
+                alt={item.data.featuredImageAlt ?? item.data.title}
+                loading="lazy"
+              />
+            ) : null}
+          </div>
+          <div class="portfolio-card__body">
+            <h2 class="portfolio-card__title">{item.data.title}</h2>
+            <div class="portfolio-card__meta">
+              {item.data.categories?.map((category) => (
+                <span class="portfolio-card__tag">{getPortfolioCategoryLabel(category)}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      );
+    })
+  }
+</div>
+
+<p class="portfolio-grid__empty" data-portfolio-empty hidden>
+  Няма проекти в тази категория.
+</p>
+
+<script>
+  function initPortfolioFilters() {
+    const filters = document.querySelector('[data-portfolio-filters]');
+    const grid = document.querySelector('[data-portfolio-grid]');
+    const emptyState = document.querySelector('[data-portfolio-empty]');
+    if (!filters || !grid) return;
+
+    const cards = [...grid.querySelectorAll<HTMLElement>('[data-categories]')];
+    const filterLinks = [...filters.querySelectorAll<HTMLAnchorElement>('[data-category]')];
+
+    function applyFilter(category: string) {
+      let visibleCount = 0;
+
+      for (const card of cards) {
+        const categories = JSON.parse(card.dataset.categories ?? '[]') as string[];
+        const show = !category || categories.includes(category);
+        card.hidden = !show;
+        if (show) visibleCount += 1;
+      }
+
+      for (const link of filterLinks) {
+        const isActive = link.dataset.category === category;
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+
+      if (emptyState instanceof HTMLElement) {
+        emptyState.hidden = visibleCount > 0;
+      }
+    }
+
+    filters.addEventListener('click', (event) => {
+      const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('[data-category]');
+      if (!link) return;
+
+      event.preventDefault();
+      const category = link.dataset.category ?? '';
+      applyFilter(category);
+
+      const nextUrl = category
+        ? `${window.location.pathname}?category=${encodeURIComponent(category)}`
+        : window.location.pathname;
+      window.history.replaceState(null, '', nextUrl);
+    });
+
+    window.addEventListener('popstate', () => {
+      const category = new URLSearchParams(window.location.search).get('category');
+      applyFilter(category ? decodeURIComponent(category) : '');
+    });
+
+    const initialCategory = new URLSearchParams(window.location.search).get('category');
+    if (initialCategory) {
+      applyFilter(decodeURIComponent(initialCategory));
+    }
+  }
+
+  initPortfolioFilters();
+  document.addEventListener('astro:page-load', initPortfolioFilters);
+</script>

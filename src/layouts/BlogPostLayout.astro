@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import YouTubeEmbed from '@components/media/YouTubeEmbed.astro';
+import type { CollectionEntry } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildBlogPostingSchema, mergeJsonLd } from '@utils/seo';
+import { extractYouTubeId, youtubeThumbnail } from '@utils/youtube';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+  slug: string;
+}
+
+const { entry, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, author, featuredImage, youtubeId, category } = entry.data;
+const body = 'body' in entry ? String(entry.body ?? '') : '';
+const resolvedYoutubeId = youtubeId ?? extractYouTubeId(body);
+const ogImage = featuredImage ?? (resolvedYoutubeId ? youtubeThumbnail(resolvedYoutubeId) : undefined);
+
+const formattedDate = pubDate.toLocaleDateString('bg-BG', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const breadcrumbs = buildBreadcrumbs(
+  { name: 'Блог', url: '/blog/' },
+  { name: title, url: `/${slug}/` },
+);
+const metaLine = [formattedDate, category, author].filter(Boolean).join(' · ');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${slug}/`}
+  ogType="article"
+  ogImage={ogImage}
+  article={{
+    publishedTime: pubDate.toISOString(),
+    modifiedTime: (updatedDate ?? pubDate).toISOString(),
+    author,
+  }}
+  jsonLd={mergeJsonLd(
+    buildBlogPostingSchema({
+      title,
+      description: description ?? '',
+      url: `https://www.weberest.com/bg/${slug}/`,
+      datePublished: pubDate.toISOString(),
+      dateModified: (updatedDate ?? pubDate).toISOString(),
+      author,
+      image: ogImage,
+    }),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="content-page content-page--wide blog-post">
+    <InnerPageHeader title={title} description={description} breadcrumbs={breadcrumbs} fullWidth>
+      <p class="blog-card__meta">{metaLine}</p>
+    </InnerPageHeader>
+
+    {
+      resolvedYoutubeId ? (
+        <div class="blog-post__video" data-reveal="scale">
+          <YouTubeEmbed videoId={resolvedYoutubeId} title={title} />
+        </div>
+      ) : featuredImage ? (
+        <figure class="blog-post__featured" data-reveal="scale">
+          <img src={featuredImage} alt={entry.data.featuredImageAlt ?? title} loading="eager" decoding="async" />
+        </figure>
+      ) : null
+    }
+
+    <div class="prose prose--article blog-post__prose">
+      <slot />
+    </div>
+
+    <aside class="blog-post__cta" data-reveal="left">
+      <h2>Искате помощ с вашия проект?</h2>
+      <p>Свържете се с нас за безплатна консултация — уеб дизайн, онлайн магазини, SEO и маркетинг.</p>
+      <div class="blog-post__cta-actions">
+        <a href="/bg/it-konsultacia/#contact-form" class="btn btn--primary btn--glow">Безплатна консултация</a>
+        <a href="/bg/zapitanie/" class="btn btn--secondary">Безплатна оферта</a>
+      </div>
+    </aside>
+  </article>
+</BaseLayout>

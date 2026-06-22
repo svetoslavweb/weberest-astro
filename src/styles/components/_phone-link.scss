@@ -1,0 +1,68 @@
+@use '../mixins' as *;
+
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+  .phone-link__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .phone-link__text {
+    display: none;
+  }
+
+  @include respond(xl) {
+    width: auto;
+    height: auto;
+    padding: 0.65rem 1rem;
+
+    .phone-link__text {
+      display: inline;
+    }
+  }
+
+  &:hover {
+    color: var(--color-accent);
+    transform: scale(1.04);
+    border-color: var(--color-accent);
+  }
+}
+
+.mobile-menu__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  width: auto;
+  height: auto;
+  border: none;
+
+  .phone-link__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-accent);
+  }
+}

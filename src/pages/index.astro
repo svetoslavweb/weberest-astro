@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import StatsStrip from '@components/sections/StatsStrip.astro';
+import HomeServicesNew from '@components/home/HomeServicesNew.astro';
+import HomeServicesGrid from '@components/home/HomeServicesGrid.astro';
+import HomeVideos from '@components/home/HomeVideos.astro';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import { getCollection } from 'astro:content';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+import { getPortfolioCategoryLabel } from '@config/portfolio-categories';
+import { sortPortfolioNewestFirst } from '@utils/portfolio-sort';
+
+const pages = await getCollection('pages');
+const home = pages.find((page) => page.id === 'home') ?? pages.find((page) => page.data.wpSlug === 'home');
+const portfolio = sortPortfolioNewestFirst(await getCollection('portfolio')).slice(0, 6);
+
+const title = home?.data.title ?? 'Върхов Уеб Дизайн и Онлайн Маркетинг от Weberest - Русе';
+const description =
+  home?.data.description ??
+  'Weberest е уеб дизайн и онлайн маркетинг студио в Русе. Изработка на сайтове, онлайн магазини, SEO и Google реклама.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/"
+  jsonLd={mergeJsonLd(buildWebPageSchema(title, description, 'https://www.weberest.com/bg/'))}
+  showFloatingQuote={false}
+>
+  <div class="home-page">
+    <Hero
+      title="Изпълняваме вашите интернет желания"
+      subtitle="Full-service digital studio — уеб дизайн, разработка и маркетинг, които носят реални резултати за вашия бизнес."
+    />
+
+    <StatsStrip />
+
+    <HomeServicesNew />
+    <HomeServicesGrid />
+    <HomeVideos />
+
+    <section class="section home-page__portfolio" id="portfolio">
+    <div class="container">
+      <div data-reveal="left">
+        <span class="section-eyebrow">04 · Портфолио</span>
+        <h2 class="section-title">Проекти, които говорят сами за себе си</h2>
+        <p class="section-lead">Бъдете успешни като нашите клиенти от България и чужбина.</p>
+      </div>
+      <div class="portfolio-grid">
+        {
+          portfolio.map((item, i) => (
+            <a
+              href={`/bg/website-klienti/${item.data.wpSlug ?? item.id}/`}
+              class="portfolio-card"
+              data-reveal="rotate"
+              data-reveal-delay={String((i % 3) + 1)}
+            >
+              <div class="portfolio-card__media">
+                {item.data.featuredImage ? (
+                  <img src={item.data.featuredImage} alt={item.data.featuredImageAlt ?? item.data.title} loading="lazy" />
+                ) : (
+                  <span class="portfolio-card__placeholder" aria-hidden="true">{item.data.title.charAt(0)}</span>
+                )}
+              </div>
+              <div class="portfolio-card__body">
+                <h3 class="portfolio-card__title">{item.data.title}</h3>
+                <div class="portfolio-card__meta">
+                  {item.data.categories?.slice(0, 2).map((category) => (
+                    <span class="portfolio-card__tag">{getPortfolioCategoryLabel(category)}</span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner class="home-page__cta" />
+  </div>
+</BaseLayout>

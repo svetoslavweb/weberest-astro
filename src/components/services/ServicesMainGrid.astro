@@ -1,0 +1,34 @@
+---
+import ServicesIcon from '@components/services/ServicesIcon.astro';
+import { servicesPageMain } from '@config/services-page';
+---
+
+<section class="services-main section" id="services-main">
+  <div class="services-main__inner">
+    <div class="services-main__head" data-reveal="left">
+      <span class="section-eyebrow">{servicesPageMain.eyebrow}</span>
+      <h2 class="section-title">{servicesPageMain.title}</h2>
+    </div>
+
+    <div class="services-grid">
+      {
+        servicesPageMain.items.map((service, index) => (
+          <article
+            class="service-card"
+            data-reveal="scale"
+            data-reveal-delay={String((index % 3) + 1)}
+          >
+            <ServicesIcon icon={service.icon} />
+            <h3 class="service-card__title">{service.title}</h3>
+            <p class="service-card__description">{service.description}</p>
+            <ul class="service-card-list">
+              {service.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

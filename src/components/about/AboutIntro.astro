@@ -1,0 +1,25 @@
+---
+import AboutDevVisual from '@components/about/AboutDevVisual.astro';
+import { aboutIntro } from '@config/about';
+---
+
+<section class="about-intro section" id="about-intro">
+  <div class="about-intro__inner">
+    <div class="about-intro__copy" data-reveal="left">
+      <span class="section-eyebrow">{aboutIntro.eyebrow}</span>
+      <h2 class="section-title">{aboutIntro.title}</h2>
+      <p class="section-lead">{aboutIntro.text}</p>
+      <ul class="about-intro__list">
+        {
+          aboutIntro.highlights.map((item) => (
+            <li>{item}</li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="about-intro__visual" data-reveal="right" data-reveal-delay="2">
+      <AboutDevVisual tags={aboutIntro.devTags} />
+    </div>
+  </div>
+</section>

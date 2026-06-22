@@ -1,0 +1,26 @@
+---
+import YouTubeEmbed from '@components/media/YouTubeEmbed.astro';
+import { aboutImpact } from '@config/about';
+
+const { media } = aboutImpact;
+---
+
+<section class="about-media section section--alt" id="about-media">
+  <div class="about-media__inner">
+    <div class="about-media__head" data-reveal="left">
+      <span class="section-eyebrow">{media.eyebrow}</span>
+      <h2 class="section-title">{media.title}</h2>
+      <p class="section-lead">{media.intro}</p>
+    </div>
+
+    <div class="about-media__videos">
+      {
+        media.videos.map((video, i) => (
+          <div data-reveal="scale" data-reveal-delay={String((i % 3) + 1)}>
+            <YouTubeEmbed videoId={video.id} title={video.title} start={video.start} compact />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

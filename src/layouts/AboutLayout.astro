@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AboutHero from '@components/about/AboutHero.astro';
+import AboutStats from '@components/about/AboutStats.astro';
+import AboutIntro from '@components/about/AboutIntro.astro';
+import AboutPillars from '@components/about/AboutPillars.astro';
+import AboutTeam from '@components/about/AboutTeam.astro';
+import AboutMission from '@components/about/AboutMission.astro';
+import AboutImpact from '@components/about/AboutImpact.astro';
+import AboutMedia from '@components/about/AboutMedia.astro';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import type { CollectionEntry } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  slug: string;
+}
+
+const { entry, slug } = Astro.props;
+const { title, description } = entry.data;
+const breadcrumbs = buildBreadcrumbs({ name: 'За Weberest', url: `/${slug}/` });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${slug}/`}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/${slug}/`),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="about-page">
+    <AboutHero breadcrumbs={breadcrumbs} />
+    <AboutStats />
+    <AboutMedia />
+    <AboutIntro />
+    <AboutPillars />
+    <AboutTeam />
+    <AboutMission />
+    <AboutImpact />
+    <CtaBanner
+      title="Обещаваме да разговаряме на разбираем език"
+      text="Без излишни термини и безсмислени понятия. Получете безплатна консултация от нашите специалисти."
+      href="/it-konsultacia/"
+      label="Безплатна консултация"
+      class="about-page__cta"
+    />
+  </article>
+</BaseLayout>

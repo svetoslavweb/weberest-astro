@@ -1,0 +1,31 @@
+<div class="cookie-banner" data-cookie-banner data-visible="false" role="dialog" aria-live="polite" aria-label="Бисквитки">
+  <p>
+    Използваме бисквитки за анализ на трафика и подобряване на изживяването. Научете повече в
+    <a href="/bg/cookies-policy/">политиката за бисквитки</a>.
+  </p>
+  <div class="cookie-banner__actions">
+    <button type="button" class="btn btn--secondary" data-cookie-decline>Отказ</button>
+    <button type="button" class="btn btn--primary" data-cookie-accept>Приемам</button>
+  </div>
+</div>
+
+<script>
+  const key = 'weberest_cookie_consent';
+  const banner = document.querySelector('[data-cookie-banner]') as HTMLElement | null;
+  const accept = document.querySelector('[data-cookie-accept]');
+  const decline = document.querySelector('[data-cookie-decline]');
+
+  if (banner && !localStorage.getItem(key)) {
+    banner.dataset.visible = 'true';
+  }
+
+  accept?.addEventListener('click', () => {
+    localStorage.setItem(key, 'accepted');
+    if (banner) banner.dataset.visible = 'false';
+  });
+
+  decline?.addEventListener('click', () => {
+    localStorage.setItem(key, 'declined');
+    if (banner) banner.dataset.visible = 'false';
+  });
+</script>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  items: { question: string; answer: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-list">
+  {
+    items.map((item) => (
+      <div class="faq-item" data-faq-item data-open="false">
+        <button class="faq-item__question" type="button" aria-expanded="false" data-faq-trigger>
+          <span class="faq-item__label">{item.question}</span>
+          <span class="faq-item__icon" aria-hidden="true" />
+        </button>
+        <div class="faq-item__answer" data-faq-answer>
+          <div class="faq-item__answer-inner" set:html={item.answer} />
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  function setFaqItemState(item: Element, open: boolean) {
+    const trigger = item.querySelector('[data-faq-trigger]') as HTMLButtonElement | null;
+    item.setAttribute('data-open', String(open));
+    trigger?.setAttribute('aria-expanded', String(open));
+  }
+
+  function initFaqAccordion() {
+    document.querySelectorAll('[data-faq-item]').forEach((item) => {
+      const trigger = item.querySelector('[data-faq-trigger]') as HTMLButtonElement | null;
+      if (!trigger || trigger.dataset.faqBound === 'true') return;
+
+      trigger.dataset.faqBound = 'true';
+      trigger.addEventListener('click', () => {
+        const open = item.getAttribute('data-open') === 'true';
+
+        if (!open) {
+          document.querySelectorAll('[data-faq-item][data-open="true"]').forEach((other) => {
+            if (other !== item) setFaqItemState(other, false);
+          });
+        }
+
+        setFaqItemState(item, !open);
+      });
+    });
+  }
+
+  initFaqAccordion();
+  document.addEventListener('astro:page-load', initFaqAccordion);
+</script>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServicesHero from '@components/services/ServicesHero.astro';
+import ServicesHighlightSection from '@components/services/ServicesHighlightSection.astro';
+import ServicesMainGrid from '@components/services/ServicesMainGrid.astro';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import type { CollectionEntry } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  slug: string;
+}
+
+const { entry, slug } = Astro.props;
+const { title, description } = entry.data;
+const breadcrumbs = buildBreadcrumbs({ name: 'Услуги', url: `/${slug}/` });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${slug}/`}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/${slug}/`),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="services-page">
+    <ServicesHero breadcrumbs={breadcrumbs} />
+    <ServicesHighlightSection />
+    <ServicesMainGrid />
+    <CtaBanner
+      title="Готови ли сте да обсъдим вашия проект?"
+      text="Свържете се с нас за безплатна консултация — ще предложим решение, съобразено с целите и бюджета на вашия бизнес."
+      href="/it-konsultacia/"
+      label="Заявете консултация"
+      class="services-page__cta"
+    />
+  </article>
+</BaseLayout>

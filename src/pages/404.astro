@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+const pageTitle = 'Страницата не е намерена';
+const pageDescription = 'Страницата, която търсите, не съществува или е преместена.';
+const breadcrumbs = buildBreadcrumbs({ name: '404', url: '/404/' });
+---
+
+<BaseLayout
+  title="Страницата не е намерена - Weberest"
+  description={pageDescription}
+  canonical="/404/"
+  noindex={true}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(pageTitle, pageDescription, 'https://www.weberest.com/bg/404/'),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="content-page">
+    <InnerPageHeader title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} />
+    <a href="/bg/" class="btn btn--primary">Към началото</a>
+  </section>
+</BaseLayout>

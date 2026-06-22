@@ -1,0 +1,748 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.quote-form-section {
+  @include section-padding;
+}
+
+.quote-form-perks {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.quote-form-perks__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.quote-form-perks__icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.quote-form-section__inner {
+  @include container;
+  display: grid;
+  gap: 2rem;
+
+  @include respond(lg) {
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: start;
+  }
+}
+
+.quote-form-section--compact .quote-form-section__inner {
+  grid-template-columns: 1fr;
+}
+
+.quote-form-section--centered {
+  padding-top: clamp(0.5rem, 2vw, 1.25rem);
+
+  .quote-form-section__inner {
+    grid-template-columns: 1fr;
+    width: min(calc(100% - 2rem), 56rem);
+    margin-inline: auto;
+  }
+
+  .quote-form {
+    width: 100%;
+  }
+}
+
+.quote-form-section--hero {
+  display: contents;
+  padding: 0;
+  margin: 0;
+
+  .quote-form-section__inner {
+    display: contents;
+  }
+}
+
+.quote-form-section__intro {
+  position: sticky;
+  top: calc($header-height + 1rem);
+}
+
+.quote-form {
+  @include glass-panel;
+  border-radius: $radius-xl;
+  padding: clamp(1.25rem, 3vw, 2rem);
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+.quote-form__progress {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.quote-form__progress-step {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: center;
+  text-align: center;
+  opacity: 0.45;
+  transition: opacity $transition-base;
+
+  &[data-active='true'],
+  &[data-complete='true'] {
+    opacity: 1;
+  }
+}
+
+.quote-form__progress-dot {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  transition: background $transition-base, border-color $transition-base, color $transition-base;
+}
+
+.quote-form__progress-step[data-active='true'] .quote-form__progress-dot,
+.quote-form__progress-step[data-complete='true'] .quote-form__progress-dot {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  color: #fff;
+}
+
+.quote-form__progress-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.quote-form__step {
+  display: none;
+
+  &[data-active='true'] {
+    display: block;
+    animation: quoteFadeIn 0.35s ease;
+  }
+}
+
+.quote-form__step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+}
+
+.quote-form__step-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.65rem;
+  display: grid;
+  place-items: center;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
+@keyframes quoteFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quote-form__cards {
+  display: grid;
+  gap: 0.85rem;
+
+  @include respond(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.quote-form__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 1rem 1rem 1rem 0.95rem;
+  border-radius: $radius-lg;
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input-bg);
+  cursor: pointer;
+  transition:
+    border-color $transition-fast,
+    transform $transition-fast,
+    background $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    border-color: rgba(142, 99, 171, 0.45);
+    transform: translateY(-2px);
+  }
+
+  &[data-selected='true'] {
+    border-color: var(--color-primary);
+    background: var(--color-accent-soft);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.quote-form__card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.85rem;
+  display: grid;
+  place-items: center;
+  background: rgba(142, 99, 171, 0.14);
+  color: var(--color-accent);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.quote-form__card-body {
+  min-width: 0;
+}
+
+.quote-form__card-title {
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.quote-form__card-desc {
+  margin-top: 0.3rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.quote-form__card-check {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-border);
+  position: relative;
+  transition: border-color $transition-fast, background $transition-fast;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0.22rem;
+    border-radius: 999px;
+    background: #22c55e;
+    transform: scale(0);
+    transition: transform $transition-fast;
+  }
+}
+
+.quote-form__card[data-selected='true'] .quote-form__card-check {
+  border-color: #22c55e;
+
+  &::after {
+    transform: scale(1);
+  }
+}
+
+.quote-form__field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quote-form__label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.quote-form__input-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border-radius: $radius-md;
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input-bg);
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(142, 99, 171, 0.15);
+  }
+
+  &--textarea {
+    align-items: start;
+
+    .quote-form__input-icon {
+      margin-top: 0.85rem;
+    }
+  }
+}
+
+.quote-form__input-icon {
+  width: 2.75rem;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
+.quote-form__input,
+.quote-form__textarea {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.quote-form__textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+  padding-top: 0.875rem;
+}
+
+.quote-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.quote-form__consent {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.925rem;
+  color: var(--color-text-muted);
+
+  input {
+    margin-top: 0.2rem;
+    accent-color: var(--color-primary);
+  }
+
+  a {
+    color: var(--color-link);
+  }
+}
+
+.quote-form__success {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  animation: quoteFadeIn 0.4s ease;
+
+  h3 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-text-muted);
+    max-width: 32ch;
+  }
+}
+
+.quote-form__success-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
+}
+
+.quote-form__message {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: $radius-md;
+
+  &[data-type='success'] {
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+  }
+
+  &[data-type='error'] {
+    background: var(--color-error-bg);
+    color: var(--color-error-text);
+  }
+}
+
+.quote-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.quote-form-floating {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+
+  @include respond(md) {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+.quote-form-floating__button {
+  @include button-base;
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-md);
+}
+
+// Hero embed — един контейнер, без вътрешно glass каре
+.quote-form.quote-form--hero {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  backdrop-filter: none;
+  border-radius: 0;
+
+  .quote-form__progress {
+    margin-bottom: 1.35rem;
+    gap: 0.85rem;
+  }
+
+  .quote-form__progress-step {
+    opacity: 1;
+
+    &:not([data-active='true']):not([data-complete='true']) {
+      .quote-form__progress-dot {
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .quote-form__progress-label {
+        color: rgba(255, 255, 255, 0.62);
+      }
+    }
+
+    &[data-active='true'] .quote-form__progress-label,
+    &[data-complete='true'] .quote-form__progress-label {
+      color: var(--color-text);
+    }
+  }
+
+  .quote-form__progress-dot {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 0.95rem;
+  }
+
+  .quote-form__progress-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .quote-form__step-title {
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-weight: 800;
+  }
+
+  .quote-form__step-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: rgba(142, 99, 171, 0.28);
+    color: #e9d5ff;
+
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  .quote-form__cards {
+    gap: 0.75rem;
+  }
+
+  .quote-form__card {
+    padding: 0.9rem 1rem;
+    gap: 0.75rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    &:hover {
+      background: rgba(142, 99, 171, 0.16);
+      border-color: rgba(183, 148, 211, 0.45);
+    }
+
+    &[data-selected='true'] {
+      background: rgba(142, 99, 171, 0.24);
+      border-color: rgba(183, 148, 211, 0.75);
+      box-shadow:
+        inset 0 0 0 1px rgba(183, 148, 211, 0.35),
+        0 6px 18px rgba(48, 2, 144, 0.15);
+    }
+  }
+
+  .quote-form__card-icon {
+    width: 2.65rem;
+    height: 2.65rem;
+    background: rgba(142, 99, 171, 0.32);
+    color: #f3e8ff;
+
+    svg {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+  }
+
+  .quote-form__card-title {
+    font-size: 0.95rem;
+    color: #fff;
+  }
+
+  .quote-form__card-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .quote-form__card-check {
+    width: 1.45rem;
+    height: 1.45rem;
+    margin-top: 0;
+    align-self: center;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+
+    &::after {
+      inset: 0.26rem;
+    }
+  }
+
+  .quote-form__card[data-selected='true'] .quote-form__card-check {
+    border-color: #4ade80;
+    background: rgba(34, 197, 94, 0.18);
+
+    &::after {
+      background: #4ade80;
+    }
+  }
+
+  .quote-form__label {
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .quote-form__field {
+    margin-bottom: 0.9rem;
+  }
+
+  .quote-form__input-wrap {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .quote-form__input,
+  .quote-form__textarea {
+    font-size: 1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    color: var(--color-text);
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+  }
+
+  .quote-form__textarea {
+    min-height: 6.5rem;
+  }
+
+  .quote-form__consent {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .quote-form__actions {
+    margin-top: 1.25rem;
+    gap: 0.65rem;
+
+    .btn {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.95rem;
+    }
+
+    .btn--secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #fff;
+    }
+  }
+
+  .quote-form__success {
+    padding: 1.5rem 0.75rem;
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.82);
+    }
+  }
+}
+
+[data-theme='light'] .quote-form.quote-form--hero {
+  .quote-form__progress-step:not([data-active='true']):not([data-complete='true']) {
+    .quote-form__progress-dot {
+      border-color: rgba(18, 19, 26, 0.18);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+      color: var(--color-text-muted);
+    }
+
+    .quote-form__progress-label {
+      color: rgba(18, 19, 26, 0.62);
+    }
+  }
+
+  .quote-form__step-icon {
+    background: rgba(142, 99, 171, 0.16);
+    color: var(--color-primary-dark);
+  }
+
+  .quote-form__card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.75);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      0 4px 16px rgba(48, 2, 144, 0.06);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.68);
+      border-color: rgba(142, 99, 171, 0.38);
+    }
+
+    &[data-selected='true'] {
+      background: rgba(142, 99, 171, 0.16);
+      border-color: rgba(142, 99, 171, 0.55);
+      box-shadow:
+        inset 0 0 0 1px rgba(142, 99, 171, 0.22),
+        0 6px 20px rgba(48, 2, 144, 0.1);
+    }
+  }
+
+  .quote-form__card-icon {
+    background: rgba(142, 99, 171, 0.18);
+    color: var(--color-primary-dark);
+  }
+
+  .quote-form__card-title {
+    color: var(--color-text);
+  }
+
+  .quote-form__card-desc {
+    color: rgba(18, 19, 26, 0.72);
+  }
+
+  .quote-form__card-check {
+    border-color: rgba(18, 19, 26, 0.32);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(4px);
+  }
+
+  .quote-form__card[data-selected='true'] .quote-form__card-check {
+    border-color: #16a34a;
+    background: rgba(34, 197, 94, 0.12);
+  }
+
+  .quote-form__input-wrap {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+
+  .quote-form__input,
+  .quote-form__textarea {
+    &::placeholder {
+      color: rgba(18, 19, 26, 0.45);
+    }
+  }
+
+  .quote-form__consent {
+    color: rgba(18, 19, 26, 0.72);
+  }
+
+  .quote-form__actions .btn--secondary {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    border-color: rgba(18, 19, 26, 0.12);
+    color: var(--color-text);
+  }
+}

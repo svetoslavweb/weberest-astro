@@ -1,0 +1,510 @@
+---
+import { integrationsConfig } from '@config/integrations';
+import { quoteFormServices, quoteFormSteps } from '@config/quote-form';
+
+interface Props {
+  compact?: boolean;
+  showIntro?: boolean;
+  hero?: boolean;
+}
+
+const { compact = false, showIntro = !compact, hero = false } = Astro.props;
+const centered = !showIntro && !compact && !hero;
+const { turnstileSiteKey, formActionUrl, formApiUrl } = integrationsConfig;
+---
+
+<section
+  class:list={[
+    'quote-form-section',
+    compact && 'quote-form-section--compact',
+    centered && 'quote-form-section--centered',
+    hero && 'quote-form-section--hero',
+  ]}
+  id={hero ? undefined : 'quote-form'}
+>
+  <div class="quote-form-section__inner">
+    {
+      showIntro && (
+        <div class="quote-form-section__intro">
+          <span class="section-eyebrow">Уеб Сайт Калкулатор</span>
+          <h2 class="section-title">Получете персонална оферта за вашия проект</h2>
+          <p class="section-lead">
+            Разкажете ни какво търсите. Ще анализираме нуждите ви и ще се свържем с ясно предложение —
+            без излишни термини и без задължение.
+          </p>
+        </div>
+      )
+    }
+
+    <form class:list={['quote-form', hero && 'quote-form--hero']} data-quote-form novalidate>
+      <div class="quote-form__progress" aria-label="Стъпки на формата">
+        {
+          quoteFormSteps.map((label, index) => (
+            <div class="quote-form__progress-step" data-step-indicator={index + 1}>
+              <span class="quote-form__progress-dot">{index + 1}</span>
+              <span class="quote-form__progress-label">{label}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="quote-form__step" data-step="1" data-active="true">
+        <h3 class="quote-form__step-title">
+          <span class="quote-form__step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z"/></svg>
+          </span>
+          Каква услуга ви интересува?
+        </h3>
+        <div class="quote-form__cards">
+          {
+            quoteFormServices.map((service) => (
+              <label class="quote-form__card" data-service-card data-service-id={service.id}>
+                <input type="radio" name="service" value={service.id} required />
+                <span class="quote-form__card-icon" aria-hidden="true">
+                  {
+                    service.id === 'design' && (
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3l8.66 5v8L12 21l-8.66-5V8L12 3zm0 2.2L6.34 9.5 12 13.3l5.66-3.8L12 5.2z"/></svg>
+                    )
+                  }
+                  {
+                    service.id === 'marketing' && (
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 17h2v-7H3v7zm4 0h2V7H7v10zm4 0h2V4h-2v13zm4 0h2v-5h-2v5zm4 0h2v-9h-2v9z"/></svg>
+                    )
+                  }
+                  {
+                    service.id === 'shop' && (
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 4h-2l-1 2H2v2h1l2 10h14l2-10h1V6h-2l-1-2h-2l-1 2H8L7 4zm0 4h10l-1.2 6H8.2L7 8z"/></svg>
+                    )
+                  }
+                  {
+                    service.id === 'other' && (
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 8h4V4H4v4zm6 0h10V4H10v4zM4 14h4v-6H4v6zm6 0h10v-6H10v6zM4 20h4v-4H4v4zm6 0h10v-4H10v4z"/></svg>
+                    )
+                  }
+                </span>
+                <div class="quote-form__card-body">
+                  <div class="quote-form__card-title">{service.title}</div>
+                  <div class="quote-form__card-desc">{service.desc}</div>
+                </div>
+                <span class="quote-form__card-check" aria-hidden="true"></span>
+              </label>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="quote-form__step" data-step="2">
+        <h3 class="quote-form__step-title">
+          <span class="quote-form__step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4z"/></svg>
+          </span>
+          Разкажете ни повече за проекта
+        </h3>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="currentSite">Сегашен сайт (ако има)</label>
+          <div class="quote-form__input-wrap">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.02a15.3 15.3 0 00-1.08-4.03A8.03 8.03 0 0119.93 11zM12 4c.95 1.74 1.6 3.74 1.86 6H10.14c.26-2.26.91-4.26 1.86-6zM8.15 6.97A15.3 15.3 0 007.07 11H4.07a8.03 8.03 0 014.08-4.03zM4.07 13h3.02c.22 1.42.62 2.76 1.08 4.03A8.03 8.03 0 014.07 13zm5.79 7.03c-.95-1.74-1.6-3.74-1.86-6h3.72c-.26 2.26-.91 4.26-1.86 6zm3.93 0A15.3 15.3 0 0016.93 13h3.02a8.03 8.03 0 01-4.08 4.03zM16.93 11a15.3 15.3 0 00-1.08-4.03A8.03 8.03 0 0119.93 11h-3.02z"/></svg>
+            </span>
+            <input class="quote-form__input" id="currentSite" name="currentSite" type="url" placeholder="https://example.com" />
+          </div>
+        </div>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="competitor">Основен конкурент (ако има)</label>
+          <div class="quote-form__input-wrap">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </span>
+            <input class="quote-form__input" id="competitor" name="competitor" type="url" placeholder="https://example.com" />
+          </div>
+        </div>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="additionalInfo">Допълнителна информация</label>
+          <div class="quote-form__input-wrap quote-form__input-wrap--textarea">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+            </span>
+            <textarea
+              class="quote-form__textarea"
+              id="additionalInfo"
+              name="additionalInfo"
+              placeholder="Опишете целите, сроковете и очакванията си"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-form__step" data-step="3">
+        <h3 class="quote-form__step-title">
+          <span class="quote-form__step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z"/></svg>
+          </span>
+          Как да се свържем с вас?
+        </h3>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="name">Име *</label>
+          <div class="quote-form__input-wrap">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z"/></svg>
+            </span>
+            <input class="quote-form__input" id="name" name="name" type="text" required autocomplete="name" placeholder="Вашето име" />
+          </div>
+        </div>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="email">Имейл *</label>
+          <div class="quote-form__input-wrap">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </span>
+            <input class="quote-form__input" id="email" name="email" type="email" required autocomplete="email" placeholder="name@company.com" />
+          </div>
+        </div>
+        <div class="quote-form__field">
+          <label class="quote-form__label" for="phone">Телефон *</label>
+          <div class="quote-form__input-wrap">
+            <span class="quote-form__input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.47a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.18 2.2z"/></svg>
+            </span>
+            <input class="quote-form__input" id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="0887 123 456" />
+          </div>
+        </div>
+        <label class="quote-form__consent">
+          <input type="checkbox" name="consent" required />
+          <span>
+            Предоставям личните си данни доброволно. Прочетете повече в
+            <a href="/bg/privacy-policy/">политиката за поверителност</a>.
+          </span>
+        </label>
+        <div class="quote-form__honeypot" aria-hidden="true">
+          <label for="companyWebsite">Company website</label>
+          <input id="companyWebsite" name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        {
+          turnstileSiteKey && (
+            <div class="quote-form__field">
+              <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="dark" />
+            </div>
+          )
+        }
+      </div>
+
+      <div class="quote-form__success" data-success hidden>
+        <div class="quote-form__success-icon" aria-hidden="true">✓</div>
+        <h3>Запитването е изпратено!</h3>
+        <p>Консултант от Weberest ще се свърже с вас в рамките на 1 работен ден.</p>
+      </div>
+
+      <div class="quote-form__actions" data-actions>
+        <button type="button" class="btn btn--secondary" data-prev hidden>← Назад</button>
+        <button type="button" class="btn btn--primary btn--glow" data-next>Продължи →</button>
+        <button type="submit" class="btn btn--primary btn--glow" data-submit hidden>
+          <span data-submit-label>Изпрати запитване</span>
+        </button>
+      </div>
+
+      <div class="quote-form__message" data-message hidden role="alert"></div>
+    </form>
+  </div>
+</section>
+
+{
+  turnstileSiteKey && (
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+  )
+}
+
+<script define:vars={{ formActionUrl, formApiUrl, turnstileSiteKey }}>
+  const SERVICE_TO_PHP = {
+    design: 'design',
+    marketing: 'seo',
+    shop: 'eshop',
+    other: 'other',
+  };
+
+  const SERVICE_LABELS = {
+    design: 'Дизайн / Редизайн',
+    marketing: 'Google Маркетинг',
+    shop: 'Онлайн Магазин',
+    other: 'Други услуги',
+  };
+
+  function buildReferer(baseUrl, service, additionalInfo) {
+    const notes = [];
+    const serviceLabel = service ? SERVICE_LABELS[service] : '';
+
+    if (serviceLabel) notes.push(`Избрана услуга: ${serviceLabel}`);
+    if (additionalInfo) notes.push(`Допълнителна информация: ${additionalInfo}`);
+    if (!notes.length) return baseUrl;
+    return `${baseUrl}\r\r${notes.join('\r')}`;
+  }
+
+  function initQuoteForm() {
+    const form = document.querySelector('[data-quote-form]');
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    let currentStep = 1;
+    const totalSteps = 3;
+    const steps = Array.from(form.querySelectorAll('[data-step]'));
+    const indicators = Array.from(form.querySelectorAll('[data-step-indicator]'));
+    const prevBtn = form.querySelector('[data-prev]');
+    const nextBtn = form.querySelector('[data-next]');
+    const submitBtn = form.querySelector('[data-submit]');
+    const actions = form.querySelector('[data-actions]');
+    const successPanel = form.querySelector('[data-success]');
+    const progress = form.querySelector('.quote-form__progress');
+    const message = form.querySelector('[data-message]');
+    const submitLabel = form.querySelector('[data-submit-label]');
+
+    function track(eventName, detail = {}) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, ...detail });
+    }
+
+    function showMessage(type, text) {
+      if (!message) return;
+      message.hidden = false;
+      message.dataset.type = type;
+      message.textContent = text;
+    }
+
+    function hideMessage() {
+      if (message) message.hidden = true;
+    }
+
+    function updateUI() {
+      steps.forEach((step) => {
+        step.dataset.active = step.dataset.step === String(currentStep) ? 'true' : 'false';
+      });
+      indicators.forEach((indicator) => {
+        const step = Number(indicator.dataset.stepIndicator);
+        indicator.dataset.active = step === currentStep ? 'true' : 'false';
+        indicator.dataset.complete = step < currentStep ? 'true' : 'false';
+      });
+      if (prevBtn) prevBtn.hidden = currentStep === 1;
+      if (nextBtn) nextBtn.hidden = currentStep === totalSteps;
+      if (submitBtn) submitBtn.hidden = currentStep !== totalSteps;
+    }
+
+    function validateStep(step) {
+      if (step === 1) {
+        return Boolean(form.querySelector('input[name="service"]:checked'));
+      }
+      if (step === 3) {
+        const required = ['name', 'email', 'phone'];
+        const validFields = required.every((name) => {
+          const input = form.elements.namedItem(name);
+          return input instanceof HTMLInputElement && input.checkValidity();
+        });
+        const consent = form.elements.namedItem('consent');
+        return validFields && consent instanceof HTMLInputElement && consent.checked;
+      }
+      return true;
+    }
+
+    function getFormFieldValue(name) {
+      const input = form.querySelector(`[name="${name}"]`);
+      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+        return input.value.trim();
+      }
+      return '';
+    }
+
+    function buildPhpFormData() {
+      const fd = new FormData();
+      fd.append('action', 'mail');
+      fd.append('domain', '');
+
+      const service = form.querySelector('input[name="service"]:checked')?.value;
+      const phpField = SERVICE_TO_PHP[service];
+      if (phpField) fd.append(phpField, 'on');
+
+      const additionalInfo = getFormFieldValue('additionalInfo');
+      fd.append('referer', buildReferer(window.location.href, service, additionalInfo));
+
+      if (service && SERVICE_LABELS[service]) {
+        fd.append('serviceLabel', SERVICE_LABELS[service]);
+      }
+
+      const currentSite = getFormFieldValue('currentSite');
+      if (currentSite) fd.append('yourSite', currentSite);
+
+      const competitor = getFormFieldValue('competitor');
+      if (competitor) fd.append('competitor', competitor);
+
+      if (additionalInfo) {
+        fd.append('projectNotes', additionalInfo);
+        fd.append('additionalInfo', additionalInfo);
+        fd.append('message', additionalInfo);
+      }
+
+      const name = getFormFieldValue('name');
+      if (name) fd.append('name', name);
+
+      const email = getFormFieldValue('email');
+      if (email) fd.append('email', email);
+
+      const phone = getFormFieldValue('phone');
+      if (phone) fd.append('phone', phone.replace(/\D/g, ''));
+
+      return fd;
+    }
+
+    function buildJsonPayload() {
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.referer = window.location.href;
+      if (turnstileSiteKey) {
+        const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (token) payload.turnstileToken = token;
+      }
+      return payload;
+    }
+
+    async function submitToApi(payload) {
+      const response = await fetch(formApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      return response.ok;
+    }
+
+const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
+
+    async function submitToPhp() {
+      const fd = buildPhpFormData();
+      const params = new URLSearchParams();
+      for (const [key, value] of fd.entries()) {
+        params.append(key, String(value));
+      }
+
+      const candidates = [formActionUrl];
+      if (!formActionUrl.startsWith('http')) {
+        candidates.push(PHP_FALLBACK_URL);
+      }
+
+      for (const url of candidates) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+            body: params,
+          });
+          const html = await response.text();
+          if (response.ok && html.includes('изпратена успешно')) return true;
+        } catch {
+          /* try next endpoint */
+        }
+      }
+
+      return false;
+    }
+
+    form.querySelectorAll('[data-service-card]').forEach((card) => {
+      card.addEventListener('click', () => {
+        form.querySelectorAll('[data-service-card]').forEach((item) => {
+          item.setAttribute('data-selected', 'false');
+        });
+        card.setAttribute('data-selected', 'true');
+        const input = card.querySelector('input');
+        if (input instanceof HTMLInputElement) {
+          input.checked = true;
+          track('service_selected', { service: input.value });
+        }
+        hideMessage();
+      });
+    });
+
+    form.addEventListener('focusin', () => track('form_start'), { once: true });
+
+    nextBtn?.addEventListener('click', () => {
+      if (!validateStep(currentStep)) {
+        showMessage('error', 'Моля, изберете услуга преди да продължите.');
+        return;
+      }
+      hideMessage();
+      currentStep += 1;
+      track('step_completed', { step: String(currentStep - 1) });
+      updateUI();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      hideMessage();
+      currentStep = Math.max(1, currentStep - 1);
+      updateUI();
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!validateStep(3)) {
+        showMessage('error', 'Моля, попълнете всички задължителни полета.');
+        return;
+      }
+
+      const honeypot = form.elements.namedItem('companyWebsite');
+      if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+
+      if (turnstileSiteKey) {
+        const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (!token) {
+          showMessage('error', 'Моля, потвърдете, че не сте робот.');
+          return;
+        }
+      }
+
+      submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Изпращане...';
+
+      try {
+        const payload = buildJsonPayload();
+        let ok = false;
+
+        try {
+          ok = await submitToPhp();
+        } catch {
+          ok = false;
+        }
+
+        if (!ok) {
+          try {
+            ok = await submitToApi(payload);
+          } catch {
+            ok = false;
+          }
+        }
+
+        if (!ok) throw new Error('submit failed');
+
+        steps.forEach((step) => {
+          step.dataset.active = 'false';
+        });
+        if (actions) actions.hidden = true;
+        if (progress) progress.hidden = true;
+        if (successPanel) successPanel.hidden = false;
+        hideMessage();
+        form.reset();
+        currentStep = 1;
+        form.querySelectorAll('[data-service-card]').forEach((item) => {
+          item.setAttribute('data-selected', 'false');
+        });
+        track('form_submit_success');
+      } catch {
+        showMessage(
+          'error',
+          'Възникна проблем при изпращането. Опитайте отново или се обадете на 0887 288 822.',
+        );
+        track('form_submit_error');
+        submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = 'Изпрати запитване';
+        updateUI();
+      }
+    });
+
+    updateUI();
+    if (successPanel) successPanel.hidden = true;
+    if (message) message.hidden = true;
+  }
+
+  initQuoteForm();
+  document.addEventListener('astro:page-load', initQuoteForm);
+</script>

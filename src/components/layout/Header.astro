@@ -1,0 +1,123 @@
+---
+import { siteConfig } from '@config/site';
+import ThemeToggle from '@components/ui/ThemeToggle.astro';
+import PhoneLink from '@components/ui/PhoneLink.astro';
+
+const currentPath = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/bg';
+
+function isActive(href: string) {
+  const normalized = href.replace(/\/$/, '') || '/';
+  const path = currentPath.replace(/^\/bg/, '') || '/';
+  return path === normalized || (normalized !== '/' && path.startsWith(normalized));
+}
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/bg/" class="site-header__brand" aria-label="Weberest начало">
+      <img
+        src="/bg/images/logo/weberest.svg"
+        alt="Weberest"
+        class="site-header__logo-img"
+        width="280"
+        height="66"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="site-nav" aria-label="Основна навигация">
+      {
+        siteConfig.nav.map((item) =>
+          item.children ? (
+            <div class="site-nav__item">
+              <a
+                href={`/bg${item.href}`}
+                class="site-nav__link"
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+              <div class="site-nav__dropdown">
+                {item.children.map((child) => (
+                  <a href={`/bg${child.href}`} class="site-nav__dropdown-link">
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={`/bg${item.href}`}
+              class="site-nav__link"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <div class="header-actions">
+      <PhoneLink />
+      <ThemeToggle />
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-mobile-toggle>
+        <span class="mobile-menu-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only">Меню</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-open="false" aria-hidden="true">
+  <div class="mobile-menu__header">
+    <span class="mobile-menu__title">Меню</span>
+    <button class="mobile-menu__close" type="button" data-mobile-close aria-label="Затвори меню">
+      ✕
+    </button>
+  </div>
+  <div class="mobile-menu__scroll">
+    <nav class="mobile-menu__list" aria-label="Мобилна навигация">
+    <a href={`tel:${siteConfig.phoneTel}`} class="mobile-menu__phone">
+      <svg class="phone-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.47a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.18 2.2z"
+        />
+      </svg>
+      {siteConfig.phone}
+    </a>
+    {
+      siteConfig.nav.flatMap((item) => [
+        <a href={`/bg${item.href}`} class="mobile-menu__link">{item.label}</a>,
+        ...(item.children?.map((child) => (
+          <a href={`/bg${child.href}`} class="mobile-menu__link mobile-menu__link--child">
+            {child.label}
+          </a>
+        )) ?? []),
+      ])
+    }
+  </nav>
+  </div>
+</div>
+
+<script>
+  const toggle = document.querySelector('[data-mobile-toggle]');
+  const closeBtn = document.querySelector('[data-mobile-close]');
+  const menu = document.getElementById('mobile-menu');
+
+  function setOpen(open: boolean) {
+    if (!menu || !toggle) return;
+    menu.dataset.open = String(open);
+    menu.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  toggle?.addEventListener('click', () => setOpen(menu?.dataset.open !== 'true'));
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.dataset.open === 'true') setOpen(false);
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import PageLayout from '@layouts/PageLayout.astro';
+import ContactLayout from '@layouts/ContactLayout.astro';
+import AboutLayout from '@layouts/AboutLayout.astro';
+import ServicesLayout from '@layouts/ServicesLayout.astro';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { parseFaqFromMarkdown } from '@utils/faq';
+
+export async function getStaticPaths() {
+  const RESERVED_SLUGS = new Set([
+    'home',
+    'blog',
+    'portfolio',
+    'website-klienti',
+    'sitemap',
+    'zapitanie',
+  ]);
+
+  const pages = await getCollection('pages');
+  const blog = await getCollection('blog');
+
+  const pagePaths = pages
+    .filter((entry) => entry.id !== 'home' && !RESERVED_SLUGS.has(entry.data.wpSlug ?? entry.id))
+    .map((entry) => ({
+      params: { slug: entry.data.wpSlug ?? entry.id.replace(/\.md$/, '') },
+      props: { kind: 'page' as const, id: entry.id },
+    }));
+
+  const blogPaths = blog.map((entry) => ({
+    params: { slug: entry.data.wpSlug ?? entry.id.replace(/\.md$/, '') },
+    props: { kind: 'blog' as const, id: entry.id },
+  }));
+
+  return [...pagePaths, ...blogPaths];
+}
+
+const { kind, id } = Astro.props;
+const collection = kind === 'page' ? await getCollection('pages') : await getCollection('blog');
+const entry = collection.find((item) => item.id === id);
+
+if (!entry) {
+  return Astro.redirect('/bg/404/');
+}
+
+const { Content } = await render(entry);
+const slug = entry.data.wpSlug ?? entry.id.replace(/\.md$/, '');
+
+let faqItems: { question: string; answer: string }[] = [];
+if (kind === 'page' && slug === 'chesto-zadavani-vaprosi' && 'body' in entry) {
+  faqItems = parseFaqFromMarkdown(String(entry.body ?? ''));
+}
+const pageEntry = kind === 'page' ? (entry as CollectionEntry<'pages'>) : null;
+const isContactPage = pageEntry?.data.template === 'contact' || slug === 'it-konsultacia';
+const isAboutPage = pageEntry?.data.template === 'about' || slug === 'about-weberest';
+const isServicesPage = pageEntry?.data.template === 'services' || slug === 'services';
+---
+
+{
+  kind === 'blog' ? (
+    <BlogPostLayout entry={entry as CollectionEntry<'blog'>} slug={slug}>
+      <Content />
+    </BlogPostLayout>
+  ) : isContactPage && pageEntry ? (
+    <ContactLayout entry={pageEntry} slug={slug} />
+  ) : isAboutPage && pageEntry ? (
+    <AboutLayout entry={pageEntry} slug={slug} />
+  ) : isServicesPage && pageEntry ? (
+    <ServicesLayout entry={pageEntry} slug={slug} />
+  ) : (
+    <PageLayout entry={entry as CollectionEntry<'pages'>} slug={slug} faqItems={faqItems}>
+      <Content />
+    </PageLayout>
+  )
+}

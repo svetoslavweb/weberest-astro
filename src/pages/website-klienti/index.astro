@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import PortfolioGrid from '@components/portfolio/PortfolioGrid.astro';
+import { getCollection } from 'astro:content';
+import { canonicalPortfolioCategory } from '@config/portfolio-categories';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+import { sortPortfolioNewestFirst } from '@utils/portfolio-sort';
+
+const items = sortPortfolioNewestFirst(await getCollection('portfolio'));
+
+const activeCategoryRaw = Astro.url.searchParams.get('category');
+const activeCategory = activeCategoryRaw ? canonicalPortfolioCategory(activeCategoryRaw) : null;
+
+const pageTitle = 'Уеб Дизайн Портфолио';
+const pageDescription = 'Проекти, които доказват нашия опит в уеб дизайн, e-commerce и дигитален маркетинг.';
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: '/website-klienti/' });
+---
+
+<BaseLayout
+  title="Уеб Дизайн Портфолио - Проектите на Weberest"
+  description="Разгледайте реализирани проекти на Weberest: фирмени сайтове, онлайн магазини, мобилни сайтове и интернет маркетинг."
+  canonical="/website-klienti/"
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(pageTitle, pageDescription, 'https://www.weberest.com/bg/website-klienti/'),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="content-page content-page--wide">
+    <InnerPageHeader title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} fullWidth />
+    <PortfolioGrid items={items} activeCategory={activeCategory} />
+  </section>
+</BaseLayout>

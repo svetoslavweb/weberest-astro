@@ -1,0 +1,58 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import { servicesPageHero } from '@config/services-page';
+
+interface Props {
+  breadcrumbs: { name: string; url: string }[];
+}
+
+const { breadcrumbs } = Astro.props;
+const heroVideo = `${import.meta.env.BASE_URL}videos/weberest-services-hero.mp4`;
+---
+
+<header class="services-hero" id="services-hero">
+  <div class="services-hero__media" aria-hidden="true">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      class="services-hero__video"
+      data-services-video
+      src={heroVideo}
+    >
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+    <div class="services-hero__overlay"></div>
+    <div class="services-hero__noise"></div>
+    <div class="services-hero__glow services-hero__glow--1"></div>
+    <div class="services-hero__glow services-hero__glow--2"></div>
+  </div>
+
+  <div class="services-hero__inner">
+    <div class="services-hero__crumb">
+      <Breadcrumbs items={breadcrumbs} variant="inverse" />
+    </div>
+
+    <div class="services-hero__content" data-reveal="left">
+      <span class="section-eyebrow">{servicesPageHero.eyebrow}</span>
+      <h1 class="services-hero__title">{servicesPageHero.title}</h1>
+      <p class="services-hero__lead">{servicesPageHero.lead}</p>
+      <div class="services-hero__actions">
+        <a href={`/bg${servicesPageHero.ctaHref}`} class="btn btn--primary btn--glow">
+          {servicesPageHero.ctaLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const video = document.querySelector('[data-services-video]') as HTMLVideoElement | null;
+  if (video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch(() => {});
+  }
+</script>

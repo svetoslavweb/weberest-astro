@@ -1,0 +1,88 @@
+---
+import { integrationsConfig } from '@config/integrations';
+
+interface Props {
+  title?: string;
+  height?: number;
+  embedUrl?: string;
+  flush?: boolean;
+  variant?: 'default' | 'card';
+  eyebrow?: string;
+  address?: string;
+  mapUrl?: string;
+}
+
+const {
+  title = 'Weberest офис на карта',
+  height = 360,
+  embedUrl,
+  flush = false,
+  variant = 'default',
+  eyebrow = 'Локация',
+  address,
+  mapUrl,
+} = Astro.props;
+
+const src = embedUrl || integrationsConfig.googleMapsEmbedUrl;
+const isCard = variant === 'card';
+---
+
+{
+  src ? (
+    <section
+      class:list={[
+        'map-embed',
+        flush && 'map-embed--flush',
+        isCard && 'map-embed--card',
+      ]}
+      aria-label={title}
+    >
+      {
+        isCard ? (
+          <div class="map-embed__header">
+            <span class="map-embed__pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+            </span>
+            <div class="map-embed__meta">
+              <p class="map-embed__eyebrow">{eyebrow}</p>
+              <h3 class="map-embed__title">{title}</h3>
+              {address ? <p class="map-embed__address">{address}</p> : null}
+            </div>
+            {
+              mapUrl ? (
+                <a
+                  href={mapUrl}
+                  class="map-embed__action"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Maps
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ) : null
+            }
+          </div>
+        ) : null
+      }
+
+      <div class="map-embed__frame">
+        <iframe
+          src={src}
+          width="100%"
+          height={height}
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={title}
+        />
+      </div>
+    </section>
+  ) : (
+    <section class="map-embed map-embed--placeholder" aria-label={title}>
+      <p>Добавете <code>PUBLIC_GOOGLE_MAPS_EMBED_URL</code> за да се покаже Google Maps.</p>
+    </section>
+  )
+}

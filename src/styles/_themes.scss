@@ -1,0 +1,81 @@
+:root,
+[data-theme='dark'],
+[data-theme='light'] {
+  --font-sans: 'Sofia Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-brand-light: #8e63ab;
+  --color-brand-dark: #300290;
+  --gradient-brand: linear-gradient(135deg, #8e63ab, #300290);
+}
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #060608;
+  --color-bg-elevated: #0e0e12;
+  --color-bg-alt: #111118;
+  --color-bg-card: rgba(255, 255, 255, 0.04);
+  --color-surface: #16161f;
+  --color-text: #f5f5f7;
+  --color-text-muted: #9ca3af;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-primary: #8e63ab;
+  --color-primary-dark: #300290;
+  --color-accent: #8e63ab;
+  --color-accent-soft: rgba(142, 99, 171, 0.18);
+  --color-glow: rgba(48, 2, 144, 0.38);
+  --color-hero-letter: rgba(255, 255, 255, 0.04);
+  --color-header-bg: rgba(6, 6, 8, 0.85);
+  --color-link: #b794d3;
+  --color-on-primary: #ffffff;
+  --color-input-bg: rgba(255, 255, 255, 0.04);
+  --color-input-border: rgba(255, 255, 255, 0.12);
+  --color-progress-track: rgba(255, 255, 255, 0.08);
+  --color-glass-bg: rgba(255, 255, 255, 0.06);
+  --color-success-bg: rgba(34, 197, 94, 0.12);
+  --color-success-text: #86efac;
+  --color-error-bg: rgba(239, 68, 68, 0.12);
+  --color-error-text: #fca5a5;
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 24px 80px rgba(48, 2, 144, 0.28);
+  --gradient-heading: linear-gradient(135deg, #ffffff 0%, #8e63ab 45%, #300290 100%);
+  --gradient-body:
+    radial-gradient(circle at 12% 8%, rgba(142, 99, 171, 0.24), transparent 28%),
+    radial-gradient(circle at 88% 4%, rgba(48, 2, 144, 0.2), transparent 22%),
+    linear-gradient(180deg, #040406 0%, var(--color-bg) 45%, #040406 100%);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #eef0f4;
+  --color-bg-elevated: #ffffff;
+  --color-bg-alt: #e4e7ed;
+  --color-bg-card: rgba(255, 255, 255, 0.92);
+  --color-surface: #ffffff;
+  --color-text: #12131a;
+  --color-text-muted: #3f4654;
+  --color-border: rgba(18, 19, 26, 0.12);
+  --color-primary: #8e63ab;
+  --color-primary-dark: #300290;
+  --color-accent: #8e63ab;
+  --color-accent-soft: rgba(142, 99, 171, 0.14);
+  --color-glow: rgba(48, 2, 144, 0.22);
+  --color-hero-letter: rgba(18, 19, 26, 0.045);
+  --color-header-bg: rgba(238, 240, 244, 0.92);
+  --color-link: #300290;
+  --color-on-primary: #ffffff;
+  --color-input-bg: #ffffff;
+  --color-input-border: rgba(18, 19, 26, 0.16);
+  --color-progress-track: rgba(18, 19, 26, 0.1);
+  --color-glass-bg: rgba(255, 255, 255, 0.94);
+  --color-success-bg: rgba(22, 163, 74, 0.1);
+  --color-success-text: #166534;
+  --color-error-bg: rgba(220, 38, 38, 0.1);
+  --color-error-text: #991b1b;
+  --shadow-md: 0 20px 50px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 0 0 1px rgba(18, 19, 26, 0.06), 0 20px 60px rgba(48, 2, 144, 0.16);
+  --gradient-heading: linear-gradient(135deg, #12131a 0%, #8e63ab 42%, #300290 100%);
+  --gradient-body:
+    radial-gradient(circle at 12% 8%, rgba(142, 99, 171, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 4%, rgba(48, 2, 144, 0.08), transparent 22%),
+    linear-gradient(180deg, #f8f9fb 0%, var(--color-bg) 45%, #f8f9fb 100%);
+}

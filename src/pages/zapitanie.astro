@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import QuoteForm from '@components/forms/QuoteForm.astro';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+const pageTitle = 'Уеб Сайт Калкулатор';
+const pageDescription =
+  'Попълнете формата за запитване и получете безплатна консултация за вашия уеб сайт, онлайн магазин или маркетинг проект.';
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: '/zapitanie/' });
+
+const perks = [
+  { icon: '⚡', text: 'Отговор до 1 работен ден' },
+  { icon: '🎯', text: 'Персонална оферта без ангажимент' },
+  { icon: '🔒', text: 'Данните ви са защитени' },
+];
+---
+
+<BaseLayout
+  title="Уеб Сайт Калкулатор - Weberest"
+  description={pageDescription}
+  canonical="/zapitanie/"
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(pageTitle, pageDescription, 'https://www.weberest.com/bg/zapitanie/'),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="content-page content-page--centered">
+    <InnerPageHeader title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} />
+    <ul class="quote-form-perks" aria-label="Предимства">
+      {
+        perks.map((perk) => (
+          <li class="quote-form-perks__item">
+            <span class="quote-form-perks__icon" aria-hidden="true">{perk.icon}</span>
+            {perk.text}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <QuoteForm showIntro={false} />
+</BaseLayout>

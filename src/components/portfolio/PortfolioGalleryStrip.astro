@@ -1,0 +1,184 @@
+---
+import BrowserFrame from '@components/portfolio/BrowserFrame.astro';
+import type { PortfolioGalleryItem } from '@utils/portfolio-case';
+
+interface Props {
+  items: PortfolioGalleryItem[];
+  displayTitle: string;
+  liveUrl?: string | null;
+}
+
+const { items, displayTitle, liveUrl = null } = Astro.props;
+const slideInterval = 2800;
+
+function getScreenLabel(src: string, index: number): string {
+  const match = src.match(/-(\d+)(?:-\d+x\d+)?\.[a-z0-9]+$/i);
+  const number = match?.[1] ?? String(index + 1);
+  const shortTitle = displayTitle.split(/\s+/)[0]?.toUpperCase() ?? displayTitle.toUpperCase();
+  return `${shortTitle} ${number.padStart(2, '0')}`;
+}
+
+function getBrowserUrl(url: string | null, title: string): string | null {
+  if (url) return url;
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 24);
+  return slug ? `https://${slug}.com` : null;
+}
+
+const browserUrl = getBrowserUrl(liveUrl, displayTitle);
+const firstItem = items[0];
+const firstLabel = firstItem ? getScreenLabel(firstItem.thumb, 0) : '';
+---
+
+<section class="case-gallery" aria-label="Снимки от проекта">
+  <div class="case-gallery__intro" data-reveal="left">
+    <div class="case-gallery__intro-inner">
+      <span class="section-eyebrow">01 · Visual Preview</span>
+      <h2 class="case-gallery__title">Екрани от реалния сайт</h2>
+    </div>
+  </div>
+
+  {
+    items.length > 0 ? (
+      <div
+        class="case-gallery-showcase"
+        data-case-gallery-showcase
+        style={`--case-gallery-interval: ${slideInterval}ms`}
+      >
+        <div class="case-gallery-showcase__stage">
+          <button
+            type="button"
+            class="case-gallery-showcase__trigger"
+            data-case-lightbox-trigger
+            data-full={firstItem?.full}
+            aria-label={`${displayTitle} — увеличи текущия екран`}
+          >
+            <BrowserFrame url={browserUrl}>
+              <div class="case-gallery-showcase__slides">
+                {
+                  items.map((item, index) => (
+                    <figure
+                      class:list={['case-gallery-showcase__slide', { 'is-active': index === 0 }]}
+                      data-case-gallery-slide
+                      data-full={item.full}
+                      data-caption={getScreenLabel(item.thumb, index)}
+                    >
+                      <img
+                        src={item.thumb}
+                        alt={`${displayTitle} — екран ${index + 1}`}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                      />
+                    </figure>
+                  ))
+                }
+              </div>
+            </BrowserFrame>
+          </button>
+        </div>
+
+        <p class="case-gallery-showcase__caption" data-case-gallery-caption aria-live="polite">
+          {firstLabel}
+        </p>
+
+        {
+          items.length > 1 ? (
+            <div class="case-gallery-showcase__dots" role="tablist" aria-label="Екрани от проекта">
+              {
+                items.map((item, index) => (
+                  <button
+                    type="button"
+                    class:list={['case-gallery-showcase__dot', { 'is-active': index === 0 }]}
+                    data-case-gallery-dot
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`Екран ${index + 1}`}
+                  />
+                ))
+              }
+            </div>
+          ) : null
+        }
+      </div>
+    ) : null
+  }
+</section>
+
+<script>
+  function initGalleryShowcase() {
+    document.querySelectorAll('[data-case-gallery-showcase]').forEach((showcase) => {
+      if (showcase.hasAttribute('data-gallery-ready')) return;
+      showcase.setAttribute('data-gallery-ready', 'true');
+
+      const slides = Array.from(showcase.querySelectorAll('[data-case-gallery-slide]'));
+      const caption = showcase.querySelector('[data-case-gallery-caption]');
+      const trigger = showcase.querySelector<HTMLButtonElement>('[data-case-lightbox-trigger]');
+      const dots = Array.from(showcase.querySelectorAll('[data-case-gallery-dot]'));
+
+      if (slides.length <= 1) return;
+
+      const intervalMs = Number.parseInt(
+        getComputedStyle(showcase).getPropertyValue('--case-gallery-interval') || '2800',
+        10,
+      );
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let current = 0;
+      let timer: ReturnType<typeof setInterval> | null = null;
+
+      function goTo(index: number) {
+        current = index;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle('is-active', slideIndex === current);
+        });
+
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === current);
+          dot.setAttribute('aria-selected', dotIndex === current ? 'true' : 'false');
+        });
+
+        const activeSlide = slides[current] as HTMLElement;
+        const label = activeSlide.dataset.caption ?? '';
+
+        if (caption) caption.textContent = label;
+        if (trigger) trigger.setAttribute('data-full', activeSlide.dataset.full ?? '');
+      }
+
+      function next() {
+        goTo((current + 1) % slides.length);
+      }
+
+      function startAutoplay() {
+        if (reducedMotion) return;
+        stopAutoplay();
+        timer = setInterval(next, intervalMs);
+      }
+
+      function stopAutoplay() {
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      goTo(0);
+      startAutoplay();
+
+      showcase.addEventListener('mouseenter', stopAutoplay);
+      showcase.addEventListener('mouseleave', startAutoplay);
+      showcase.addEventListener('focusin', stopAutoplay);
+      showcase.addEventListener('focusout', (event) => {
+        if (showcase.contains(event.relatedTarget as Node)) return;
+        startAutoplay();
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          goTo(index);
+          startAutoplay();
+        });
+      });
+    });
+  }
+
+  initGalleryShowcase();
+  document.addEventListener('astro:page-load', initGalleryShowcase);
+</script>

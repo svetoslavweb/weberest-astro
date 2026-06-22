@@ -1,0 +1,39 @@
+---
+interface Props {
+  items: { name: string; url: string }[];
+  variant?: 'default' | 'inverse';
+}
+
+const { items, variant = 'default' } = Astro.props;
+
+const chevronIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.29 6.71a1 1 0 011.42 0L15.7 12l-4.99 5.29a1 1 0 01-1.42-1.42L12.59 12 9.29 8.71a1 1 0 010-1.42z"/></svg>`;
+const homeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3l9 8h-2v10h-5v-6H10v6H5V11H3l9-8zm0 2.8L6 10.9V19h3v-6h6v6h3v-8.1L12 5.8z"/></svg>`;
+---
+
+<nav class:list={['breadcrumbs', variant === 'inverse' && 'breadcrumbs--inverse']} aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        const isHome = index === 0;
+        const href = item.url.startsWith('http') ? item.url : `/bg${item.url}`;
+
+        return (
+          <li class="breadcrumbs__item">
+            {index > 0 && <span class="breadcrumbs__sep" set:html={chevronIcon} />}
+            {isLast ? (
+              <span class="breadcrumbs__current" aria-current="page" title={item.name}>
+                {item.name}
+              </span>
+            ) : (
+              <a class="breadcrumbs__link" href={href}>
+                {isHome && <span class="breadcrumbs__icon" set:html={homeIcon} />}
+                <span class="breadcrumbs__label">{item.name}</span>
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>

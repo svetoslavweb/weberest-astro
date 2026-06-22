@@ -1,0 +1,306 @@
+---
+import { integrationsConfig } from '@config/integrations';
+
+const { turnstileSiteKey, formActionUrl, formApiUrl } = integrationsConfig;
+---
+
+<form class="inquiry-form quote-form" data-inquiry-form novalidate>
+  <div class="inquiry-form__grid">
+    <div class="quote-form__field">
+      <label class="quote-form__label" for="inquiry-name">Име *</label>
+      <div class="quote-form__input-wrap">
+        <span class="quote-form__input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 9a7 7 0 0114 0H5z"/></svg>
+        </span>
+        <input
+          class="quote-form__input"
+          id="inquiry-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          placeholder="Вашето име"
+        />
+      </div>
+    </div>
+
+    <div class="quote-form__field">
+      <label class="quote-form__label" for="inquiry-phone">Телефон *</label>
+      <div class="quote-form__input-wrap">
+        <span class="quote-form__input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.47a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.18 2.2z"/></svg>
+        </span>
+        <input
+          class="quote-form__input"
+          id="inquiry-phone"
+          name="phone"
+          type="tel"
+          required
+          autocomplete="tel"
+          placeholder="0887 123 456"
+        />
+      </div>
+    </div>
+
+    <div class="quote-form__field inquiry-form__field--full">
+      <label class="quote-form__label" for="inquiry-email">Имейл *</label>
+      <div class="quote-form__input-wrap">
+        <span class="quote-form__input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </span>
+        <input
+          class="quote-form__input"
+          id="inquiry-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="name@company.com"
+        />
+      </div>
+    </div>
+
+    <div class="quote-form__field inquiry-form__field--full">
+      <label class="quote-form__label" for="inquiry-message">Съобщение *</label>
+      <div class="quote-form__input-wrap quote-form__input-wrap--textarea">
+        <span class="quote-form__input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+        </span>
+        <textarea
+          class="quote-form__textarea"
+          id="inquiry-message"
+          name="message"
+          required
+          rows="5"
+          placeholder="Как можем да ви помогнем?"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <label class="quote-form__consent">
+    <input type="checkbox" name="consent" required />
+    <span>
+      Предоставям личните си данни доброволно. Прочетете повече в
+      <a href="/bg/privacy-policy/">политиката за поверителност</a>.
+    </span>
+  </label>
+
+  <div class="quote-form__honeypot" aria-hidden="true">
+    <label for="inquiry-companyWebsite">Company website</label>
+    <input id="inquiry-companyWebsite" name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  {
+    turnstileSiteKey && (
+      <div class="quote-form__field">
+        <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="dark" />
+      </div>
+    )
+  }
+
+  <div class="quote-form__success" data-success hidden>
+    <div class="quote-form__success-icon" aria-hidden="true">✓</div>
+    <h3>Съобщението е изпратено!</h3>
+    <p>Ще се свържем с вас в рамките на 1 работен ден.</p>
+  </div>
+
+  <div class="inquiry-form__actions" data-actions>
+    <button type="submit" class="btn btn--primary btn--glow" data-submit>
+      <span data-submit-label>Изпрати запитване</span>
+    </button>
+  </div>
+
+  <div class="quote-form__message" data-message hidden role="alert"></div>
+</form>
+
+{
+  turnstileSiteKey && (
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+  )
+}
+
+<script define:vars={{ formActionUrl, formApiUrl, turnstileSiteKey }}>
+  const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
+
+  function initInquiryForm() {
+    const form = document.querySelector('[data-inquiry-form]');
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    const submitBtn = form.querySelector('[data-submit]');
+    const actions = form.querySelector('[data-actions]');
+    const successPanel = form.querySelector('[data-success]');
+    const message = form.querySelector('[data-message]');
+    const submitLabel = form.querySelector('[data-submit-label]');
+    const fields = form.querySelector('.inquiry-form__grid');
+
+    function track(eventName, detail = {}) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, formType: 'inquiry', ...detail });
+    }
+
+    function showMessage(type, text) {
+      if (!message) return;
+      message.hidden = false;
+      message.dataset.type = type;
+      message.textContent = text;
+    }
+
+    function hideMessage() {
+      if (message) message.hidden = true;
+    }
+
+    function buildPhpFormData() {
+      const params = new URLSearchParams();
+      params.set('action', 'mail');
+      const messageInput = form.querySelector('textarea[name="message"]');
+      const inquiryText =
+        messageInput instanceof HTMLTextAreaElement ? messageInput.value.trim() : '';
+
+      let referer = window.location.href;
+      if (inquiryText) {
+        referer += `\r\rДопълнителна информация:\r${inquiryText}`;
+        params.set('projectNotes', inquiryText);
+        params.set('additionalInfo', inquiryText);
+        params.set('message', inquiryText);
+      }
+      params.set('referer', referer);
+      params.set('serviceLabel', 'Контакт / запитване');
+      params.set('domain', '');
+      params.set('other', 'on');
+
+      ['name', 'email'].forEach((name) => {
+        const input = form.elements.namedItem(name);
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+          params.set(name, input.value.trim());
+        }
+      });
+
+      const phoneInput = form.elements.namedItem('phone');
+      if (phoneInput instanceof HTMLInputElement && phoneInput.value.trim()) {
+        params.set('phone', phoneInput.value.replace(/\D/g, ''));
+      }
+
+      return params;
+    }
+
+    function buildJsonPayload() {
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.referer = window.location.href;
+      payload.formType = 'inquiry';
+      if (turnstileSiteKey) {
+        const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (token) payload.turnstileToken = token;
+      }
+      return payload;
+    }
+
+    async function submitToApi(payload) {
+      const response = await fetch(formApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      return response.ok;
+    }
+
+    async function submitToPhp() {
+      const params = buildPhpFormData();
+      const candidates = [formActionUrl];
+      if (!formActionUrl.startsWith('http')) {
+        candidates.push(PHP_FALLBACK_URL);
+      }
+
+      for (const url of candidates) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+            body: params,
+          });
+          const html = await response.text();
+          if (response.ok && html.includes('изпратена успешно')) return true;
+        } catch {
+          /* try next endpoint */
+        }
+      }
+
+      return false;
+    }
+
+    form.addEventListener('focusin', () => track('form_start'), { once: true });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const consent = form.elements.namedItem('consent');
+      if (!(consent instanceof HTMLInputElement) || !consent.checked) {
+        showMessage('error', 'Моля, потвърдете съгласието за обработка на лични данни.');
+        return;
+      }
+
+      const honeypot = form.elements.namedItem('companyWebsite');
+      if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+
+      if (turnstileSiteKey) {
+        const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (!token) {
+          showMessage('error', 'Моля, потвърдете, че не сте робот.');
+          return;
+        }
+      }
+
+      submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Изпращане...';
+
+      try {
+        const payload = buildJsonPayload();
+        let ok = false;
+
+        try {
+          ok = await submitToPhp();
+        } catch {
+          ok = false;
+        }
+
+        if (!ok) {
+          try {
+            ok = await submitToApi(payload);
+          } catch {
+            ok = false;
+          }
+        }
+
+        if (!ok) throw new Error('submit failed');
+
+        if (fields) fields.hidden = true;
+        if (actions) actions.hidden = true;
+        form.querySelector('.quote-form__consent')?.setAttribute('hidden', '');
+        if (successPanel) successPanel.hidden = false;
+        hideMessage();
+        form.reset();
+        track('form_submit_success');
+      } catch {
+        showMessage(
+          'error',
+          'Възникна проблем при изпращането. Опитайте отново или се обадете на 0887 288 822.',
+        );
+        track('form_submit_error');
+        submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = 'Изпрати запитване';
+      }
+    });
+
+    if (successPanel) successPanel.hidden = true;
+    if (message) message.hidden = true;
+  }
+
+  initInquiryForm();
+  document.addEventListener('astro:page-load', initInquiryForm);
+</script>

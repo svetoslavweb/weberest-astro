@@ -1,0 +1,125 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.breadcrumbs {
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumbs__list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.35rem 0.5rem 0.35rem 0.65rem;
+  list-style: none;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 1px rgba(142, 99, 171, 0.08);
+}
+
+.breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.breadcrumbs__sep {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+  opacity: 0.55;
+  flex-shrink: 0;
+
+  svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+}
+
+.breadcrumbs__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color $transition-fast,
+    background $transition-fast;
+
+  &:hover {
+    color: var(--color-link);
+    background: var(--color-accent-soft);
+  }
+}
+
+.breadcrumbs__icon {
+  display: inline-flex;
+  color: var(--color-accent);
+
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+.breadcrumbs__label {
+  line-height: 1.2;
+}
+
+.breadcrumbs__current {
+  display: inline-block;
+  max-width: min(42ch, 72vw);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumbs--inverse {
+  .breadcrumbs__list {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  .breadcrumbs__link {
+    color: rgba(248, 250, 252, 0.78);
+
+    &:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .breadcrumbs__icon {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .breadcrumbs__sep {
+    color: rgba(255, 255, 255, 0.55);
+    opacity: 1;
+  }
+
+  .breadcrumbs__current {
+    color: #fff;
+    background: rgba(142, 99, 171, 0.35);
+  }
+}
+
+.content-page--centered .breadcrumbs {
+  display: flex;
+  justify-content: center;
+}

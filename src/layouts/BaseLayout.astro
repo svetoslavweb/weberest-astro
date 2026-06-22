@@ -1,0 +1,50 @@
+---
+import SeoHead from '@components/seo/SeoHead.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import GoogleTagManager from '@components/integrations/GoogleTagManager.astro';
+import Analytics from '@components/integrations/Analytics.astro';
+import Clarity from '@components/integrations/Clarity.astro';
+import MetaPixel from '@components/integrations/MetaPixel.astro';
+import CookieConsent from '@components/integrations/CookieConsent.astro';
+import ScrollEffects from '@components/effects/ScrollEffects.astro';
+import CustomCursor from '@components/effects/CustomCursor.astro';
+import type { SeoProps } from '@utils/seo';
+import '../styles/main.scss';
+
+interface Props extends SeoProps {
+  breadcrumbs?: { name: string; url: string }[];
+  showFloatingQuote?: boolean;
+}
+
+const { showFloatingQuote = false, breadcrumbs, article, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang="bg" data-theme="dark">
+  <head>
+    <SeoHead {...seo} breadcrumbs={breadcrumbs} article={article} />
+    <GoogleTagManager />
+    <Analytics />
+    <Clarity />
+    <MetaPixel />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Към съдържанието</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <CookieConsent />
+    <CustomCursor />
+    <ScrollEffects />
+    {
+      showFloatingQuote && (
+        <div class="quote-form-floating">
+          <a href="/bg/zapitanie/" class="quote-form-floating__button">Безплатна оферта</a>
+        </div>
+      )
+    }
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import ServicesIcon from '@components/services/ServicesIcon.astro';
+import { homeServicesNew } from '@config/home-page';
+---
+
+<section class="home-services-new section section--alt" id="home-services-new">
+  <div class="home-services-new__inner">
+    <div class="home-services-new__head" data-reveal="left">
+      <span class="section-eyebrow">01 · {homeServicesNew.eyebrow}</span>
+      <h2 class="section-title">{homeServicesNew.title}</h2>
+      <p class="section-lead">{homeServicesNew.intro}</p>
+    </div>
+
+    <div class="services-highlight-grid">
+      {
+        homeServicesNew.items.map((service, index) => (
+          <article
+            class="service-highlight-card"
+            data-reveal={index === 0 ? 'left' : 'right'}
+            data-reveal-delay={String(index + 1)}
+          >
+            {service.isNew && <span class="service-badge-new">НОВО</span>}
+            <ServicesIcon icon={service.icon} />
+            <h3 class="service-highlight-card__title">{service.title}</h3>
+            <p class="service-highlight-card__description">{service.description}</p>
+            <ul class="service-list">
+              {service.items.slice(0, 5).map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {
+              service.href && (
+                <a href={`/bg${service.href}`} class="service-cta btn btn--secondary">
+                  {service.ctaLabel ?? 'Научете повече'}
+                </a>
+              )
+            }
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,2 @@
+# Place migrated WordPress uploads here.
+# Expected path: public/images/uploads/{year}/{month}/{filename}

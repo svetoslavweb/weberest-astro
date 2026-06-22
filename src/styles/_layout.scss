@@ -1,0 +1,100 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:root {
+  --site-container-width: min(calc(100vw - 2rem), #{$container-max});
+  --site-container-left: calc((100vw - var(--site-container-width)) / 2);
+  --site-sidenav-gap: 0.75rem;
+  --site-sidenav-anchor: calc(100vw - var(--site-container-left) + var(--site-sidenav-gap));
+  --site-sidenav-max-width: max(0px, calc(var(--site-container-left) - 1rem));
+}
+
+.container {
+  @include container;
+}
+
+.container--wide {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid--2 {
+  @include respond(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.grid--3 {
+  @include respond(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.btn {
+  @include button-base;
+}
+
+.btn--primary {
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  box-shadow: 0 12px 32px var(--color-glow);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.btn--glow {
+  box-shadow: 0 0 40px var(--color-glow), 0 12px 32px var(--color-glow);
+}
+
+.btn--secondary {
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+
+  &:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+}
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.page-shell {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.page-shell__header {
+  margin-bottom: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+
+  @include respond(md) {
+    gap: 0.75rem;
+  }
+}

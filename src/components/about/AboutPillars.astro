@@ -1,0 +1,40 @@
+---
+import AboutPillarVisual from '@components/about/AboutPillarVisual.astro';
+import { aboutPillars } from '@config/about';
+---
+
+<section class="about-pillars" id="about-pillars">
+  {
+    aboutPillars.map((pillar, index) => (
+      <article class:list={['about-pillar', index % 2 === 1 && 'section--alt']}>
+        <div class:list={['about-pillar__inner', pillar.reverse && 'about-pillar__inner--reverse']}>
+          <div data-reveal={index % 2 === 0 ? 'left' : 'right'}>
+            <div class="about-pillar__label">
+              <span class="about-pillar__number">{pillar.number}</span>
+              <span class="about-pillar__tag">{pillar.tag}</span>
+            </div>
+            <h2 class="about-pillar__title">{pillar.title}</h2>
+            {
+              pillar.richText ? (
+                <p class="about-pillar__text" set:html={pillar.text} />
+              ) : (
+                <p class="about-pillar__text">{pillar.text}</p>
+              )
+            }
+            {
+              pillar.href && (
+                <a href={`/bg${pillar.href}`} class="btn btn--primary">
+                  {pillar.label}
+                </a>
+              )
+            }
+          </div>
+
+          <div class="about-pillar__visual" data-reveal="scale" data-reveal-delay="2">
+            <AboutPillarVisual visual={pillar.visual} />
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</section>

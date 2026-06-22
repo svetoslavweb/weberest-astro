@@ -1,0 +1,54 @@
+---
+import { siteConfig } from '@config/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <h2 class="site-footer__title">{siteConfig.name}</h2>
+        <p>{siteConfig.tagline}. Професионален уеб дизайн, онлайн магазини и интернет маркетинг от Русе.</p>
+        <p>
+          <a href={`tel:${siteConfig.phoneTel}`} class="site-footer__phone">{siteConfig.phone}</a>
+        </p>
+      </div>
+
+      <div>
+        <h3 class="site-footer__title">За Weberest</h3>
+        <div class="site-footer__links">
+          {siteConfig.footerLinks.company.map((link) => (
+            <a href={`/bg${link.href}`}>{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="site-footer__title">Услуги</h3>
+        <div class="site-footer__links">
+          {siteConfig.footerLinks.services.map((link) => (
+            <a href={`/bg${link.href}`}>{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="site-footer__title">Информация</h3>
+        <div class="site-footer__links">
+          {siteConfig.footerLinks.info.map((link) => (
+            <a href={`/bg${link.href}`}>{link.label}</a>
+          ))}
+          {siteConfig.footerLinks.legal.map((link) => (
+            <a href={`/bg${link.href}`}>{link.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>©Copyright 2009-{year} Weberest.com · Всички права запазени.</span>
+      <span>Уеб дизайн и онлайн маркетинг · Русе, България</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,120 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+// Side nav sits in the left gutter, anchored to the content column — never shifts page content.
+:is(.about-nav, .showcase-nav) {
+  display: none;
+  position: fixed;
+  right: var(--site-sidenav-anchor);
+  top: 50%;
+  z-index: 40;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: max-content;
+  max-width: var(--site-sidenav-max-width);
+  padding: 0.55rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 1px rgba(142, 99, 171, 0.1),
+    0 16px 40px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateY(-50%) translateX(10px);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.35s ease,
+    max-width 0.35s ease;
+
+  @media (min-width: 1310px) {
+    display: flex;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  &:hover,
+  &:focus-within {
+    overflow: visible;
+  }
+}
+
+:is(.about-nav, .showcase-nav) :is(.about-nav__link, .showcase-nav__link) {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    color $transition-fast,
+    background $transition-fast,
+    box-shadow $transition-fast,
+    gap $transition-base,
+    padding $transition-base;
+
+  &:hover {
+    color: var(--color-text);
+    background: rgba(142, 99, 171, 0.12);
+  }
+
+  &.is-active {
+    color: var(--color-text);
+    background: var(--color-accent-soft);
+    box-shadow: inset 0 0 0 1px rgba(142, 99, 171, 0.25);
+
+    :is(.about-nav__num, .showcase-nav__num) {
+      color: var(--color-primary-dark);
+      font-weight: 900;
+    }
+  }
+}
+
+:is(.about-nav, .showcase-nav):is(:hover, :focus-within) :is(.about-nav__link, .showcase-nav__link) {
+  gap: 0.55rem;
+  padding: 0.5rem 0.8rem;
+}
+
+:is(.about-nav__num, .showcase-nav__num) {
+  flex-shrink: 0;
+  width: 1.65rem;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--color-accent);
+}
+
+:is(.about-nav__label, .showcase-nav__label) {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 0.35s ease,
+    opacity 0.25s ease;
+}
+
+:is(.about-nav, .showcase-nav):is(:hover, :focus-within) :is(.about-nav__label, .showcase-nav__label) {
+  max-width: 9rem;
+  opacity: 1;
+}
+
+[data-theme='light'] :is(.about-nav, .showcase-nav) {
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 0 0 1px rgba(18, 19, 26, 0.06),
+    0 16px 40px rgba(48, 2, 144, 0.1);
+}

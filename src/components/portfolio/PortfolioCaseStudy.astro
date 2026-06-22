@@ -1,0 +1,205 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import PortfolioGalleryStrip from '@components/portfolio/PortfolioGalleryStrip.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { BreadcrumbItem } from '@utils/breadcrumbs';
+import {
+  formatPortfolioInlineText,
+  getPortfolioDisplayTitle,
+  parsePortfolioBody,
+  type ParsedPortfolioCase,
+} from '@utils/portfolio-case';
+import { getPortfolioCategoryLabel } from '@config/portfolio-categories';
+
+interface Props {
+  entry: CollectionEntry<'portfolio'>;
+  breadcrumbs: BreadcrumbItem[];
+  parsed: ParsedPortfolioCase;
+}
+
+const { entry, breadcrumbs, parsed } = Astro.props;
+const { title, client, categories, featuredImage, featuredImageAlt } = entry.data;
+const displayTitle = getPortfolioDisplayTitle(title, client);
+const ctaSection = parsed.sections.find((section) =>
+  section.heading.toLowerCase().includes('харесва') || section.links.some((link) => link.href.includes('weberest.com')),
+);
+const storySections = parsed.sections.filter((section) => section !== ctaSection);
+const gallery = parsed.gallery.length > 0 ? parsed.gallery : featuredImage ? [{ thumb: featuredImage, full: featuredImage }] : [];
+---
+
+<article class="case-study">
+  <header class="case-hero">
+    <div class="case-hero__backdrop" aria-hidden="true">
+      {
+        featuredImage ? (
+          <img src={featuredImage} alt="" class="case-hero__backdrop-image" loading="eager" decoding="async" />
+        ) : null
+      }
+      <div class="case-hero__backdrop-gradient"></div>
+      <div class="case-hero__backdrop-noise"></div>
+    </div>
+
+    <div class="case-hero__content">
+      <div class="case-hero__crumb">
+        <Breadcrumbs items={breadcrumbs} variant="inverse" />
+      </div>
+
+      <div class="case-hero__main" data-reveal="left">
+        <span class="case-hero__eyebrow">Case Study · {parsed.techStack.length || categories?.length || 0} deliverables</span>
+        <h1 class="case-hero__title">{displayTitle}</h1>
+        {
+          categories?.length ? (
+            <div class="case-hero__tags">
+              {categories.map((category) => (
+                <span class="case-hero__tag">{getPortfolioCategoryLabel(category)}</span>
+              ))}
+            </div>
+          ) : null
+        }
+      </div>
+
+      <aside class="case-hero__panel" data-reveal="right" data-reveal-delay="2">
+        <p class="case-hero__panel-label">Реализиран от Weberest</p>
+        <p class="case-hero__panel-text">
+          {entry.data.description ??
+            'Уеб дизайн, разработка и дигитална видимост — проект, изграден да работи като бизнес инструмент, не просто като визитка.'}
+        </p>
+        {
+          parsed.liveUrl ? (
+            <a href={parsed.liveUrl} class="btn btn--primary btn--glow case-hero__live" target="_blank" rel="noopener noreferrer">
+              {parsed.liveLabel ?? 'Виж проекта онлайн'}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ) : null
+        }
+      </aside>
+    </div>
+  </header>
+
+  {
+    gallery.length > 0 ? (
+      <PortfolioGalleryStrip items={gallery} displayTitle={displayTitle} liveUrl={parsed.liveUrl} />
+    ) : null
+  }
+
+  {
+    parsed.techStack.length > 0 ? (
+      <section class="case-stack section--alt">
+        <div class="case-stack__head" data-reveal="left">
+          <span class="section-eyebrow">02 · Услуги & технологии</span>
+          <h2 class="case-stack__title">Какво включва проектът</h2>
+        </div>
+        <div class="case-stack__grid">
+          {
+            parsed.techStack.map((item, index) => (
+              <article class="case-stack__card" data-reveal="scale" data-reveal-delay={String((index % 3) + 1)}>
+                <div class="case-stack__icon-wrap">
+                  <img src={item.icon} alt="" loading="lazy" />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    ) : null
+  }
+
+  {
+    storySections.map((section, index) => (
+      <section class="case-story">
+        <div class="case-story__inner" data-reveal="left">
+          <span class="section-eyebrow">{String(index + 3).padStart(2, '0')} · Project Story</span>
+          <h2 class="case-story__title">{section.heading}</h2>
+          {
+            section.paragraphs.map((paragraph) => (
+              <p class="case-story__text" set:html={formatPortfolioInlineText(paragraph)} />
+            ))
+          }
+          {
+            section.images.map((image) => (
+              <figure class="case-story__figure">
+                <img src={image} alt="" loading="lazy" />
+              </figure>
+            ))
+          }
+          {
+            section.bullets.length > 0 ? (
+              <ul class="case-story__list">
+                {section.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            ) : null
+          }
+          {
+            section.links
+              .filter((link) => !link.href.includes('weberest.com'))
+              .map((link) => (
+                <a href={link.href} class="btn btn--secondary case-story__link" target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              ))
+          }
+        </div>
+      </section>
+    ))
+  }
+
+  <CtaBanner
+    title={ctaSection?.heading ?? 'Харесва ли Ви тази идея и за Вашия сайт?'}
+    text="Попълнете калкулатора и получете безплатна консултация за вашия следващ проект."
+    href="/zapitanie/"
+    label="Започни проект"
+  />
+</article>
+
+<div class="case-lightbox" data-case-lightbox hidden>
+  <button type="button" class="case-lightbox__close" data-case-lightbox-close aria-label="Затвори">✕</button>
+  <img src="" alt="" class="case-lightbox__image" data-case-lightbox-image />
+</div>
+
+<script>
+  function initCaseStudy() {
+    const lightbox = document.querySelector('[data-case-lightbox]');
+    const lightboxImage = document.querySelector<HTMLImageElement>('[data-case-lightbox-image]');
+    const triggers = document.querySelectorAll('[data-case-lightbox-trigger]');
+    const closeBtn = document.querySelector('[data-case-lightbox-close]');
+
+    if (!lightbox || !lightboxImage) return;
+
+    function openLightbox(src: string, alt: string) {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      lightbox.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.setAttribute('hidden', '');
+      lightboxImage.src = '';
+      document.body.style.overflow = '';
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const full = trigger.getAttribute('data-full');
+        const img = trigger.querySelector('img');
+        if (full) openLightbox(full, img?.alt ?? '');
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hasAttribute('hidden')) closeLightbox();
+    });
+  }
+
+  initCaseStudy();
+  document.addEventListener('astro:page-load', initCaseStudy);
+</script>

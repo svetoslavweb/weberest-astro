@@ -1,0 +1,80 @@
+---
+interface Props {
+  tags?: string[];
+}
+
+const { tags = ['Design', 'Development', 'SEO', 'E-commerce'] } = Astro.props;
+
+const codeLines = [
+  '<span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span>=<span class="tok-str">"hero"</span><span class="tok-tag">&gt;</span>',
+  '  <span class="tok-tag">&lt;h1&gt;</span><span class="tok-str">Вашият бизнес онлайн</span><span class="tok-tag">&lt;/h1&gt;</span>',
+  '  <span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"/contact"</span><span class="tok-tag">&gt;</span>',
+  '    <span class="tok-fn">cta</span>(<span class="tok-str">"Запитване"</span>);',
+  '  <span class="tok-tag">&lt;/a&gt;</span>',
+  '<span class="tok-tag">&lt;/section&gt;</span>',
+  '',
+  '<span class="tok-cmt">// Weberest · Astro + SCSS</span>',
+  '<span class="tok-kw">export const</span> <span class="tok-var">project</span> = {',
+  '  <span class="tok-attr">design</span>: <span class="tok-str">"UI/UX"</span>,',
+  '  <span class="tok-attr">seo</span>: <span class="tok-num">97</span>,',
+  '  <span class="tok-attr">stack</span>: [<span class="tok-str">"Astro"</span>, <span class="tok-str">"JS"</span>],',
+  '  <span class="tok-attr">goal</span>: <span class="tok-str">"реални резултати"</span>',
+  '};',
+  '',
+  '<span class="tok-kw">async function</span> <span class="tok-fn">launch</span>(site) {',
+  '  <span class="tok-kw">await</span> site.<span class="tok-fn">optimize</span>();',
+  '  <span class="tok-kw">return</span> site.<span class="tok-fn">measure</span>();',
+  '}',
+  '',
+  '.hero {',
+  '  <span class="tok-attr">display</span>: grid;',
+  '  <span class="tok-attr">gap</span>: <span class="tok-num">2rem</span>;',
+  '  <span class="tok-attr">background</span>: <span class="tok-fn">var</span>(--brand);',
+  '}',
+];
+
+const columns = [
+  { duration: 28, delay: 0 },
+  { duration: 34, delay: -8 },
+  { duration: 24, delay: -14 },
+];
+---
+
+<div class="about-dev-visual" aria-hidden="true">
+  <div class="about-dev-visual__frame">
+    <div class="about-dev-visual__chrome">
+      <span class="about-dev-visual__dot about-dev-visual__dot--close"></span>
+      <span class="about-dev-visual__dot about-dev-visual__dot--min"></span>
+      <span class="about-dev-visual__dot about-dev-visual__dot--max"></span>
+      <span class="about-dev-visual__title">weberest-studio — build</span>
+    </div>
+
+    <div class="about-dev-visual__screen">
+      <div class="about-dev-visual__columns">
+        {
+          columns.map((column) => (
+            <div
+              class="about-dev-visual__column"
+              style={`--code-duration: ${column.duration}s; --code-delay: ${column.delay}s`}
+            >
+              <div class="about-dev-visual__track">
+                {[...codeLines, ...codeLines].map((line) => (
+                  <p class="about-dev-visual__line" set:html={line || '&nbsp;'} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="about-dev-visual__glow"></div>
+    </div>
+  </div>
+
+  <ul class="about-dev-visual__tags">
+    {
+      tags.map((tag) => (
+        <li>{tag}</li>
+      ))
+    }
+  </ul>
+</div>

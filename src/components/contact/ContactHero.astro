@@ -1,0 +1,44 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import { contactHero } from '@config/contact';
+
+interface Props {
+  breadcrumbs: { name: string; url: string }[];
+}
+
+const { breadcrumbs } = Astro.props;
+---
+
+<header class="contact-hero">
+  <div class="contact-hero__media" aria-hidden="true">
+    <img
+      class="contact-hero__image"
+      src={contactHero.backgroundImage}
+      alt={contactHero.backgroundImageAlt}
+      loading="eager"
+      decoding="async"
+    />
+    <div class="contact-hero__overlay"></div>
+    <div class="contact-hero__noise"></div>
+  </div>
+
+  <div class="contact-hero__inner">
+    <div class="contact-hero__crumb">
+      <Breadcrumbs items={breadcrumbs} variant="inverse" />
+    </div>
+
+    <div class="contact-hero__content" data-reveal="left">
+      <span class="section-eyebrow">{contactHero.eyebrow}</span>
+      <h1 class="contact-hero__title">{contactHero.title}</h1>
+      <p class="contact-hero__lead">{contactHero.lead}</p>
+      <div class="contact-hero__actions">
+        <a href={`/bg${contactHero.primaryHref}`} class="btn btn--primary btn--glow">
+          {contactHero.primaryLabel}
+        </a>
+        <a href={`/bg${contactHero.secondaryHref}`} class="btn btn--secondary">
+          {contactHero.secondaryLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

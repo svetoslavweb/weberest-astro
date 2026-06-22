@@ -1,0 +1,486 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.services-page {
+  overflow: clip;
+}
+
+.services-page__cta {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+// ─── Hero ───────────────────────────────────────────────────────────────────
+.services-hero {
+  position: relative;
+  min-height: clamp(20rem, 78vh, 36rem);
+  display: grid;
+  align-items: end;
+  padding: calc(#{$header-height} + 0.75rem) 0 clamp(2.5rem, 6vw, 4rem);
+  isolation: isolate;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.services-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.services-hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+}
+
+.services-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(7, 11, 20, 0.92) 0%,
+      rgba(7, 11, 20, 0.78) 42%,
+      rgba(7, 11, 20, 0.42) 100%
+    ),
+    linear-gradient(180deg, rgba(7, 11, 20, 0.55) 0%, rgba(7, 11, 20, 0.28) 45%, rgba(7, 11, 20, 0.94) 100%),
+    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(142, 99, 171, 0.28), transparent 62%);
+}
+
+.services-hero__noise {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.services-hero__glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+
+  &--1 {
+    width: 22rem;
+    height: 22rem;
+    top: 0;
+    right: 8%;
+    background: rgba(142, 99, 171, 0.2);
+  }
+
+  &--2 {
+    width: 16rem;
+    height: 16rem;
+    bottom: -4rem;
+    left: -2%;
+    background: rgba(48, 2, 144, 0.16);
+  }
+}
+
+.services-hero__inner {
+  @include container;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.services-hero__content {
+  max-width: 44rem;
+  color: #f8fafc;
+
+  .section-eyebrow {
+    color: #d8b4fe;
+  }
+}
+
+.services-hero__title {
+  max-width: 14ch;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5);
+}
+
+.services-hero__lead {
+  max-width: 52ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(248, 250, 252, 0.92);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
+}
+
+.services-hero__actions {
+  margin-top: 0.5rem;
+}
+
+// ─── Section heads ─────────────────────────────────────────────────────────
+.services-new {
+  position: relative;
+  padding-block: clamp(3rem, 7vw, 5rem);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(142, 99, 171, 0.16), transparent 68%),
+      linear-gradient(180deg, rgba(48, 2, 144, 0.1), transparent 55%);
+  }
+}
+
+.services-new__inner,
+.services-main__inner {
+  @include container;
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+.services-new__head,
+.services-main__head {
+  max-width: 44rem;
+}
+
+.services-new__head {
+  .section-eyebrow {
+    color: #c4b5fd;
+  }
+
+  .section-title {
+    max-width: 22ch;
+    color: #ffffff;
+  }
+
+  .section-lead {
+    color: rgba(248, 250, 252, 0.82);
+  }
+}
+
+[data-theme='light'] .services-new__head {
+  .section-eyebrow {
+    color: var(--color-primary-dark);
+  }
+
+  .section-title {
+    color: var(--color-text);
+  }
+
+  .section-lead {
+    color: #3f4654;
+  }
+}
+
+// ─── Highlight cards (NEW) ─────────────────────────────────────────────────
+.services-highlight-grid {
+  display: grid;
+  gap: 1.25rem;
+
+  @include respond(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.service-highlight-card {
+  position: relative;
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.65rem, 3vw, 2.25rem);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  background:
+    linear-gradient(165deg, rgba(24, 20, 36, 0.98) 0%, rgba(18, 16, 28, 0.96) 55%, rgba(30, 22, 48, 0.94) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 24px 60px rgba(48, 2, 144, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    transform $transition-base,
+    border-color $transition-base,
+    box-shadow $transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8e63ab, #c4b5fd, #300290);
+    opacity: 0.95;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(196, 181, 253, 0.45);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 28px 70px rgba(48, 2, 144, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .services-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 1.1rem;
+    background: linear-gradient(145deg, rgba(142, 99, 171, 0.55), rgba(48, 2, 144, 0.65));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(48, 2, 144, 0.35);
+
+    svg {
+      width: 1.85rem;
+      height: 1.85rem;
+    }
+  }
+}
+
+.service-badge-new {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #8e63ab, #300290);
+  box-shadow: 0 8px 20px rgba(48, 2, 144, 0.35);
+}
+
+.service-highlight-card__title {
+  margin: 0;
+  padding-right: 4rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.service-highlight-card__description {
+  margin: 0;
+  color: rgba(248, 250, 252, 0.84);
+  line-height: 1.65;
+}
+
+.service-list,
+.service-card-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    font-size: 0.92rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--color-accent);
+    }
+  }
+}
+
+.service-highlight-card .service-list li {
+  color: rgba(248, 250, 252, 0.9);
+
+  &::before {
+    background: #c4b5fd;
+    box-shadow: 0 0 8px rgba(196, 181, 253, 0.45);
+  }
+}
+
+.service-cta {
+  justify-self: start;
+  margin-top: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(196, 181, 253, 0.45);
+    color: #ffffff;
+  }
+}
+
+// ─── Standard grid ─────────────────────────────────────────────────────────
+.services-grid {
+  display: grid;
+  gap: 1.15rem;
+
+  @include respond(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.service-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+  border-radius: $radius-lg;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  transition:
+    transform $transition-base,
+    border-color $transition-fast,
+    box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(142, 99, 171, 0.28);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .services-icon {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(145deg, rgba(142, 99, 171, 0.28), rgba(48, 2, 144, 0.22));
+    border: 1px solid rgba(142, 99, 171, 0.32);
+    color: #e9d5ff;
+
+    svg {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+  }
+}
+
+// ─── Light theme ────────────────────────────────────────────────────────────
+[data-theme='light'] {
+  .services-new::before {
+    background:
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(142, 99, 171, 0.08), transparent 68%),
+      linear-gradient(180deg, rgba(48, 2, 144, 0.05), transparent 55%);
+  }
+
+  .service-highlight-card {
+    box-shadow:
+      0 0 0 1px rgba(48, 2, 144, 0.1),
+      0 20px 48px rgba(48, 2, 144, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    &:hover {
+      box-shadow:
+        0 0 0 1px rgba(48, 2, 144, 0.14),
+        0 24px 56px rgba(48, 2, 144, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  .service-card {
+    background: var(--color-surface);
+    border-color: rgba(18, 19, 26, 0.1);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+
+    &:hover {
+      border-color: rgba(48, 2, 144, 0.22);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .services-icon {
+      background: linear-gradient(145deg, rgba(142, 99, 171, 0.14), rgba(48, 2, 144, 0.1));
+      border-color: rgba(48, 2, 144, 0.18);
+      color: var(--color-primary-dark);
+    }
+  }
+
+  .service-card__description,
+  .service-card-list li {
+    color: var(--color-text-muted);
+  }
+
+  .service-card-list li::before {
+    background: var(--color-primary-dark);
+    box-shadow: none;
+  }
+}
+
+.service-card__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.service-card__description {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+
+.service-card-list li {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+// ─── Shared icon wrapper ───────────────────────────────────────────────────
+.services-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+// ─── Legacy CTA banner (used elsewhere) ──────────────────────────────────────
+.cta-banner {
+  @include container;
+  margin-block: 2rem 4rem;
+}
+
+.cta-banner__inner {
+  @include glass-panel;
+  border-radius: $radius-xl;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+
+  @include respond(md) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.cta-banner__title {
+  @include gradient-text;
+  margin: 0;
+}
+
+.cta-banner__text {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-text-muted);
+}

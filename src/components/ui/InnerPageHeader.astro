@@ -1,0 +1,20 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '@utils/breadcrumbs';
+
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumbs: BreadcrumbItem[];
+  fullWidth?: boolean;
+}
+
+const { title, description, breadcrumbs, fullWidth = false } = Astro.props;
+---
+
+<header class:list={['content-page__header', fullWidth && 'content-page__header--full']}>
+  <Breadcrumbs items={breadcrumbs} />
+  <h1>{title}</h1>
+  {description && <p class="section-lead">{description}</p>}
+  <slot />
+</header>

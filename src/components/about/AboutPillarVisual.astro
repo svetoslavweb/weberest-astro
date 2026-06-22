@@ -1,0 +1,107 @@
+---
+interface Props {
+  visual: 'locations' | 'transparency' | 'calculator';
+}
+
+const { visual } = Astro.props;
+
+const stroke = {
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': '1.75',
+  'stroke-linecap': 'round',
+  'stroke-linejoin': 'round',
+} as const;
+---
+
+{
+  visual === 'locations' && (
+    <div class="pillar-visual pillar-visual--locations">
+      <div class="pillar-location">
+        <span class="pillar-location__badge">BG</span>
+        <div class="pillar-location__copy">
+          <strong>Русе</strong>
+          <span>Основен офис</span>
+        </div>
+      </div>
+      <div class="pillar-location__bridge" aria-hidden="true">
+        <svg viewBox="0 0 120 24">
+          <path {...stroke} d="M4 12h36M80 12h36M40 12h40" />
+          <circle {...stroke} cx="60" cy="12" r="4" />
+        </svg>
+      </div>
+      <div class="pillar-location">
+        <span class="pillar-location__badge pillar-location__badge--us">US</span>
+        <div class="pillar-location__copy">
+          <strong>Бостън</strong>
+          <span>Представителство</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  visual === 'transparency' && (
+    <div class="pillar-visual pillar-visual--transparency">
+      <ul class="pillar-points">
+        <li>
+          <span class="pillar-points__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path {...stroke} d="M21 15a4 4 0 01-4 4H8l-5 3V7a4 4 0 014-4h10a4 4 0 014 4z" />
+              <path {...stroke} d="M8 10h8M8 14h5" />
+            </svg>
+          </span>
+          <span>Говорим на разбираем език</span>
+        </li>
+        <li>
+          <span class="pillar-points__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path {...stroke} d="M12 3l8 4v6c0 4.5-3.5 7.5-8 8-4.5-.5-8-3.5-8-8V7l8-4z" />
+              <path {...stroke} d="m9.5 12 1.8 1.8L15 10.1" />
+            </svg>
+          </span>
+          <span>Без излишен жаргон</span>
+        </li>
+        <li>
+          <span class="pillar-points__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path {...stroke} d="M16 11c1.7 0 3-1.3 3-3S17.7 5 16 5s-3 1.3-3 3 1.3 3 3 3z" />
+              <path {...stroke} d="M8 11c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3z" />
+              <path {...stroke} d="M8 13c-2.7 0-5 1.3-5 3v2h10v-2c0-1.7-2.3-3-5-3z" />
+              <path {...stroke} d="M16 13c-.7 0-1.4.1-2 .3 1.8.9 3 2.4 3 4.7V19h5v-2c0-1.7-2.3-3-6-3z" />
+            </svg>
+          </span>
+          <span>Партньорство и доверие</span>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+{
+  visual === 'calculator' && (
+    <div class="pillar-visual pillar-visual--calculator">
+      <div class="pillar-calc">
+        <div class="pillar-calc__head">
+          <span class="pillar-calc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect {...stroke} x="5" y="3" width="14" height="18" rx="2" />
+              <path {...stroke} d="M8 7h8M8 11h2M12 11h2M16 11h2M8 15h2M12 15h2M16 15h2M8 19h8" />
+            </svg>
+          </span>
+          <div>
+            <strong>Уеб калкулатор</strong>
+            <span>Безплатен анализ</span>
+          </div>
+        </div>
+        <div class="pillar-calc__fields" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <span class="pillar-calc__result">Оценка за 24 часа</span>
+      </div>
+    </div>
+  )
+}

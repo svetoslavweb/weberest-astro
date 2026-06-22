@@ -1,0 +1,37 @@
+---
+import ServicesIcon from '@components/services/ServicesIcon.astro';
+import { homeServicesMain } from '@config/home-page';
+---
+
+<section class="home-services section" id="home-services">
+  <div class="home-services__inner">
+    <div class="home-services__head" data-reveal="left">
+      <span class="section-eyebrow">{homeServicesMain.eyebrow}</span>
+      <h2 class="section-title">{homeServicesMain.title}</h2>
+      <p class="section-lead">{homeServicesMain.lead}</p>
+    </div>
+
+    <div class="home-services-grid">
+      {
+        homeServicesMain.items.map((service, index) => (
+          <a
+            href={`/bg${service.href}`}
+            class="home-service-card"
+            title={service.title}
+            data-reveal="scale"
+            data-reveal-delay={String((index % 6) + 1)}
+          >
+            <ServicesIcon icon={service.icon} />
+            <span class="home-service-card__title">{service.ctaLabel ?? service.title}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="home-services__footer" data-reveal="left">
+      <a href={`/bg${homeServicesMain.allServicesHref}`} class="btn btn--secondary">
+        {homeServicesMain.allServicesLabel}
+      </a>
+    </div>
+  </div>
+</section>

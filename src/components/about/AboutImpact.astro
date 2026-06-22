@@ -1,0 +1,61 @@
+---
+import { aboutImpact } from '@config/about';
+---
+
+<section class="about-impact section section--alt" id="about-impact">
+  <div class="about-impact__inner">
+    <div class="about-impact__head" data-reveal="left">
+      <span class="section-eyebrow">{aboutImpact.eyebrow}</span>
+      <h2 class="section-title">{aboutImpact.title}</h2>
+      <p class="section-lead">{aboutImpact.intro}</p>
+    </div>
+
+    <div class="about-impact__projects" data-reveal="left" data-reveal-delay="1">
+      {
+        aboutImpact.projects.map((project) => (
+          <article class="about-impact__project">
+            {project.logo && project.href && (
+              <a
+                class="about-impact__project-logo"
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={project.logo}
+                  alt={project.logoAlt ?? 'Startup Factory'}
+                  loading="lazy"
+                  decoding="async"
+                  width="383"
+                  height="114"
+                />
+              </a>
+            )}
+            <div class="about-impact__project-copy">
+              <p set:html={project.html} />
+              {project.htmlExtra && <p>{project.htmlExtra}</p>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="about-impact__funding" data-reveal="right">
+      <figure class="about-impact__funding-image">
+        <img
+          src={aboutImpact.media.funding[0].image}
+          alt={aboutImpact.media.funding[0].imageAlt ?? ''}
+          loading="lazy"
+          decoding="async"
+          width="242"
+          height="114"
+        />
+      </figure>
+      {
+        aboutImpact.media.funding.flatMap((block) =>
+          block.paragraphs.map((paragraph) => <p>{paragraph}</p>),
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const pageTitle = 'Блог';
+const pageDescription = 'Новини, тенденции и експертни насоки за уеб дизайн, SEO и онлайн маркетинг.';
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: '/blog/' });
+---
+
+<BaseLayout
+  title="Блог - Weberest"
+  description="Новини, тенденции и полезни статии от Weberest."
+  canonical="/blog/"
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(pageTitle, pageDescription, 'https://www.weberest.com/bg/blog/'),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="content-page">
+    <InnerPageHeader title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} />
+    <div class="blog-grid">
+      {
+        posts.map((post) => (
+          <a href={`/bg/${post.data.wpSlug ?? post.id}/`} class="blog-card">
+            {post.data.featuredImage ? (
+              <div class="blog-card__media">
+                <img src={post.data.featuredImage} alt={post.data.featuredImageAlt ?? post.data.title} loading="lazy" />
+              </div>
+            ) : null}
+            <div class="blog-card__body">
+              <p class="blog-card__meta">{post.data.pubDate.toLocaleDateString('bg-BG')}</p>
+              <h2 class="blog-card__title">{post.data.title}</h2>
+              <p>{post.data.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

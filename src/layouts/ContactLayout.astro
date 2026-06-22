@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactHero from '@components/contact/ContactHero.astro';
+import ContactOffices from '@components/contact/ContactOffices.astro';
+import InquiryForm from '@components/forms/InquiryForm.astro';
+import type { CollectionEntry } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  slug: string;
+}
+
+const { entry, slug } = Astro.props;
+const { title, description } = entry.data;
+const breadcrumbs = buildBreadcrumbs({ name: 'Контакти', url: `/${slug}/` });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${slug}/`}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/${slug}/`),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="contact-page">
+    <ContactHero breadcrumbs={breadcrumbs} />
+    <ContactOffices />
+
+    <section class="contact-form-section" id="contact-form">
+      <div class="contact-form-section__inner">
+        <div class="contact-form-section__head" data-reveal="left">
+          <span class="section-eyebrow">Пишете ни</span>
+          <h2 class="contact-form-section__title">Свържете се с нас</h2>
+          <p class="contact-form-section__text">
+            Попълнете формата и ще се свържем с вас възможно най-скоро.
+            Предоставяте личните си данни доброволно — вижте нашата
+            <a href="/bg/privacy-policy/">политика за поверителност</a>.
+          </p>
+          <ul class="contact-form-section__perks">
+            <li>Отговор в рамките на 1 работен ден</li>
+            <li>Безплатна първична консултация</li>
+            <li>Ясна комуникация без излишни термини</li>
+          </ul>
+        </div>
+        <div class="contact-form-section__form" data-reveal="scale" data-reveal-delay="2">
+          <InquiryForm />
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

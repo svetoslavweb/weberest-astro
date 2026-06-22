@@ -1,0 +1,54 @@
+---
+interface Props {
+  icon?: 'design' | 'code' | 'shop' | 'marketing';
+  image?: string;
+  alt?: string;
+}
+
+const { icon, image, alt = '' } = Astro.props;
+---
+
+<div class="showcase-orb" data-scroll-rotate="0.18">
+  {
+    image ? (
+      <img class="showcase-orb__image" src={image} alt={alt} loading="lazy" />
+    ) : (
+      <div class="showcase-orb__icon" aria-hidden="true">
+        {icon === 'design' && (
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="48" height="36" rx="4" stroke="currentColor" stroke-width="2.5" />
+            <path d="M8 24h48" stroke="currentColor" stroke-width="2.5" />
+            <circle cx="14" cy="18" r="2" fill="currentColor" />
+            <circle cx="20" cy="18" r="2" fill="currentColor" />
+            <circle cx="26" cy="18" r="2" fill="currentColor" />
+            <path d="M20 38l8-8 6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        )}
+        {icon === 'code' && (
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 20L10 32l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M42 20l12 12-12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M36 10L28 54" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        )}
+        {icon === 'shop' && (
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22h40l-4 28H16L12 22z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M22 22V18a10 10 0 0120 0v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M26 36h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        )}
+        {icon === 'marketing' && (
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 48V28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M26 48V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M40 48V32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M54 48V14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M8 48h52" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M38 18l6-6 8 8-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        )}
+      </div>
+    )
+  }
+</div>

@@ -1,0 +1,108 @@
+---
+import ShowcaseVisual from '@components/ui/ShowcaseVisual.astro';
+
+interface ShowcaseItem {
+  id: string;
+  number: string;
+  tag: string;
+  title: string;
+  text: string;
+  href: string;
+  label: string;
+  icon?: 'design' | 'code' | 'shop' | 'marketing';
+  image?: string;
+  imageAlt?: string;
+  reverse?: boolean;
+}
+
+interface Props {
+  items: ShowcaseItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="showcase-nav" aria-label="Секции на началната страница">
+  {
+    items.map((item) => (
+      <a href={`#${item.id}`} class="showcase-nav__link" data-section-link={item.id} title={item.tag}>
+        <span class="showcase-nav__num">{item.number}</span>
+        <span class="showcase-nav__label">{item.tag}</span>
+      </a>
+    ))
+  }
+</nav>
+
+{
+  items.map((item, index) => (
+    <section
+      class:list={['showcase-block', index % 2 === 1 && 'section--alt']}
+      id={item.id}
+    >
+      <div class:list={['showcase-block__inner', item.reverse && 'showcase-block__inner--reverse']}>
+        <div data-reveal={index % 2 === 0 ? 'left' : 'right'}>
+          <div class="showcase-block__label">
+            <span class="showcase-block__number">{item.number}</span>
+            <span class="showcase-block__tag">{item.tag}</span>
+          </div>
+          <h2 class="showcase-block__title">{item.title}</h2>
+          <p class="showcase-block__text">{item.text}</p>
+          <a href={`/bg${item.href}`} class="btn btn--primary">{item.label}</a>
+        </div>
+
+        <div class="showcase-block__visual" data-reveal="rotate" data-reveal-delay="2">
+          <div class="showcase-orb-ring" data-scroll-rotate="-0.12" />
+          <ShowcaseVisual icon={item.icon} image={item.image} alt={item.imageAlt ?? item.tag} />
+        </div>
+      </div>
+    </section>
+  ))
+}
+
+<script>
+  function initShowcaseNav() {
+    const nav = document.querySelector('.showcase-nav');
+    const links = document.querySelectorAll('[data-section-link]');
+    const sections = [...links]
+      .map((link) => document.getElementById(link.getAttribute('data-section-link') || ''))
+      .filter(Boolean);
+
+    if (nav) {
+      const hero = document.getElementById('hero');
+      const stats = document.querySelector('.stats-strip');
+
+      const syncNavVisibility = () => {
+        const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
+        const statsBottom = stats?.getBoundingClientRect().bottom ?? 0;
+        const introBottom = Math.max(heroBottom, statsBottom);
+        const isVisible = introBottom < window.innerHeight * 0.35;
+        nav.classList.toggle('is-visible', isVisible);
+      };
+
+      syncNavVisibility();
+      window.addEventListener('scroll', syncNavVisibility, { passive: true });
+      window.addEventListener('resize', syncNavVisibility, { passive: true });
+    }
+
+    if (sections.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            links.forEach((link) =>
+              link.classList.toggle(
+                'is-active',
+                link.getAttribute('data-section-link') === entry.target.id,
+              ),
+            );
+          });
+        },
+        { threshold: 0.35 },
+      );
+      sections.forEach((section) => observer.observe(section!));
+    }
+  }
+
+  initShowcaseNav();
+  document.addEventListener('astro:page-load', initShowcaseNav);
+</script>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InnerPageHeader from '@components/ui/InnerPageHeader.astro';
+import QuoteForm from '@components/forms/QuoteForm.astro';
+import FaqAccordion from '@components/sections/FaqAccordion.astro';
+import FaqSidebar from '@components/faq/FaqSidebar.astro';
+import type { CollectionEntry } from 'astro:content';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, buildFaqSchema, mergeJsonLd } from '@utils/seo';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  slug: string;
+  faqItems?: { question: string; answer: string }[];
+}
+
+const { entry, slug, faqItems = [] } = Astro.props;
+const { title, description, showQuoteForm, template, heroTitle } = entry.data;
+const isFaq = template === 'faq' || slug === 'chesto-zadavani-vaprosi';
+const pageTitle =
+  heroTitle ?? title.replace(/\s*(?:\||-)\s*Weberest\s*$/i, '').trim();
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: `/${slug}/` });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${slug}/`}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/${slug}/`),
+    isFaq && faqItems.length ? buildFaqSchema(faqItems) : undefined,
+  )}
+  breadcrumbs={breadcrumbs}
+  showFloatingQuote={showQuoteForm}
+>
+  <article class:list={['content-page', isFaq && 'content-page--faq']}>
+    <InnerPageHeader title={pageTitle} description={description} breadcrumbs={breadcrumbs} />
+
+    <div class="content-page__layout">
+      <div class="prose">
+        {isFaq && faqItems.length > 0 ? <FaqAccordion items={faqItems} /> : <slot />}
+      </div>
+      {isFaq ? (
+        <FaqSidebar />
+      ) : (
+        showQuoteForm && (
+          <aside class="content-page__sidebar">
+            <div class="card">
+              <h2>Безплатна консултация</h2>
+              <p>Попълнете калкулатора и ще получите персонално предложение.</p>
+              <a href="/bg/zapitanie/" class="btn btn--primary">Към формата</a>
+            </div>
+          </aside>
+        )
+      )}
+    </div>
+  </article>
+  {showQuoteForm && !isFaq && <QuoteForm compact showIntro={false} />}
+</BaseLayout>

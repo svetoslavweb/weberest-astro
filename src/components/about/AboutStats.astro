@@ -1,0 +1,22 @@
+---
+import { aboutStats } from '@config/about';
+---
+
+<section class="about-stats" aria-label="Ключови показатели">
+  <div class="about-stats__grid">
+    {
+      aboutStats.map((stat, i) => (
+        <div class="about-stats__item" data-reveal="scale" data-reveal-delay={String((i % 4) + 1)}>
+          <span
+            class="about-stats__value"
+            data-count-up={stat.value}
+            data-count-suffix={stat.suffix}
+          >
+            0{stat.suffix}
+          </span>
+          <span class="about-stats__label">{stat.label}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

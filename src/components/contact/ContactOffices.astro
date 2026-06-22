@@ -1,0 +1,89 @@
+---
+import { contactOffices, contactIntro, contactMap } from '@config/contact';
+import GoogleMaps from '@components/integrations/GoogleMaps.astro';
+---
+
+<section class="contact-offices">
+  <div class="contact-offices__head" data-reveal="left">
+    <span class="section-eyebrow">Контактна информация</span>
+    <h2 class="contact-offices__title">Къде да ни намерите</h2>
+    <p class="contact-offices__intro">{contactIntro}</p>
+  </div>
+
+  <div class="contact-offices__grid">
+    {
+      contactOffices.map((office, index) => (
+        <article
+          class:list={['contact-office', office.isHeadquarters && 'contact-office--hq']}
+          data-reveal="scale"
+          data-reveal-delay={String((index % 3) + 1)}
+        >
+          <div class="contact-office__top">
+            <span class="contact-office__badge">{office.badge}</span>
+            <div>
+              <p class="contact-office__country">{office.country}</p>
+              <h3 class="contact-office__city">{office.city}</h3>
+            </div>
+            {office.isHeadquarters ? <span class="contact-office__tag">Централен офис</span> : null}
+          </div>
+
+          <dl class="contact-office__details">
+            <div>
+              <dt>Адрес</dt>
+              <dd>
+                {office.address}
+                {office.addressNote ? <span class="contact-office__note">{office.addressNote}</span> : null}
+                {office.postalCode ? <span class="contact-office__note">{office.postalCode} {office.city}</span> : null}
+              </dd>
+            </div>
+
+            {
+              office.phone ? (
+                <div>
+                  <dt>Телефон</dt>
+                  <dd>
+                    <a href={`tel:${office.phoneTel ?? office.phone}`}>{office.phone}</a>
+                  </dd>
+                </div>
+              ) : null
+            }
+
+            <div>
+              <dt>E-mail</dt>
+              <dd>
+                <a href={`mailto:${office.email}`}>{office.email}</a>
+              </dd>
+            </div>
+
+            <div>
+              <dt>Работно време</dt>
+              <dd>{office.hours}</dd>
+            </div>
+          </dl>
+
+          <a
+            href={office.mapUrl}
+            class="contact-office__map-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Виж локация на картата ↗
+          </a>
+        </article>
+      ))
+    }
+
+    <div class="contact-offices__map" data-reveal="scale" data-reveal-delay="2">
+      <GoogleMaps
+        variant="card"
+        title={contactMap.title}
+        eyebrow={contactMap.eyebrow}
+        address={contactMap.address}
+        mapUrl={contactMap.mapUrl}
+        embedUrl={contactMap.embedUrl}
+        height={420}
+        flush
+      />
+    </div>
+  </div>
+</section>

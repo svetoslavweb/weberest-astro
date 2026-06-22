@@ -1,0 +1,2026 @@
+[
+  {
+    "id": 2,
+    "slug": "примерна-страница",
+    "title": "Примерна страница",
+    "description": "",
+    "type": "page",
+    "date": "2025-09-09 11:42:13",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/примерна-страница/",
+    "collection": "pages"
+  },
+  {
+    "id": 10,
+    "slug": "about-weberest",
+    "title": "За Weberest - Уеб Дизайн Студио Номер 1 в Град Русе",
+    "description": "Научете повече за уникалните методи на работа в уеб студио Weberest и как ние ще Ви помогнем да печелите от присъствието си в Интернет. Убедете се сега.",
+    "type": "page",
+    "date": "2014-09-23 08:04:53",
+    "modified": "2025-10-13 16:01:43",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "За Weberest - Уеб Дизайн Студио Номер 1 в Град Русе",
+      "description": "Научете повече за уникалните методи на работа в уеб студио Weberest и как ние ще Ви помогнем да печелите от присъствието си в Интернет. Убедете се сега."
+    },
+    "url": "/bg/about-weberest/",
+    "collection": "pages"
+  },
+  {
+    "id": 11,
+    "slug": "registracia-sait-adres-domain",
+    "title": "Регистриране на Домейн и Регистрация на Интернет Сайт",
+    "description": "Възползвайте се от богатия ни опит в регистрацията на уеб домейни. Ние ще изберем възможно най-добрия вариант, съобразен изцяло с Вас и Вашите потребности.",
+    "type": "page",
+    "date": "2014-09-23 08:53:25",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Регистриране на Домейн и Регистрация на Интернет Сайт",
+      "description": "Възползвайте се от богатия ни опит в регистрацията на уеб домейни. Ние ще изберем възможно най-добрия вариант, съобразен изцяло с Вас и Вашите потребности."
+    },
+    "url": "/bg/registracia-sait-adres-domain/",
+    "collection": "pages"
+  },
+  {
+    "id": 15,
+    "slug": "obnoviavane-web-sait",
+    "title": "Редизайн и Обновяване на Уеб Сайт от Weberest, гр. Русе",
+    "description": "Възможно е Вашият уеб сайт да се нуждае от редизайн, ако не изпълнява заложените цели. Ние сме тук за да помогнем за освежаването на фирмената Ви страница.",
+    "type": "page",
+    "date": "2014-09-23 09:41:21",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Редизайн и Обновяване на Уеб Сайт от Weberest, гр. Русе",
+      "description": "Възможно е Вашият уеб сайт да се нуждае от редизайн, ако не изпълнява заложените цели. Ние сме тук за да помогнем за освежаването на фирмената Ви страница."
+    },
+    "url": "/bg/obnoviavane-web-sait/",
+    "collection": "pages"
+  },
+  {
+    "id": 19,
+    "slug": "internet-reklama-google",
+    "title": "Реклама в Google и Интернет Маркетинг от Weberest, Русе",
+    "description": "Печелете повече от Вашия уеб сайт чрез Интернет маркетинг и реклама в Google от Weberest, град Русе– гарантирано индивидуално и актуално обслужване.",
+    "type": "page",
+    "date": "2014-09-23 10:04:13",
+    "modified": "2025-09-09 15:52:30",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Реклама в Google и Интернет Маркетинг от Weberest, Русе",
+      "description": "Печелете повече от Вашия уеб сайт чрез Интернет маркетинг и реклама в Google от Weberest, град Русе– гарантирано индивидуално и актуално обслужване."
+    },
+    "url": "/bg/internet-reklama-google/",
+    "collection": "pages"
+  },
+  {
+    "id": 24,
+    "slug": "sazdavane-elektronen-magazin",
+    "title": "Изработка на Онлайн Магазини от Weberest, град Русе",
+    "description": "Открийте нови хоризонти за своя бизнес и достигнете до максимален брой нови клиенти в цяла България с електронен магазин от Weberest, град Русе.",
+    "type": "page",
+    "date": "2014-09-23 10:51:14",
+    "modified": "2025-10-14 10:19:20",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Изработка на Онлайн Магазини от Weberest, град Русе",
+      "description": "Открийте нови хоризонти за своя бизнес и достигнете до максимален брой нови клиенти в цяла България с електронен магазин от Weberest, град Русе."
+    },
+    "url": "/bg/sazdavane-elektronen-magazin/",
+    "collection": "pages"
+  },
+  {
+    "id": 27,
+    "slug": "poddrujka-administranicq-web-site",
+    "title": "Администрация и Поддръжка на Сайт от Weberest - Русе",
+    "description": "Оставете поддръжката на Вашия уеб сайт в опитните ръце на нашите квалифицирани специалисти. Бъдете винаги актуални с услугите на Weberest, град Русе.",
+    "type": "page",
+    "date": "2014-09-23 11:04:07",
+    "modified": "2025-09-09 15:52:31",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Администрация и Поддръжка на Сайт от Weberest - Русе",
+      "description": "Оставете поддръжката на Вашия уеб сайт в опитните ръце на нашите квалифицирани специалисти. Бъдете винаги актуални с услугите на Weberest, град Русе."
+    },
+    "url": "/bg/poddrujka-administranicq-web-site/",
+    "collection": "pages"
+  },
+  {
+    "id": 31,
+    "slug": "ueb-internet-dizain-ruse",
+    "title": "Професионален Уеб Дизайн от Weberest, Град Русе",
+    "description": "Забележителни уеб дизайн услуги в град Русе, с фокус върху Вашия бизнес и неговото развитие в динамичния свят на Интернет.",
+    "type": "page",
+    "date": "2014-09-23 11:22:42",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Професионален Уеб Дизайн от Weberest, Град Русе",
+      "description": "Забележителни уеб дизайн услуги в град Русе, с фокус върху Вашия бизнес и неговото развитие в динамичния свят на Интернет."
+    },
+    "url": "/bg/ueb-internet-dizain-ruse/",
+    "collection": "pages"
+  },
+  {
+    "id": 43,
+    "slug": "shabloni-internet-websites",
+    "title": "Готови Темплейти и Шаблони за Уеб Сайт от Weberest",
+    "description": "Запознайте се с възможностите, предлагани от нашите готови шаблони за уеб сайт. Получавате ефектен и напълно оптимизиран сайт по-лесно и бързо от всякога.",
+    "type": "page",
+    "date": "2014-09-23 12:36:25",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Готови Темплейти и Шаблони за Уеб Сайт от Weberest",
+      "description": "Запознайте се с възможностите, предлагани от нашите готови шаблони за уеб сайт. Получавате ефектен и напълно оптимизиран сайт по-лесно и бързо от всякога."
+    },
+    "url": "/bg/shabloni-internet-websites/",
+    "collection": "pages"
+  },
+  {
+    "id": 50,
+    "slug": "sazdavane-internet-stranica",
+    "title": "Професионална Изработка на Сайт от Weberest, Русе",
+    "description": "Фирменият Ви уеб сайт е Вашето лице пред милионите Интернет потребители. Получете най-доброто решение, съобразено с Вашия бизнес от Weberest, град Русе.",
+    "type": "page",
+    "date": "2014-09-23 13:22:53",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Професионална Изработка на Сайт от Weberest, Русе",
+      "description": "Фирменият Ви уеб сайт е Вашето лице пред милионите Интернет потребители. Получете най-доброто решение, съобразено с Вашия бизнес от Weberest, град Русе."
+    },
+    "url": "/bg/sazdavane-internet-stranica/",
+    "collection": "pages"
+  },
+  {
+    "id": 98,
+    "slug": "върхов-уеб-дизайн-и-онлайн-маркетинг-о",
+    "title": "Върхов Уеб Дизайн и Онлайн Маркетинг от Weberest - Русе",
+    "description": "Изработка на уеб сайт, онлайн магазин, уеб дизайн и маркетинг от Weberest, град Русе. Позволете ни да изведем бизнесът Ви на следващото ниво, сега.",
+    "type": "page",
+    "date": "2014-09-25 08:20:17",
+    "modified": "2025-10-17 09:46:24",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Върхов Уеб Дизайн и Онлайн Маркетинг от Weberest - Русе",
+      "description": "Изработка на уеб сайт, онлайн магазин, уеб дизайн и маркетинг от Weberest, град Русе. Позволете ни да изведем бизнесът Ви на следващото ниво, сега."
+    },
+    "url": "/bg/върхов-уеб-дизайн-и-онлайн-маркетинг-о/",
+    "collection": "pages"
+  },
+  {
+    "id": 151,
+    "slug": "it-konsultacia",
+    "title": "Weberest - Контакти. Уеб Дизайн и Маркетинг в град Русе",
+    "description": "За успеха на един проект най-важна е комуникацията. Консултирайте се напълно безплатно с експерт в областта на дизайна, програмирането или маркетинга сега.",
+    "type": "page",
+    "date": "2014-09-29 10:55:46",
+    "modified": "2025-09-11 16:39:07",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Weberest - Контакти. Уеб Дизайн и Маркетинг в град Русе",
+      "description": "За успеха на един проект най-важна е комуникацията. Консултирайте се напълно безплатно с експерт в областта на дизайна, програмирането или маркетинга сега."
+    },
+    "url": "/bg/it-konsultacia/",
+    "collection": "pages"
+  },
+  {
+    "id": 155,
+    "slug": "search-engine-optimization",
+    "title": "SEO Оптимизация на Сайт, СЕО услуги от Weberest, Русе",
+    "description": "Важно е потребителите да намират лесно Вашата Интернет страница в търсачките като Google. Със SEO оптимизация от Weberest няма да останете незабелязани.",
+    "type": "page",
+    "date": "2014-09-29 11:06:31",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "SEO Оптимизация на Сайт, СЕО услуги от Weberest, Русе",
+      "description": "Важно е потребителите да намират лесно Вашата Интернет страница в търсачките като Google. Със SEO оптимизация от Weberest няма да останете незабелязани."
+    },
+    "url": "/bg/search-engine-optimization/",
+    "collection": "pages"
+  },
+  {
+    "id": 159,
+    "slug": "izrabotka-logo",
+    "title": "Професионална Изработка на Лого от Weberest, Град Русе",
+    "description": "Отличете се от тълпата с професионален лого дизайн от Weberest. Направете първата крачка сега, защото първо условие за стабилен успех е да бъдете запомнени.",
+    "type": "page",
+    "date": "2014-09-29 11:20:43",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Професионална Изработка на Лого от Weberest, Град Русе",
+      "description": "Отличете се от тълпата с професионален лого дизайн от Weberest. Направете първата крачка сега, защото първо условие за стабилен успех е да бъдете запомнени."
+    },
+    "url": "/bg/izrabotka-logo/",
+    "collection": "pages"
+  },
+  {
+    "id": 162,
+    "slug": "razrabotka-prilojeniq-android",
+    "title": "Разработка на Мобилно Приложение и Мобилен Уеб Сайт",
+    "description": "Процентът на мобилните потребители се увеличава с всеки изминал ден. Не изоставайте от последните тенденции с мобилно приложение за Android от Weberest.",
+    "type": "page",
+    "date": "2014-09-29 11:32:32",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Разработка на Мобилно Приложение и Мобилен Уеб Сайт",
+      "description": "Процентът на мобилните потребители се увеличава с всеки изминал ден. Не изоставайте от последните тенденции с мобилно приложение за Android от Weberest."
+    },
+    "url": "/bg/razrabotka-prilojeniq-android/",
+    "collection": "pages"
+  },
+  {
+    "id": 226,
+    "slug": "web-design",
+    "title": "Уеб Дизайн Услуги от Weberest - Град Русе",
+    "description": "Бъдете уникални с креативен и най-важното - ефективен уеб дизайн за Вашия Интернет сайт от Weberest, град Русе. Защото външният вид има значение.",
+    "type": "page",
+    "date": "2014-10-01 07:35:15",
+    "modified": "2025-09-12 13:31:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Уеб Дизайн Услуги от Weberest - Град Русе",
+      "description": "Бъдете уникални с креативен и най-важното - ефективен уеб дизайн за Вашия Интернет сайт от Weberest, град Русе. Защото външният вид има значение."
+    },
+    "url": "/bg/web-design/",
+    "collection": "pages"
+  },
+  {
+    "id": 228,
+    "slug": "web-mobile-development",
+    "title": "Уеб Дизайн, Програмиране и Мобилни Разработки - Русе",
+    "description": "Изпреварете конкуренцията с нов корпоративен уеб сайт или мобилно приложение от Weberest, Русе. Запознайте се с пълния набор от услуги, които предлагаме.",
+    "type": "page",
+    "date": "2014-10-01 07:35:35",
+    "modified": "2025-09-12 13:38:30",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Уеб Дизайн, Програмиране и Мобилни Разработки - Русе",
+      "description": "Изпреварете конкуренцията с нов корпоративен уеб сайт или мобилно приложение от Weberest, Русе. Запознайте се с пълния набор от услуги, които предлагаме."
+    },
+    "url": "/bg/web-mobile-development/",
+    "collection": "pages"
+  },
+  {
+    "id": 232,
+    "slug": "internet-marketing",
+    "title": "Върхов Интернет Маркетинг от Weberest, град Русе",
+    "description": "Ефективни онлайн маркетингови стратегии за Вашия бизнес, които ще Ви изстрелят на върха във Вашата пазарна ниша - Интернет реклама и SEO оптимизация.",
+    "type": "page",
+    "date": "2014-10-01 07:38:04",
+    "modified": "2025-09-12 13:41:57",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Върхов Интернет Маркетинг от Weberest, град Русе",
+      "description": "Ефективни онлайн маркетингови стратегии за Вашия бизнес, които ще Ви изстрелят на върха във Вашата пазарна ниша - Интернет реклама и SEO оптимизация."
+    },
+    "url": "/bg/internet-marketing/",
+    "collection": "pages"
+  },
+  {
+    "id": 234,
+    "slug": "services",
+    "title": "Нашите Услуги - Уеб Дизайн, Интернет Маркетинг, гр. Русе",
+    "description": "Запознайте се отблизо с услугите, предлагани от Weberest, които ще увеличат продажбите Ви и ще открият напълно нови възможности за Вас и Вашия бизнес.",
+    "type": "page",
+    "date": "2014-10-01 07:39:45",
+    "modified": "2025-09-12 10:24:27",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Нашите Услуги - Уеб Дизайн, Интернет Маркетинг, гр. Русе",
+      "description": "Запознайте се отблизо с услугите, предлагани от Weberest, които ще увеличат продажбите Ви и ще открият напълно нови възможности за Вас и Вашия бизнес."
+    },
+    "url": "/bg/services/",
+    "collection": "pages"
+  },
+  {
+    "id": 347,
+    "slug": "website-klienti",
+    "title": "Уеб Дизайн Портфолио - Проектите на Weberest",
+    "description": "Наши клиенти от цял свят вече берат плодовете на съвместната ни работа. Убедете се сами като разгледате впечатляващото портфолио с последните ни проекти.",
+    "type": "page",
+    "date": "2014-10-02 08:57:48",
+    "modified": "2025-09-25 14:42:25",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Уеб Дизайн Портфолио - Проектите на Weberest",
+      "description": "Наши клиенти от цял свят вече берат плодовете на съвместната ни работа. Убедете се сами като разгледате впечатляващото портфолио с последните ни проекти."
+    },
+    "url": "/bg/website-klienti/",
+    "collection": "pages"
+  },
+  {
+    "id": 1555,
+    "slug": "izrabotka-website-nedvijimi-imoti",
+    "title": "Изработка на Уеб Сайт за Недвижими Имоти",
+    "description": "За да бъде Вашата агенция за недвижими имоти успешна, Вие се нуждаете от ефективен професионалeн уеб сайт. Печелете повече със сайт, изработен от Weberest.",
+    "type": "page",
+    "date": "2014-12-09 15:05:29",
+    "modified": "2025-09-09 15:52:31",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Изработка на Уеб Сайт за Недвижими Имоти",
+      "description": "За да бъде Вашата агенция за недвижими имоти успешна, Вие се нуждаете от ефективен професионалeн уеб сайт. Печелете повече със сайт, изработен от Weberest."
+    },
+    "url": "/bg/izrabotka-website-nedvijimi-imoti/",
+    "collection": "pages"
+  },
+  {
+    "id": 1557,
+    "slug": "izrabotka-website-restoranti",
+    "title": "Изработка на Уеб Сайт за Ресторанти и Барове",
+    "description": "Много нови възможности чакат да бъдат открити от Вас в Интернет. Увеличете броя на посетителите в своето заведение с чисто нов професионален уеб сайт.",
+    "type": "page",
+    "date": "2014-12-09 15:09:56",
+    "modified": "2025-09-09 15:52:31",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Изработка на Уеб Сайт за Ресторанти и Барове",
+      "description": "Много нови възможности чакат да бъдат открити от Вас в Интернет. Увеличете броя на посетителите в своето заведение с чисто нов професионален уеб сайт."
+    },
+    "url": "/bg/izrabotka-website-restoranti/",
+    "collection": "pages"
+  },
+  {
+    "id": 1559,
+    "slug": "izrabotvane-blog",
+    "title": "Професионално Изработване на Личен / Фирмен Блог",
+    "description": "Получете повече от онлайн присъствието си с професионално изработен блог от Weberest. Увеличете трафика към Вашия сайт и привлечете нови клиенти, сега!",
+    "type": "page",
+    "date": "2014-12-09 16:15:54",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Професионално Изработване на Личен / Фирмен Блог",
+      "description": "Получете повече от онлайн присъствието си с професионално изработен блог от Weberest. Увеличете трафика към Вашия сайт и привлечете нови клиенти, сега!"
+    },
+    "url": "/bg/izrabotvane-blog/",
+    "collection": "pages"
+  },
+  {
+    "id": 1764,
+    "slug": "easyemall",
+    "title": "easyEmall - Система за Онлайн Магазини",
+    "description": "Продавайте в Интернет - изключително лесно и бързо с нов онлайн магазин, изработен чрез иновативната платформа за електронни магазини easyEmall.",
+    "type": "page",
+    "date": "2014-12-22 09:48:46",
+    "modified": "2025-09-09 15:52:12",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "easyEmall - Система за Онлайн Магазини",
+      "description": "Продавайте в Интернет - изключително лесно и бързо с нов онлайн магазин, изработен чрез иновативната платформа за електронни магазини easyEmall."
+    },
+    "url": "/bg/easyemall/",
+    "collection": "pages"
+  },
+  {
+    "id": 1772,
+    "slug": "ekstri",
+    "title": "Добавки и Пакети от Екстри за Вашия Електронен Магазин",
+    "description": "Нашите програмисти изработват допълнителни пакети от екстри, чрез които уеб магазинът Ви ще стане дори по-функционален и печеливш. Убедете се, сега!",
+    "type": "page",
+    "date": "2014-12-22 10:53:39",
+    "modified": "2025-09-09 15:52:12",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Добавки и Пакети от Екстри за Вашия Електронен Магазин",
+      "description": "Нашите програмисти изработват допълнителни пакети от екстри, чрез които уеб магазинът Ви ще стане дори по-функционален и печеливш. Убедете се, сега!"
+    },
+    "url": "/bg/ekstri/",
+    "collection": "pages"
+  },
+  {
+    "id": 1774,
+    "slug": "klienti",
+    "title": "Клиенти на easyEmall - Достъпна Платформа за Е-магазини",
+    "description": "Запознайте се с клиентите на easyEmall - хора като Вас, които се довериха на платформата и сега притежават едни от най-успешните български онлайн магазини.",
+    "type": "page",
+    "date": "2014-12-22 10:56:02",
+    "modified": "2025-09-09 15:52:12",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Клиенти на easyEmall - Достъпна Платформа за Е-магазини",
+      "description": "Запознайте се с клиентите на easyEmall - хора като Вас, които се довериха на платформата и сега притежават едни от най-успешните български онлайн магазини."
+    },
+    "url": "/bg/klienti/",
+    "collection": "pages"
+  },
+  {
+    "id": 2033,
+    "slug": "izrabotka-hotelski-sait",
+    "title": "Изработка на Хотелски Уеб Сайт от Weberest - Русе",
+    "description": "За да бъде бъдете лидери в сферата на туризма, Вие се нуждаете от професионално изработен хотелски сайт. Получете го сега от Weberest, град Русе.",
+    "type": "page",
+    "date": "2014-12-29 14:47:25",
+    "modified": "2025-09-09 15:52:31",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Изработка на Хотелски Уеб Сайт от Weberest - Русе",
+      "description": "За да бъде бъдете лидери в сферата на туризма, Вие се нуждаете от професионално изработен хотелски сайт. Получете го сега от Weberest, град Русе."
+    },
+    "url": "/bg/izrabotka-hotelski-sait/",
+    "collection": "pages"
+  },
+  {
+    "id": 2054,
+    "slug": "evtin-sait",
+    "title": "Изработка на Евтин Сайт от Weberest - Град Русе",
+    "description": "Улеснете живота си и изпреварете основните си конкуренти с бюджетен уеб сайт на ниски цени за Вашия бизнес от Weberest, град Русе.",
+    "type": "page",
+    "date": "2014-12-30 12:32:36",
+    "modified": "2025-09-12 14:10:03",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Изработка на Евтин Сайт от Weberest - Град Русе",
+      "description": "Улеснете живота си и изпреварете основните си конкуренти с бюджетен уеб сайт на ниски цени за Вашия бизнес от Weberest, град Русе."
+    },
+    "url": "/bg/evtin-sait/",
+    "collection": "pages"
+  },
+  {
+    "id": 2098,
+    "slug": "web-design-etapi",
+    "title": "Процес на Работа - Етапи при Изработката на Уеб Сайт",
+    "description": "Всеки проект е уникален по своята същност, но като цяло процесът на работа в Weberest следва няколко основни стъпки. Запознайте се с основните етапи, сега.",
+    "type": "page",
+    "date": "2015-01-05 14:06:46",
+    "modified": "2025-09-12 13:59:44",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Процес на Работа - Етапи при Изработката на Уеб Сайт",
+      "description": "Всеки проект е уникален по своята същност, но като цяло процесът на работа в Weberest следва няколко основни стъпки. Запознайте се с основните етапи, сега."
+    },
+    "url": "/bg/web-design-etapi/",
+    "collection": "pages"
+  },
+  {
+    "id": 2125,
+    "slug": "predimstva",
+    "title": "Предимствата на Нашия Уеб Дизайн - Weberest, Град Русе",
+    "description": "Научете кои са основните предимства на сайтовете, разработени от нас и как те могат да Ви помогнат да развивате своя бизнес в динамичния свят на Интернет.",
+    "type": "page",
+    "date": "2015-01-06 11:21:20",
+    "modified": "2025-09-12 15:36:06",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Предимствата на Нашия Уеб Дизайн - Weberest, Град Русе",
+      "description": "Научете кои са основните предимства на сайтовете, разработени от нас и как те могат да Ви помогнат да развивате своя бизнес в динамичния свят на Интернет."
+    },
+    "url": "/bg/predimstva/",
+    "collection": "pages"
+  },
+  {
+    "id": 2160,
+    "slug": "obshti-usloviq",
+    "title": "Weberest - Върхов Уеб Дизайн и Маркетинг. Общи Условия.",
+    "description": "Общи условия и права за ползване за потребителите на уеб сайта www.weberest.com/bg. Условия за предоставяне на уеб дизайн и онлайн маркетинг услуги.",
+    "type": "page",
+    "date": "2015-01-06 13:15:56",
+    "modified": "2025-09-26 12:52:41",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Weberest - Върхов Уеб Дизайн и Маркетинг. Общи Условия.",
+      "description": "Общи условия и права за ползване за потребителите на уеб сайта www.weberest.com/bg. Условия за предоставяне на уеб дизайн и онлайн маркетинг услуги."
+    },
+    "url": "/bg/obshti-usloviq/",
+    "collection": "pages"
+  },
+  {
+    "id": 2168,
+    "slug": "moduli",
+    "title": "Модули и Добавки за Електронни Магазини от easyEmall",
+    "description": "Запознайте се отблизо с модулите и добавките, предлагани като допълнение към Вашия Е-магазин. Тяхната цел е да го направят дори по-функционален и печеливш.",
+    "type": "page",
+    "date": "2015-01-07 08:48:34",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Модули и Добавки за Електронни Магазини от easyEmall",
+      "description": "Запознайте се отблизо с модулите и добавките, предлагани като допълнение към Вашия Е-магазин. Тяхната цел е да го направят дори по-функционален и печеливш."
+    },
+    "url": "/bg/moduli/",
+    "collection": "pages"
+  },
+  {
+    "id": 2209,
+    "slug": "privacy-policy",
+    "title": "Декларация за Поверителност - Weberest Уеб Дизайн",
+    "description": "Текущата декларация за поверителност на Weberest има за цел да поясни начините и основните цели за събиране и предоставяне на лична информация.",
+    "type": "page",
+    "date": "2015-01-07 13:37:47",
+    "modified": "2025-10-15 16:47:57",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Декларация за Поверителност - Weberest Уеб Дизайн",
+      "description": "Текущата декларация за поверителност на Weberest има за цел да поясни начините и основните цели за събиране и предоставяне на лична информация."
+    },
+    "url": "/bg/privacy-policy/",
+    "collection": "pages"
+  },
+  {
+    "id": 2215,
+    "slug": "sitemap",
+    "title": "Карта на сайта - Weberest",
+    "description": "",
+    "type": "page",
+    "date": "2015-01-07 14:08:44",
+    "modified": "2025-09-26 12:56:46",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/sitemap/",
+    "collection": "pages"
+  },
+  {
+    "id": 3105,
+    "slug": "adaptiven-web-dizain",
+    "title": "Адаптивен Дизайн и Респонсив Уеб Сайтове от Weberest",
+    "description": "Направете бизнеса си достъпен за всеки Интернет потребител чрез изработен от Weberest сайт с респонсив дизайн. Бъдете в крак с последните уеб тенденции!",
+    "type": "page",
+    "date": "2015-01-22 15:49:51",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Адаптивен Дизайн и Респонсив Уеб Сайтове от Weberest",
+      "description": "Направете бизнеса си достъпен за всеки Интернет потребител чрез изработен от Weberest сайт с респонсив дизайн. Бъдете в крак с последните уеб тенденции!"
+    },
+    "url": "/bg/adaptiven-web-dizain/",
+    "collection": "pages"
+  },
+  {
+    "id": 3200,
+    "slug": "seo-konsultacia",
+    "title": "SEO Kонсултация и Анализ на Сайт от Weberest -Русе",
+    "description": "SEO консултацията е услуга, предлагана от Weberest, подходяща за всеки един уебсайт или онлайн магазин, желаещ да подобри представянето си в уеб търсачките.",
+    "type": "page",
+    "date": "2015-01-24 15:05:24",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "SEO Kонсултация и Анализ на Сайт от Weberest -Русе",
+      "description": "SEO консултацията е услуга, предлагана от Weberest, подходяща за всеки един уебсайт или онлайн магазин, желаещ да подобри представянето си в уеб търсачките."
+    },
+    "url": "/bg/seo-konsultacia/",
+    "collection": "pages"
+  },
+  {
+    "id": 3331,
+    "slug": "promocia",
+    "title": "Промоция - Специално предложение от Weberest",
+    "description": "Горещо предложение за горещия месец! Три модула за електронна търговия на цената на два. Единствено до края на м. Юли - възползвай се сега!",
+    "type": "page",
+    "date": "2015-07-10 13:28:24",
+    "modified": "2025-09-09 15:52:23",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Промоция - Специално предложение от Weberest",
+      "description": "Горещо предложение за горещия месец! Три модула за електронна търговия на цената на два. Единствено до края на м. Юли - възползвай се сега!"
+    },
+    "url": "/bg/promocia/",
+    "collection": "pages"
+  },
+  {
+    "id": 3609,
+    "slug": "blog",
+    "title": "Блог - Weberest",
+    "description": "",
+    "type": "page",
+    "date": "2016-01-08 11:18:15",
+    "modified": "2025-09-10 09:43:10",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/blog/",
+    "collection": "pages"
+  },
+  {
+    "id": 3611,
+    "slug": "osnovi-na-seo-optimizaciata-za-google",
+    "title": "Основи на SEO оптимизацията за Google - Видео",
+    "description": "Презентация на Мартин Панайотов, изнесена в рамките на Startup Factory Русе, на тема „Основи на Seo оптимизацията за Google и новости през 2015-2016“",
+    "type": "post",
+    "date": "2016-01-08 11:40:31",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": null,
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "uncategorized",
+        "name": "Uncategorized"
+      },
+      {
+        "taxonomy": "post_format",
+        "slug": "post-format-video",
+        "name": "Video"
+      }
+    ],
+    "seo": {
+      "title": "Основи на SEO оптимизацията за Google - Видео",
+      "description": "Презентация на Мартин Панайотов, изнесена в рамките на Startup Factory Русе, на тема „Основи на Seo оптимизацията за Google и новости през 2015-2016“"
+    },
+    "url": "/bg/osnovi-na-seo-optimizaciata-za-google/",
+    "collection": "blog"
+  },
+  {
+    "id": 3625,
+    "slug": "cookies-policy",
+    "title": "Политика за използване на бисквитки - Weberest",
+    "description": "",
+    "type": "page",
+    "date": "2016-01-20 15:39:35",
+    "modified": "2025-09-12 10:45:28",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/cookies-policy/",
+    "collection": "pages"
+  },
+  {
+    "id": 3694,
+    "slug": "onlain-targovia-prez-2016-2017",
+    "title": "Онлайн Търговията през 2016 - семинар Русе",
+    "description": "Семинар и дискусия на тема онлайн търговия през 2016-2017 в град Русе с участието на Мартин Панайотов и Калоян Цветков както и някои от най-големите онлайн магазини от Русе.",
+    "type": "post",
+    "date": "2016-08-04 12:27:21",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": null,
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "uncategorized",
+        "name": "Uncategorized"
+      },
+      {
+        "taxonomy": "post_format",
+        "slug": "post-format-video",
+        "name": "Video"
+      }
+    ],
+    "seo": {
+      "title": "Онлайн Търговията през 2016 - семинар Русе",
+      "description": "Семинар и дискусия на тема онлайн търговия през 2016-2017 в град Русе с участието на Мартин Панайотов и Калоян Цветков както и някои от най-големите онлайн магазини от Русе."
+    },
+    "url": "/bg/onlain-targovia-prez-2016-2017/",
+    "collection": "blog"
+  },
+  {
+    "id": 3764,
+    "slug": "promeni-v-standartite-za-sigurnost-v-web-prez-2017",
+    "title": "Какви промени в стандартите за сигурност в Уеб ще настъпят в началото на 2017? - Weberest",
+    "description": "",
+    "type": "post",
+    "date": "2017-01-05 07:59:00",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": "/images/uploads/2017/01/Is-Your-Website-Secure.jpg",
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%bd%d0%be%d0%b2%d0%b8%d0%bd%d0%b8",
+        "name": "Новини"
+      },
+      {
+        "taxonomy": "category",
+        "slug": "uncategorized",
+        "name": "Uncategorized"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/promeni-v-standartite-za-sigurnost-v-web-prez-2017/",
+    "collection": "blog"
+  },
+  {
+    "id": 3894,
+    "slug": "spodelen-hosting-ruse",
+    "title": "Споделен хостинг Русе за вашия фирмен сайт или онлайн магазин",
+    "description": "Надеждно и качествено решение за съхранение на вашия сайт. Споделен хостинг Русе с неограничен трафик, цялостна защита и всичко на SSD дискове.",
+    "type": "page",
+    "date": "2017-03-23 09:21:53",
+    "modified": "2025-10-14 10:33:17",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "Споделен хостинг Русе за вашия фирмен сайт или онлайн магазин",
+      "description": "Надеждно и качествено решение за съхранение на вашия сайт. Споделен хостинг Русе с неограничен трафик, цялостна защита и всичко на SSD дискове."
+    },
+    "url": "/bg/spodelen-hosting-ruse/",
+    "collection": "pages"
+  },
+  {
+    "id": 4388,
+    "slug": "sreshnete-se-s-onlain-ekspertite-ot-weberest",
+    "title": "Срещнете се с онлайн експертите от Weberest - Weberest",
+    "description": "",
+    "type": "post",
+    "date": "2018-04-11 09:14:06",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": "/images/uploads/2018/04/16864736_10155870302138626_1025883221802138013_n.jpg",
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%bd%d0%be%d0%b2%d0%b8%d0%bd%d0%b8",
+        "name": "Новини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/sreshnete-se-s-onlain-ekspertite-ot-weberest/",
+    "collection": "blog"
+  },
+  {
+    "id": 4617,
+    "slug": "modul-gdpr",
+    "title": "Модул GDPR за вашия онлайн магазин изработен на Weberest платформа за електронна търговия - Weberest",
+    "description": "",
+    "type": "post",
+    "date": "2018-05-17 14:56:56",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": "/images/uploads/2018/05/timthumb.png",
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%bd%d0%be%d0%b2%d0%b8%d0%bd%d0%b8",
+        "name": "Новини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/modul-gdpr/",
+    "collection": "blog"
+  },
+  {
+    "id": 4774,
+    "slug": "registraciq-online-magazin-nap",
+    "title": "Всичко относно Регистрация на Онлайн Магазини в НАП по чл. 3 от Наредба №Н-18/2006 - Weberest",
+    "description": "",
+    "type": "post",
+    "date": "2020-01-29 12:35:15",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": "/images/uploads/2019/03/nap-registraciq.jpg",
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%bd%d0%be%d0%b2%d0%b8%d0%bd%d0%b8",
+        "name": "Новини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/registraciq-online-magazin-nap/",
+    "collection": "blog"
+  },
+  {
+    "id": 4783,
+    "slug": "naglasyane-phpstorm-wordpress",
+    "title": "Работа с PhpStorm и Wordpress - Weberest",
+    "description": "",
+    "type": "post",
+    "date": "2019-05-07 12:27:42",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": null,
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "uncategorized",
+        "name": "Uncategorized"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/naglasyane-phpstorm-wordpress/",
+    "collection": "blog"
+  },
+  {
+    "id": 5384,
+    "slug": "ес-пак",
+    "title": "ЕС ПАК",
+    "description": "",
+    "type": "page",
+    "date": "2023-06-21 10:34:32",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/ес-пак/",
+    "collection": "pages"
+  },
+  {
+    "id": 5387,
+    "slug": "rutech-bg-инфо-сайт",
+    "title": "rutech.bg - инфо сайт",
+    "description": "",
+    "type": "page",
+    "date": "2023-06-23 12:58:36",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/rutech-bg-инфо-сайт/",
+    "collection": "pages"
+  },
+  {
+    "id": 5391,
+    "slug": "vostok-motors",
+    "title": "Vostok Motors",
+    "description": "",
+    "type": "page",
+    "date": "2023-08-09 13:30:44",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/vostok-motors/",
+    "collection": "pages"
+  },
+  {
+    "id": 5395,
+    "slug": "elektrabg-com",
+    "title": "elektrabg.com",
+    "description": "",
+    "type": "page",
+    "date": "2023-08-29 13:45:49",
+    "modified": "2025-09-09 15:52:13",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/elektrabg-com/",
+    "collection": "pages"
+  },
+  {
+    "id": 5522,
+    "slug": "nai-dobrite-saitove-za-imoti",
+    "title": "Най-известните и най-добрите сайтове и портали за недвижими имоти в България - Weberest",
+    "description": "Водещите платформи за недвижими имоти в България - Realistimo.com, Imot.bg и Imoti.net, за лесно намиране или публикуване на имоти. Научете за техните функции, удобни инструменти и най-добрите начини за покупка, продажба или наем на вашия следващ дом.",
+    "type": "post",
+    "date": "2024-08-23 15:01:32",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": null,
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%bd%d0%be%d0%b2%d0%b8%d0%bd%d0%b8",
+        "name": "Новини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": "Водещите платформи за недвижими имоти в България - Realistimo.com, Imot.bg и Imoti.net, за лесно намиране или публикуване на имоти. Научете за техните функции, удобни инструменти и най-добрите начини за покупка, продажба или наем на вашия следващ дом."
+    },
+    "url": "/bg/nai-dobrite-saitove-za-imoti/",
+    "collection": "blog"
+  },
+  {
+    "id": 10159,
+    "slug": "portfolio",
+    "title": "Portfolio",
+    "description": "",
+    "type": "page",
+    "date": "2025-09-16 11:19:00",
+    "modified": "2025-09-16 11:19:01",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/portfolio/",
+    "collection": "pages"
+  },
+  {
+    "id": 10162,
+    "slug": "spiral-fashion",
+    "title": "Spiral Fashion - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:38:17",
+    "modified": "2025-09-23 11:04:31",
+    "featuredImage": "/images/uploads/2025/09/thumb-spiralfashion.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/spiral-fashion/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10164,
+    "slug": "хотел-дунав-гр-видин",
+    "title": "Хотел Дунав, гр. Видин - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:38:43",
+    "modified": "2025-09-23 11:03:48",
+    "featuredImage": "/images/uploads/2025/09/thumb-hoteldunav.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "hotelski-saitove",
+        "name": "Хотелски Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/хотел-дунав-гр-видин/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10166,
+    "slug": "dimibike",
+    "title": "DimiBike - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:40:02",
+    "modified": "2025-09-23 11:02:36",
+    "featuredImage": "/images/uploads/2025/09/thumb-dimibike.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/dimibike/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10168,
+    "slug": "sportlic",
+    "title": "SportLic - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:41:14",
+    "modified": "2025-09-23 11:02:14",
+    "featuredImage": "/images/uploads/2025/09/thumb-sportlic.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/sportlic/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10174,
+    "slug": "христов2008",
+    "title": "Христов2008 - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:45:13",
+    "modified": "2025-09-23 11:01:36",
+    "featuredImage": "/images/uploads/2025/09/thumb-hristov.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/христов2008/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10176,
+    "slug": "hotel-avramov-vidin",
+    "title": "Hotel Avramov Vidin - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:45:36",
+    "modified": "2025-09-23 11:01:16",
+    "featuredImage": "/images/uploads/2025/09/thumb-avramov.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "hotelski-saitove",
+        "name": "Хотелски Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/hotel-avramov-vidin/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10178,
+    "slug": "cameo",
+    "title": "Cameo - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:45:59",
+    "modified": "2025-09-23 11:00:55",
+    "featuredImage": "/images/uploads/2025/09/thumb-cameo.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/cameo/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10180,
+    "slug": "tedhouse",
+    "title": "TedHouse - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:46:23",
+    "modified": "2025-09-23 11:00:26",
+    "featuredImage": "/images/uploads/2025/09/thumb-tedhouse.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "saitove-nedvijimi-imoti",
+        "name": "Сайтове за Недвижими Имоти"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/tedhouse/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10182,
+    "slug": "kralskazakuska",
+    "title": "KralskaZakuska - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:50:39",
+    "modified": "2025-09-23 10:59:38",
+    "featuredImage": "/images/uploads/2025/09/thumb-kralskazakuska.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "%d1%80%d0%b5%d1%81%d1%82%d0%be%d1%80%d0%b0%d0%bd%d1%82%d0%b8",
+        "name": "Ресторанти"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/kralskazakuska/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10184,
+    "slug": "leonardo-da-vinci",
+    "title": "LeonardoDaVinci - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:51:02",
+    "modified": "2025-09-23 10:59:07",
+    "featuredImage": "/images/uploads/2025/09/thumb-leodavinci.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "%d1%83%d1%87%d0%b8%d0%bb%d0%b8%d1%89%d0%b0",
+        "name": "Училища"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/leonardo-da-vinci/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10186,
+    "slug": "manevruse",
+    "title": "Manevruse - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:51:20",
+    "modified": "2025-09-23 10:58:35",
+    "featuredImage": "/images/uploads/2025/09/thumb-manevruse.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/manevruse/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10188,
+    "slug": "incubatorbg",
+    "title": "IncubatorBG - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:51:36",
+    "modified": "2025-09-23 10:57:13",
+    "featuredImage": "/images/uploads/2025/09/thumb-incubator.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/incubatorbg/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10192,
+    "slug": "mixflooring",
+    "title": "Mixflooring - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:52:21",
+    "modified": "2025-09-23 10:55:23",
+    "featuredImage": "/images/uploads/2025/09/thumb-mixflooring.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/mixflooring/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10194,
+    "slug": "elena",
+    "title": "Elena - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:52:39",
+    "modified": "2025-09-23 10:54:51",
+    "featuredImage": "/images/uploads/2025/09/thumb-elena.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/elena/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10196,
+    "slug": "aviohelp",
+    "title": "Aviohelp - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:52:56",
+    "modified": "2025-09-23 10:54:28",
+    "featuredImage": "/images/uploads/2025/09/thumb-aviohelp.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/aviohelp/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10198,
+    "slug": "avenue",
+    "title": "Avenue - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:53:11",
+    "modified": "2025-09-23 10:52:34",
+    "featuredImage": "/images/uploads/2025/09/thumb-avenue.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/avenue/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10200,
+    "slug": "grillsgarden",
+    "title": "GrillsGarden - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:53:26",
+    "modified": "2025-09-23 10:51:04",
+    "featuredImage": "/images/uploads/2025/09/thumb-grillsgarden.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/grillsgarden/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10202,
+    "slug": "apteka-optima",
+    "title": "AptekaOptima - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:54:02",
+    "modified": "2025-09-23 10:45:18",
+    "featuredImage": "/images/uploads/2025/09/thumb-optima.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/apteka-optima/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10204,
+    "slug": "osmosis",
+    "title": "Osmosis - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:54:18",
+    "modified": "2025-09-23 10:44:45",
+    "featuredImage": "/images/uploads/2025/09/thumb-osmosis.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/osmosis/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10206,
+    "slug": "darwa-ruse",
+    "title": "Дърва Русе - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:54:40",
+    "modified": "2025-09-23 10:44:15",
+    "featuredImage": "/images/uploads/2025/09/thumb-darvaruse.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/darwa-ruse/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10208,
+    "slug": "vais-vending",
+    "title": "Вайс Вендинг - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:55:00",
+    "modified": "2025-09-23 10:43:29",
+    "featuredImage": "/images/uploads/2025/09/thumb-vaisvending.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/vais-vending/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10210,
+    "slug": "skatezoo",
+    "title": "Skatezoo - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:55:19",
+    "modified": "2025-09-23 10:42:59",
+    "featuredImage": "/images/uploads/2025/09/thumb-skatezoo.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/skatezoo/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10212,
+    "slug": "ou-hristo",
+    "title": "ОУ ХРИСТО СМИРНЕНСКИ - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:56:12",
+    "modified": "2025-09-23 10:42:16",
+    "featuredImage": "/images/uploads/2025/09/thumb-ouhrsmir.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/ou-hristo/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10214,
+    "slug": "kris-desing",
+    "title": "Рекламна Агенция Крис Дизайн - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:56:46",
+    "modified": "2025-09-23 10:41:34",
+    "featuredImage": "/images/uploads/2025/09/thumb-krisdesign.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/kris-desing/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10216,
+    "slug": "rutech-bg",
+    "title": "RUTECH BG - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:57:09",
+    "modified": "2025-09-23 10:41:00",
+    "featuredImage": "/images/uploads/2025/09/thumb-rutech.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/rutech-bg/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10218,
+    "slug": "avtosviat-bg",
+    "title": "avtosviat.bg - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:58:09",
+    "modified": "2025-09-23 10:40:10",
+    "featuredImage": "/images/uploads/2025/09/thumb-avtosviat.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/avtosviat-bg/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10220,
+    "slug": "abamax-bg",
+    "title": "abamax-bg - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:58:22",
+    "modified": "2025-09-23 10:39:59",
+    "featuredImage": "/images/uploads/2025/09/thumb-abamax.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/abamax-bg/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10222,
+    "slug": "realistimo-com",
+    "title": "realistimo.com - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-09-16 11:58:36",
+    "modified": "2025-09-23 10:38:49",
+    "featuredImage": "/images/uploads/2025/09/thumb-realistimo.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "saitove-nedvijimi-imoti",
+        "name": "Сайтове за Недвижими Имоти"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/realistimo-com/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10540,
+    "slug": "roofdesign",
+    "title": "RoofDesign - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 15:02:13",
+    "modified": "2025-10-16 15:43:30",
+    "featuredImage": "/images/uploads/2025/10/thumb-roofdesign-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/roofdesign/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10541,
+    "slug": "mimosa",
+    "title": "Mimosa - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 14:58:47",
+    "modified": "2025-10-16 15:41:14",
+    "featuredImage": "/images/uploads/2025/10/thumb-mimosa-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/mimosa/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10542,
+    "slug": "zhannes",
+    "title": "Zhannes - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 15:05:33",
+    "modified": "2025-10-16 15:47:53",
+    "featuredImage": "/images/uploads/2025/10/thumb-zhannes-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/zhannes/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10543,
+    "slug": "espack",
+    "title": "ESPack - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 15:03:48",
+    "modified": "2025-10-16 15:47:49",
+    "featuredImage": "/images/uploads/2025/10/thumb-espack-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mnogoezichnost",
+        "name": "Многоезичност"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/espack/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10544,
+    "slug": "trfish",
+    "title": "TRFish - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 14:55:47",
+    "modified": "2025-10-16 15:34:47",
+    "featuredImage": "/images/uploads/2025/10/thumb-trfish-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "internet-marketing",
+        "name": "Интернет Маркетинг"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "firmeni-web-saitove",
+        "name": "Фирмени Уеб Сайтове"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/trfish/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10550,
+    "slug": "panaceya",
+    "title": "Panaceya - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-10-16 14:57:22",
+    "modified": "2025-10-16 15:38:48",
+    "featuredImage": "/images/uploads/2025/10/thumb-panaceya-300x213-1.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "online-magazini",
+        "name": "Онлайн Магазини"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/panaceya/",
+    "collection": "portfolio"
+  },
+  {
+    "id": 10554,
+    "slug": "kolko-struva-izrabotkata-na-online-magazin",
+    "title": "Колко струва изработката на онлайн магазин в България — бърз гид",
+    "description": "Кратко видео-резюме за факторите, които определят цената на онлайн магазин — дизайн, разработка, хостинг и поддръжка. Гледайте видеото за примери и съвети.",
+    "type": "post",
+    "date": "2025-10-16 14:21:53",
+    "modified": "2025-10-16 14:36:40",
+    "featuredImage": null,
+    "terms": [
+      {
+        "taxonomy": "category",
+        "slug": "%d0%b1%d0%b5%d0%b7-%d0%ba%d0%b0%d1%82%d0%b5%d0%b3%d0%be%d1%80%d0%b8%d1%8f",
+        "name": "Без категория"
+      }
+    ],
+    "seo": {
+      "title": "Колко струва изработката на онлайн магазин в България — бърз гид",
+      "description": "Кратко видео-резюме за факторите, които определят цената на онлайн магазин — дизайн, разработка, хостинг и поддръжка. Гледайте видеото за примери и съвети."
+    },
+    "url": "/bg/kolko-struva-izrabotkata-na-online-magazin/",
+    "collection": "blog"
+  },
+  {
+    "id": 10600,
+    "slug": "chesto-zadavani-vaprosi",
+    "title": "Често задавани въпроси - Weberest",
+    "description": "",
+    "type": "page",
+    "date": "2025-10-16 16:46:03",
+    "modified": "2025-10-17 09:43:33",
+    "featuredImage": null,
+    "terms": [],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/chesto-zadavani-vaprosi/",
+    "collection": "pages"
+  },
+  {
+    "id": 10611,
+    "slug": "imoten-sviat",
+    "title": "ImotenSviat - Weberest",
+    "description": "",
+    "type": "portfolio",
+    "date": "2025-12-16 13:40:50",
+    "modified": "2025-12-16 13:53:55",
+    "featuredImage": "/images/uploads/2025/12/thumb-imoten-sviat.jpg",
+    "terms": [
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "mobilni-saitove",
+        "name": "Мобилни Сайтове"
+      },
+      {
+        "taxonomy": "portfolio_category",
+        "slug": "saitove-nedvijimi-imoti",
+        "name": "Сайтове за Недвижими Имоти"
+      }
+    ],
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "url": "/bg/website-klienti/imoten-sviat/",
+    "collection": "portfolio"
+  }
+]

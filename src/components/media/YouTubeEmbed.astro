@@ -1,0 +1,51 @@
+---
+interface Props {
+  videoId: string;
+  title?: string;
+  start?: number;
+  compact?: boolean;
+  showFooter?: boolean;
+}
+
+const {
+  videoId,
+  title = 'YouTube видео',
+  start,
+  compact = false,
+  showFooter = !compact,
+} = Astro.props;
+
+const startParam = start ? `&start=${start}` : '';
+const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1${startParam}`;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`;
+---
+
+<figure class:list={['video-embed', compact && 'video-embed--compact']}>
+  <div class="video-embed__frame">
+    <iframe
+      src={embedUrl}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+  {
+    showFooter && (
+      <figcaption class="video-embed__footer">
+        <span class="video-embed__label">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.2.1-2.7.1h-6c-2.19 0-3.8-.16-4.83-.44-.9-.25-1.48-.83-1.73-1.73C2.16 15.8 2 14.19 2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73C4.64 5.3 5.8 5.2 7.5 5.14c1.3-.07 2.2-.1 2.7-.1h6c2.19 0 3.8.16 4.83.44.9.25 1.48.83 1.73 1.73z"
+            />
+          </svg>
+          Видео в YouTube
+        </span>
+        <a class="video-embed__link" href={watchUrl} target="_blank" rel="noopener noreferrer">
+          Отвори в YouTube ↗
+        </a>
+      </figcaption>
+    )
+  }
+</figure>

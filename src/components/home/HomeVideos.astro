@@ -1,0 +1,35 @@
+---
+import YouTubeEmbed from '@components/media/YouTubeEmbed.astro';
+import { homeVideos } from '@config/home-page';
+
+const { featuredVideo } = homeVideos;
+---
+
+<section class="home-videos section section--alt" id="home-videos">
+  <div class="home-videos__inner">
+    <div class="home-videos__hero">
+      <div class="home-videos__head" data-reveal="left">
+        <span class="section-eyebrow">{homeVideos.eyebrow}</span>
+        <h2 class="section-title">{homeVideos.title}</h2>
+        <p class="section-lead">{homeVideos.lead}</p>
+      </div>
+
+      <div class="home-videos__featured" data-reveal="right" data-reveal-delay="2">
+        <YouTubeEmbed videoId={featuredVideo.id} title={featuredVideo.title} compact showFooter={false} />
+        <a href={`/bg${featuredVideo.href}`} class="home-videos__featured-link">
+          {featuredVideo.label}
+        </a>
+      </div>
+    </div>
+
+    <div class="home-videos__grid">
+      {
+        homeVideos.videos.map((video, index) => (
+          <div data-reveal="scale" data-reveal-delay={String((index % 3) + 1)}>
+            <YouTubeEmbed videoId={video.id} title={video.title} start={video.start} compact />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

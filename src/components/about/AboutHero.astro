@@ -1,0 +1,57 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import heroVideo from '../../assets/videos/weberest-video.mp4?url';
+import { aboutHero } from '@config/about';
+
+interface Props {
+  breadcrumbs: { name: string; url: string }[];
+}
+
+const { breadcrumbs } = Astro.props;
+---
+
+<header class="about-hero" id="about-hero">
+  <div class="about-hero__media" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" class="about-hero__video" data-about-video>
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+    <div class="about-hero__overlay"></div>
+    <div class="about-hero__noise"></div>
+    <div class="about-hero__glow about-hero__glow--1" data-parallax="0.08"></div>
+    <div class="about-hero__glow about-hero__glow--2" data-parallax="0.12"></div>
+  </div>
+
+  <div class="about-hero__inner">
+    <div class="about-hero__crumb">
+      <Breadcrumbs items={breadcrumbs} variant="inverse" />
+    </div>
+
+    <div class="about-hero__content" data-reveal="left">
+      <span class="section-eyebrow">{aboutHero.eyebrow}</span>
+      <h1 class="about-hero__title">{aboutHero.title}</h1>
+      <p class="about-hero__lead">{aboutHero.lead}</p>
+      <div class="about-hero__actions">
+        <a href={`/bg${aboutHero.primaryHref}`} class="btn btn--primary btn--glow">
+          {aboutHero.primaryLabel}
+        </a>
+        <a href={`/bg${aboutHero.secondaryHref}`} class="btn btn--secondary">
+          {aboutHero.secondaryLabel}
+        </a>
+      </div>
+    </div>
+
+    <div class="about-hero__scroll" data-reveal="scale" data-reveal-delay="3" aria-hidden="true">
+      <span class="about-hero__scroll-label">Скрол</span>
+      <span class="about-hero__scroll-line"></span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const video = document.querySelector('[data-about-video]') as HTMLVideoElement | null;
+  if (video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch(() => {});
+  }
+</script>

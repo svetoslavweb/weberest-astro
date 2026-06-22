@@ -1,0 +1,57 @@
+@use 'mixins' as *;
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(48px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-reveal='rotate'] {
+  transform: translateY(60px) rotate(-8deg);
+
+  &.is-visible {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+[data-reveal='scale'] {
+  transform: scale(0.88);
+
+  &.is-visible {
+    transform: scale(1);
+  }
+}
+
+[data-reveal='left'] {
+  transform: translateX(-60px);
+
+  &.is-visible {
+    transform: translateX(0);
+  }
+}
+
+[data-reveal='right'] {
+  transform: translateX(60px);
+
+  &.is-visible {
+    transform: translateX(0);
+  }
+}
+
+[data-reveal-delay='1'] { transition-delay: 0.1s; }
+[data-reveal-delay='2'] { transition-delay: 0.2s; }
+[data-reveal-delay='3'] { transition-delay: 0.3s; }
+[data-reveal-delay='4'] { transition-delay: 0.4s; }
+
+.section--alt {
+  background: var(--color-bg-alt);
+  position: relative;
+  overflow: hidden;
+}

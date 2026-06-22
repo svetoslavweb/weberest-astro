@@ -1,0 +1,54 @@
+---
+import { aboutTeam } from '@config/about';
+---
+
+<section class="about-team section section--alt" id="about-team">
+  <div class="about-team__inner">
+    <div class="about-team__head" data-reveal="left">
+      <span class="section-eyebrow">04 · Екипът</span>
+      <h2 class="section-title">Хората зад резултатите</h2>
+      <p class="section-lead">
+        За да постигнем страхотни резултатите за вас е нужен и страхотен екип. Ето част от нашият екип:
+      </p>
+    </div>
+
+    <div class="about-team__grid">
+      {
+        aboutTeam.map((member, i) => (
+          <article class="about-team-card" data-reveal="rotate" data-reveal-delay={String(i + 1)}>
+            <div class="about-team-card__photo-wrap">
+              <img
+                class="about-team-card__photo"
+                src={member.image}
+                alt={member.imageAlt}
+                loading="lazy"
+                decoding="async"
+                width="196"
+                height="196"
+              />
+              <div class="about-team-card__ring" aria-hidden="true"></div>
+            </div>
+            <div class="about-team-card__body">
+              <h3 class="about-team-card__name">{member.name}</h3>
+              <p class="about-team-card__role">{member.role}</p>
+              <div class="about-team-card__bio">
+                {
+                  member.paragraphs.map((paragraph) => (
+                    <p set:html={paragraph} />
+                  ))
+                }
+              </div>
+              <ul class="about-team-card__tags">
+                {
+                  member.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))
+                }
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

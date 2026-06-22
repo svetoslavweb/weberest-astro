@@ -1,0 +1,28 @@
+---
+import { aboutMission } from '@config/about';
+---
+
+<section class="about-mission section" id="about-mission">
+  <div class="about-mission__inner">
+    <div class="about-mission__head" data-reveal="scale">
+      <span class="section-eyebrow">Нашата мисия</span>
+      <h2 class="section-title">Растем заедно с амбициозните ви цели</h2>
+    </div>
+
+    <ol class="about-mission__list">
+      {
+        aboutMission.map((item, i) => (
+          <li class="about-mission__item" data-reveal="left" data-reveal-delay={String((i % 4) + 1)}>
+            <span class="about-mission__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <p>{item}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="about-mission__note" data-reveal="right" data-reveal-delay="2">
+      Запознайте се отблизо с процеса на работа в Weberest, както и нашите предимства, отличаващи ни от
+      конкуренцията.
+    </p>
+  </div>
+</section>

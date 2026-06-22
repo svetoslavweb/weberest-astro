@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PortfolioCaseStudy from '@components/portfolio/PortfolioCaseStudy.astro';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { parsePortfolioBody } from '@utils/portfolio-case';
+import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+
+export async function getStaticPaths() {
+  const portfolio = await getCollection('portfolio');
+  return portfolio.map((entry) => ({
+    params: { slug: entry.data.wpSlug ?? entry.id.replace(/\.md$/, '') },
+    props: { id: entry.id },
+  }));
+}
+
+const { id } = Astro.props;
+const entry = (await getCollection('portfolio')).find((item) => item.id === id);
+if (!entry) return Astro.redirect('/bg/website-klienti/');
+
+await render(entry);
+const slug = entry.data.wpSlug ?? entry.id.replace(/\.md$/, '');
+const { title, description, featuredImage } = entry.data;
+const breadcrumbs = buildBreadcrumbs(
+  { name: 'Портфолио', url: '/website-klienti/' },
+  { name: title, url: `/website-klienti/${slug}/` },
+);
+const parsed = parsePortfolioBody(String(entry.body ?? ''));
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/website-klienti/${slug}/`}
+  ogImage={featuredImage}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/website-klienti/${slug}/`),
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <PortfolioCaseStudy entry={entry} breadcrumbs={breadcrumbs} parsed={parsed} />
+</BaseLayout>

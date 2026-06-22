@@ -1,0 +1,15 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+*.md
+.env
+.env.*
+!.env.example
+terminals
+.cursor
+.vscode
+**/*.log
+coverage
+.DS_Store

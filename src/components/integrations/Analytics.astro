@@ -1,0 +1,21 @@
+---
+import { integrationsConfig } from '@config/integrations';
+
+const { ga4Id } = integrationsConfig;
+---
+
+{
+  ga4Id && !integrationsConfig.gtmId && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+      <script is:inline define:vars={{ ga4Id }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', ga4Id, { anonymize_ip: true });
+      </script>
+    </>
+  )
+}
