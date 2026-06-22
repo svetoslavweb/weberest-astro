@@ -21,6 +21,7 @@ fi
 
 mkdir -p "$(dirname "${TARGET}")"
 git clone -b hosting --single-branch "${REPO}" "${TARGET}"
+git -C "${TARGET}" config pull.ff only
 
 echo ""
 echo "Done. To deploy updates after git push:"

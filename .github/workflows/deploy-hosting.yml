@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -26,13 +28,28 @@ jobs:
 
       - name: Push dist to hosting branch
         run: |
-          cd dist
-          git init
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin hosting:hosting 2>/dev/null || true
+
+          if git rev-parse --verify hosting >/dev/null 2>&1; then
+            git checkout hosting
+          else
+            git checkout --orphan hosting
+            git reset
+          fi
+
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a dist/. .
+
           git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+            exit 0
+          fi
+
           git commit -m "Deploy ${GITHUB_SHA::7} ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-          git branch -M hosting
-          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" hosting
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" hosting
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
