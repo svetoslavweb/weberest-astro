@@ -349,7 +349,11 @@
   },
   {
     "from": "/bg/website-klienti/panaceya.htm",
-    "to": "/bg/website-klienti/panaceya/"
+    "to": "/bg/website-klienti/"
+  },
+  {
+    "from": "/bg/website-klienti/panaceya/",
+    "to": "/bg/website-klienti/"
   },
   {
     "from": "/bg/kolko-struva-izrabotkata-na-online-magazin.htm",
