@@ -1,0 +1,9 @@
+{
+  "name": "Weberest",
+  "short_name": "Weberest",
+  "start_url": "/bg/",
+  "display": "standalone",
+  "background_color": "#060608",
+  "theme_color": "#300290",
+  "lang": "bg"
+}
