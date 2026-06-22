@@ -18,18 +18,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: weberest-astro/package-lock.json
 
       - name: Install dependencies
-        working-directory: weberest-astro
         run: npm ci
 
       - name: Migrate content
-        working-directory: weberest-astro
         run: npm run migrate
 
       - name: Build
-        working-directory: weberest-astro
         run: npm run build
         env:
           PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
@@ -41,4 +37,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: weberest-astro
-          directory: weberest-astro/dist
+          directory: dist
