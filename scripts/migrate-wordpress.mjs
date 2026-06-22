@@ -41,8 +41,9 @@ const SERVICE_SLUGS = new Set([
   'izrabotka-website-restoranti',
   'izrabotka-website-nedvijimi-imoti',
   'izrabotvane-blog',
-  'evtin-sait',
 ]);
+
+const REMOVED_PAGE_SLUGS = new Set(['evtin-sait']);
 
 function readFileSafe(filePath, fallback) {
   const target = fs.existsSync(filePath) ? filePath : fallback;
@@ -425,6 +426,8 @@ function main() {
     };
 
     if (post.post_type === 'page') {
+      if (REMOVED_PAGE_SLUGS.has(slug)) continue;
+
       const isHome = slug === 'home' || Number(post.ID) === 98;
       const targetDir = 'pages';
       const fileName = isHome ? 'home.md' : `${slug}.md`;

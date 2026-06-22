@@ -109,7 +109,11 @@
   },
   {
     "from": "/bg/evtin-sait.htm",
-    "to": "/bg/evtin-sait/"
+    "to": "/bg/services/"
+  },
+  {
+    "from": "/bg/evtin-sait/",
+    "to": "/bg/services/"
   },
   {
     "from": "/bg/web-design-etapi.htm",

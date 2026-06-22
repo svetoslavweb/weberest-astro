@@ -55,7 +55,6 @@ export const siteConfig = {
     ],
     info: [
       { label: 'Процес на работа', href: '/web-design-etapi/' },
-      { label: 'Евтин сайт', href: '/evtin-sait/' },
       { label: 'Предимства', href: '/predimstva/' },
       { label: 'Карта на сайта', href: '/sitemap/' },
     ],
