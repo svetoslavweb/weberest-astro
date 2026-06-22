@@ -8,7 +8,6 @@ import Clarity from '@components/integrations/Clarity.astro';
 import MetaPixel from '@components/integrations/MetaPixel.astro';
 import CookieConsent from '@components/integrations/CookieConsent.astro';
 import ScrollEffects from '@components/effects/ScrollEffects.astro';
-import CustomCursor from '@components/effects/CustomCursor.astro';
 import type { SeoProps } from '@utils/seo';
 import '../styles/main.scss';
 
@@ -37,7 +36,6 @@ const { showFloatingQuote = false, breadcrumbs, article, ...seo } = Astro.props;
     </main>
     <Footer />
     <CookieConsent />
-    <CustomCursor />
     <ScrollEffects />
     {
       showFloatingQuote && (
