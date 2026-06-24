@@ -91,11 +91,76 @@ const schema = mergeJsonLd(
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
 
-<link rel="icon" type="image/svg+xml" href="/bg/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="/bg/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/bg/favicon.png" />
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="/bg/favicon.svg"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="/bg/favicon-dark.svg"
+  media="(prefers-color-scheme: dark)"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/bg/favicon-32x32.png"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/bg/favicon-dark-32x32.png"
+  media="(prefers-color-scheme: dark)"
+/>
 <link rel="apple-touch-icon" sizes="180x180" href="/bg/apple-touch-icon.png" />
 <link rel="manifest" href="/bg/site.webmanifest" />
+
+<script is:inline>
+  (function () {
+    const base = '/bg';
+    const icons = {
+      light: `${base}/favicon.svg`,
+      dark: `${base}/favicon-dark.svg`,
+    };
+
+    function getTheme() {
+      const stored = localStorage.getItem('weberest-theme');
+      if (stored === 'light' || stored === 'dark') return stored;
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    function syncFavicon(useDomTheme) {
+      const theme = useDomTheme
+        ? document.documentElement.getAttribute('data-theme') === 'light'
+          ? 'light'
+          : 'dark'
+        : getTheme();
+
+      let link = document.querySelector('link[data-dynamic-favicon]');
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/svg+xml';
+        link.setAttribute('data-dynamic-favicon', '');
+        document.head.appendChild(link);
+      }
+
+      link.href = icons[theme];
+    }
+
+    syncFavicon(false);
+
+    new MutationObserver(() => syncFavicon(true)).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+  })();
+</script>
 <meta name="theme-color" content="#300290" />
 
 {
