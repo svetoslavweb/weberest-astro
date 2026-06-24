@@ -25,8 +25,6 @@ export const contactHero = {
   primaryLabel: 'Безплатна оферта',
   secondaryHref: '/website-klienti/',
   secondaryLabel: 'Портфолио',
-  backgroundImage: '/bg/images/contact/ruse-tv-tower-panorama.jpg',
-  backgroundImageAlt: 'Панорама на град Русе с телевизионната кула и река Дунав',
 };
 
 export const contactMap = {

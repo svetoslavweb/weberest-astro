@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import heroVideo from '../../assets/videos/weberest-video.mp4?url';
 import { contactHero } from '@config/contact';
 
 interface Props {
@@ -11,13 +12,9 @@ const { breadcrumbs } = Astro.props;
 
 <header class="contact-hero">
   <div class="contact-hero__media" aria-hidden="true">
-    <img
-      class="contact-hero__image"
-      src={contactHero.backgroundImage}
-      alt={contactHero.backgroundImageAlt}
-      loading="eager"
-      decoding="async"
-    />
+    <video autoplay muted loop playsinline preload="auto" class="contact-hero__video" data-contact-video>
+      <source src={heroVideo} type="video/mp4" />
+    </video>
     <div class="contact-hero__overlay"></div>
     <div class="contact-hero__noise"></div>
   </div>
@@ -42,3 +39,12 @@ const { breadcrumbs } = Astro.props;
     </div>
   </div>
 </header>
+
+<script>
+  const video = document.querySelector('[data-contact-video]') as HTMLVideoElement | null;
+  if (video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch(() => {});
+  }
+</script>
