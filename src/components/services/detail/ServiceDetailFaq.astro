@@ -1,0 +1,26 @@
+---
+import FaqAccordion from '@components/sections/FaqAccordion.astro';
+import type { ServiceDetail } from '@config/service-details';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+---
+
+{
+  service.faq.length > 0 && (
+    <section class="service-detail-faq section" id="service-faq">
+      <div class="service-detail-faq__inner">
+        <div class="service-detail-faq__head" data-reveal="left">
+          <span class="section-eyebrow">ЧЗВ</span>
+          <h2 class="section-title">Често задавани въпроси</h2>
+        </div>
+        <div data-reveal="scale" data-reveal-delay="1">
+          <FaqAccordion items={service.faq} />
+        </div>
+      </div>
+    </section>
+  )
+}

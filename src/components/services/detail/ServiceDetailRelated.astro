@@ -1,0 +1,36 @@
+---
+import type { ServiceDetail } from '@config/service-details';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+---
+
+{
+  service.relatedLinks && service.relatedLinks.length > 0 && (
+    <section class="service-detail-related section section--alt" id="service-related">
+      <div class="service-detail-related__inner">
+        <div class="service-detail-related__head" data-reveal="left">
+          <span class="section-eyebrow">Още услуги</span>
+          <h2 class="section-title">Свързани услуги и специализации</h2>
+        </div>
+        <nav class="service-detail-related__grid" aria-label="Свързани услуги">
+          {
+            service.relatedLinks.map((link, index) => (
+              <a
+                href={`/bg${link.href}`}
+                class="service-detail-related__link"
+                data-reveal="scale"
+                data-reveal-delay={String((index % 4) + 1)}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </section>
+  )
+}

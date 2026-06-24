@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceDetailHero from '@components/services/detail/ServiceDetailHero.astro';
+import ServiceDetailIntro from '@components/services/detail/ServiceDetailIntro.astro';
+import ServiceDetailBenefits from '@components/services/detail/ServiceDetailBenefits.astro';
+import ServiceDetailSections from '@components/services/detail/ServiceDetailSections.astro';
+import ServiceDetailFaq from '@components/services/detail/ServiceDetailFaq.astro';
+import ServiceDetailRelated from '@components/services/detail/ServiceDetailRelated.astro';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import type { ServiceDetail } from '@config/service-details';
+import { buildBreadcrumbs } from '@utils/breadcrumbs';
+import { buildWebPageSchema, buildFaqSchema, mergeJsonLd } from '@utils/seo';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const breadcrumbs = buildBreadcrumbs(
+  { name: 'Услуги', url: '/services/' },
+  { name: service.title, url: `/services/${service.id}/` },
+);
+---
+
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  canonical={`/services/${service.id}/`}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(
+      service.metaTitle,
+      service.metaDescription,
+      `https://www.weberest.com/bg/services/${service.id}/`,
+    ),
+    service.faq.length ? buildFaqSchema(service.faq) : undefined,
+  )}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="service-detail-page">
+    <ServiceDetailHero service={service} breadcrumbs={breadcrumbs} />
+    <ServiceDetailIntro service={service} />
+    <ServiceDetailBenefits service={service} />
+    <ServiceDetailSections service={service} />
+    <CtaBanner
+      title="Получете безплатна оферта"
+      text="Свържете се с нас и разберете как можем да помогнем на вашия бизнес. Ще подготвим персонално предложение, съобразено с вашите нужди и бюджет."
+      href="/it-konsultacia/"
+      label="Заявете консултация"
+      class="service-detail-page__cta"
+    />
+    <ServiceDetailFaq service={service} />
+    <ServiceDetailRelated service={service} />
+    <CtaBanner
+      title={`Поръчайте ${service.title.toLowerCase()}`}
+      text="Разгледайте нашето портфолио за вдъхновение и се свържете с нас, за да започнем вашия проект."
+      href="/zapitanie/"
+      label="Безплатна оферта"
+      class="service-detail-page__cta service-detail-page__cta--final"
+    />
+  </article>
+</BaseLayout>

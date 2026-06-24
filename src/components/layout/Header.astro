@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@config/site';
+import { servicesNavGroups } from '@config/services-nav';
 import ThemeToggle from '@components/ui/ThemeToggle.astro';
 import PhoneLink from '@components/ui/PhoneLink.astro';
 
@@ -37,12 +38,25 @@ function isActive(href: string) {
               >
                 {item.label}
               </a>
-              <div class="site-nav__dropdown">
-                {item.children.map((child) => (
-                  <a href={`/bg${child.href}`} class="site-nav__dropdown-link">
-                    {child.label}
-                  </a>
-                ))}
+              <div class="site-nav__dropdown site-nav__dropdown--mega">
+                <a href="/bg/services/" class="site-nav__dropdown-all">Всички услуги</a>
+                <div class="site-nav__dropdown-grid">
+                  {
+                    servicesNavGroups.map((group) => (
+                      <div class="site-nav__dropdown-group">
+                        <span class="site-nav__dropdown-heading">{group.label}</span>
+                        {group.items.map((child) => (
+                          <a href={`/bg${child.href}`} class="site-nav__dropdown-link">
+                            {child.label}
+                            {child.badge && (
+                              <span class="site-nav__dropdown-badge">{child.badge}</span>
+                            )}
+                          </a>
+                        ))}
+                      </div>
+                    ))
+                  }
+                </div>
               </div>
             </div>
           ) : (
@@ -90,11 +104,19 @@ function isActive(href: string) {
     {
       siteConfig.nav.flatMap((item) => [
         <a href={`/bg${item.href}`} class="mobile-menu__link">{item.label}</a>,
-        ...(item.children?.map((child) => (
-          <a href={`/bg${child.href}`} class="mobile-menu__link mobile-menu__link--child">
-            {child.label}
-          </a>
-        )) ?? []),
+        ...(item.label === 'Услуги'
+          ? servicesNavGroups.flatMap((group) =>
+              group.items.map((child) => (
+                <a href={`/bg${child.href}`} class="mobile-menu__link mobile-menu__link--child">
+                  {child.label}
+                </a>
+              )),
+            )
+          : (item.children?.map((child) => (
+              <a href={`/bg${child.href}`} class="mobile-menu__link mobile-menu__link--child">
+                {child.label}
+              </a>
+            )) ?? [])),
       ])
     }
   </nav>

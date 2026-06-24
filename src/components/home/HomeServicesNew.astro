@@ -21,7 +21,17 @@ import { homeServicesNew } from '@config/home-page';
           >
             {service.isNew && <span class="service-badge-new">НОВО</span>}
             <ServicesIcon icon={service.icon} />
-            <h3 class="service-highlight-card__title">{service.title}</h3>
+            <h3 class="service-highlight-card__title">
+              {
+                service.href ? (
+                  <a href={`/bg${service.href}`} class="service-highlight-card__link">
+                    {service.title}
+                  </a>
+                ) : (
+                  service.title
+                )
+              }
+            </h3>
             <p class="service-highlight-card__description">{service.description}</p>
             <ul class="service-list">
               {service.items.slice(0, 5).map((item) => (

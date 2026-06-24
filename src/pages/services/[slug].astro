@@ -1,0 +1,19 @@
+---
+import ServiceDetailLayout from '@layouts/ServiceDetailLayout.astro';
+import { getAllServiceSlugs, getServiceDetail } from '@config/service-details';
+
+export async function getStaticPaths() {
+  return getAllServiceSlugs().map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const service = getServiceDetail(slug ?? '');
+
+if (!service) {
+  return Astro.redirect('/bg/services/');
+}
+---
+
+<ServiceDetailLayout service={service} />

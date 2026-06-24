@@ -51,7 +51,7 @@ export const servicesPageNew = {
         'AI агенти за специфични бизнес задачи',
         'Интеграции с OpenAI, ChatGPT, Claude и Gemini',
       ],
-      href: '/it-konsultacia/',
+      href: '/services/ai/',
       ctaLabel: 'Научете повече',
     },
     {
@@ -71,7 +71,7 @@ export const servicesPageNew = {
         'Автоматичен импорт и експорт на данни',
         'Персонализирани бизнес решения',
       ],
-      href: '/it-konsultacia/',
+      href: '/services/automation/',
       ctaLabel: 'Научете повече',
     },
   ] satisfies ServiceCard[],
@@ -95,6 +95,8 @@ export const servicesPageMain = {
         'UX/UI дизайн',
         'Редизайн на съществуващи сайтове',
       ],
+      href: '/services/websites/',
+      ctaLabel: 'Научете повече',
     },
     {
       id: 'ecommerce',
@@ -112,6 +114,8 @@ export const servicesPageMain = {
         'Интеграции с платежни системи',
         'ERP и складови интеграции',
       ],
+      href: '/services/ecommerce/',
+      ctaLabel: 'Научете повече',
     },
     {
       id: 'software',
@@ -129,6 +133,8 @@ export const servicesPageMain = {
         'SaaS решения',
         'Laravel разработки',
       ],
+      href: '/services/software/',
+      ctaLabel: 'Научете повече',
     },
     {
       id: 'mobile',
@@ -144,6 +150,8 @@ export const servicesPageMain = {
         'Бизнес приложения',
         'Клиентски приложения',
       ],
+      href: '/services/mobile/',
+      ctaLabel: 'Научете повече',
     },
     {
       id: 'marketing',
@@ -160,6 +168,8 @@ export const servicesPageMain = {
         'Анализ на трафик и конверсии',
         'CRO оптимизация',
       ],
+      href: '/services/marketing/',
+      ctaLabel: 'Научете повече',
     },
     {
       id: 'support',
@@ -177,6 +187,8 @@ export const servicesPageMain = {
         'Оптимизация на скорост',
         'SLA поддръжка',
       ],
+      href: '/services/support/',
+      ctaLabel: 'Научете повече',
     },
   ] satisfies ServiceCard[],
 };

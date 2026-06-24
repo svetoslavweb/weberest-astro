@@ -1,0 +1,77 @@
+---
+import { getServiceImages } from '@config/service-images';
+import type { ServiceDetail } from '@config/service-details';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const images = getServiceImages(service.icon);
+---
+
+{
+  service.sections.map((section, index) => {
+    const image = images.sections[index % images.sections.length];
+    const reverse = index % 2 === 1;
+
+    return (
+      <section
+        class:list={['service-detail-section', index % 2 === 1 && 'section--alt']}
+        id={`service-section-${index}`}
+      >
+        <div class:list={['service-detail-section__inner', reverse && 'service-detail-section__inner--reverse']}>
+          <div class="service-detail-section__copy" data-reveal={reverse ? 'right' : 'left'}>
+            <h2 class="service-detail-section__title">{section.title}</h2>
+            {
+              section.paragraphs.map((paragraph) => (
+                <p class="service-detail-section__text">{paragraph}</p>
+              ))
+            }
+            {
+              section.items && (
+                <ul class="service-detail-section__list">
+                  {section.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )
+            }
+            {
+              section.subsections?.map((sub) => (
+                <div class="service-detail-subsection">
+                  <h3 class="service-detail-subsection__title">{sub.title}</h3>
+                  {
+                    sub.paragraphs.map((paragraph) => (
+                      <p class="service-detail-section__text">{paragraph}</p>
+                    ))
+                  }
+                  {
+                    sub.items && (
+                      <ul class="service-detail-section__list">
+                        {sub.items.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    )
+                  }
+                </div>
+              ))
+            }
+          </div>
+
+          <figure class="service-detail-section__visual" data-reveal="scale" data-reveal-delay="2">
+            <img
+              src={image}
+              alt={section.title}
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+    );
+  })
+}

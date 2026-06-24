@@ -19,13 +19,30 @@ import { servicesPageMain } from '@config/services-page';
             data-reveal-delay={String((index % 3) + 1)}
           >
             <ServicesIcon icon={service.icon} />
-            <h3 class="service-card__title">{service.title}</h3>
+            <h3 class="service-card__title">
+              {
+                service.href ? (
+                  <a href={`/bg${service.href}`} class="service-card__link">
+                    {service.title}
+                  </a>
+                ) : (
+                  service.title
+                )
+              }
+            </h3>
             <p class="service-card__description">{service.description}</p>
             <ul class="service-card-list">
               {service.items.map((item) => (
                 <li>{item}</li>
               ))}
             </ul>
+            {
+              service.href && (
+                <a href={`/bg${service.href}`} class="btn btn--secondary service-card__cta">
+                  {service.ctaLabel ?? 'Научете повече'}
+                </a>
+              )
+            }
           </article>
         ))
       }

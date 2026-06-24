@@ -1,0 +1,53 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import ServicesIcon from '@components/services/ServicesIcon.astro';
+import { getServiceImages } from '@config/service-images';
+import type { ServiceDetail } from '@config/service-details';
+import type { BreadcrumbItem } from '@utils/breadcrumbs';
+
+interface Props {
+  service: ServiceDetail;
+  breadcrumbs: BreadcrumbItem[];
+}
+
+const { service, breadcrumbs } = Astro.props;
+const images = getServiceImages(service.icon);
+---
+
+<header class="service-detail-hero" id="service-hero">
+  <div class="service-detail-hero__bg" aria-hidden="true">
+    <img
+      class="service-detail-hero__photo"
+      src={images.hero}
+      alt=""
+      width="1400"
+      height="800"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="service-detail-hero__overlay"></div>
+    <div class="service-detail-hero__glow service-detail-hero__glow--1"></div>
+    <div class="service-detail-hero__glow service-detail-hero__glow--2"></div>
+    <div class="service-detail-hero__noise"></div>
+  </div>
+
+  <div class="service-detail-hero__inner">
+    <div class="service-detail-hero__crumb">
+      <Breadcrumbs items={breadcrumbs} variant="inverse" />
+    </div>
+
+    <div class="service-detail-hero__content" data-reveal="left">
+      <div class="service-detail-hero__meta">
+        <ServicesIcon icon={service.icon} />
+        {service.isNew && <span class="service-badge-new">НОВО</span>}
+      </div>
+      <span class="section-eyebrow">{service.eyebrow}</span>
+      <h1 class="service-detail-hero__title">{service.title}</h1>
+      <p class="service-detail-hero__lead">{service.heroLead}</p>
+      <div class="service-detail-hero__actions">
+        <a href="/bg/website-klienti/" class="btn btn--secondary">Портфолио</a>
+        <a href="/bg/it-konsultacia/" class="btn btn--primary btn--glow">Заявете оферта</a>
+      </div>
+    </div>
+  </div>
+</header>

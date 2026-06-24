@@ -1,0 +1,40 @@
+---
+import { getServiceImages } from '@config/service-images';
+import type { ServiceDetail } from '@config/service-details';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const { intro } = service;
+const images = getServiceImages(service.icon);
+---
+
+<section class="service-detail-intro section" id="service-intro">
+  <div class="service-detail-intro__inner">
+    <div class="service-detail-intro__copy" data-reveal="left">
+      <h2 class="section-title">{intro.title}</h2>
+      {
+        intro.paragraphs.map((paragraph) => (
+          <p class="service-detail-intro__text">{paragraph}</p>
+        ))
+      }
+    </div>
+
+    {
+      images.intro && (
+        <figure class="service-detail-intro__visual" data-reveal="right" data-reveal-delay="2">
+          <img
+            src={images.intro}
+            alt={images.introAlt ?? service.title}
+            width="640"
+            height="480"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
+  </div>
+</section>

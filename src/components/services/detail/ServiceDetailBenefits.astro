@@ -1,0 +1,27 @@
+---
+import type { ServiceDetail } from '@config/service-details';
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const { benefits } = service;
+---
+
+<section class="service-detail-benefits section section--alt" id="service-benefits">
+  <div class="service-detail-benefits__inner">
+    <div class="service-detail-benefits__head" data-reveal="left">
+      <h2 class="section-title">{benefits.title}</h2>
+      {benefits.intro && <p class="section-lead">{benefits.intro}</p>}
+    </div>
+
+    <ul class="service-detail-benefits__list" data-reveal="scale">
+      {
+        benefits.items.map((item) => (
+          <li>{item}</li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

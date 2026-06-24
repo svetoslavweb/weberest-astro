@@ -1,3 +1,5 @@
+import { servicesNavFlat } from './services-nav';
+
 export const siteConfig = {
   name: 'Weberest',
   tagline: 'Върхов Интернет Дизайн и Маркетинг',
@@ -27,13 +29,7 @@ export const siteConfig = {
     {
       label: 'Услуги',
       href: '/services/',
-      children: [
-        { label: 'Уеб Дизайн', href: '/web-design/' },
-        { label: 'Онлайн Магазини', href: '/sazdavane-elektronen-magazin/' },
-        { label: 'Уеб и Мобилни Разработки', href: '/web-mobile-development/' },
-        { label: 'Интернет Маркетинг', href: '/internet-marketing/' },
-        { label: 'Споделен хостинг', href: '/spodelen-hosting-ruse/' },
-      ],
+      children: servicesNavFlat,
     },
     { label: 'Портфолио', href: '/website-klienti/' },
     { label: 'Блог', href: '/blog/' },
@@ -47,12 +43,7 @@ export const siteConfig = {
       { label: 'Контакти', href: '/it-konsultacia/' },
       { label: 'Политика за бисквитки', href: '/cookies-policy/' },
     ],
-    services: [
-      { label: 'Уеб Дизайн', href: '/web-design/' },
-      { label: 'Онлайн Магазини', href: '/sazdavane-elektronen-magazin/' },
-      { label: 'Интернет Маркетинг', href: '/internet-marketing/' },
-      { label: 'Мобилни Разработки', href: '/web-mobile-development/' },
-    ],
+    services: servicesNavFlat.slice(0, 8),
     info: [
       { label: 'Процес на работа', href: '/web-design-etapi/' },
       { label: 'Предимства', href: '/predimstva/' },

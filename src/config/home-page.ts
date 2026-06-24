@@ -18,32 +18,32 @@ export const homeServicesMain = {
   items: [
     {
       ...servicesPageMain.items[0],
-      href: '/web-design/',
-      ctaLabel: 'Уеб дизайн',
+      href: '/services/websites/',
+      ctaLabel: 'Уебсайтове',
     },
     {
       ...servicesPageMain.items[1],
-      href: '/sazdavane-elektronen-magazin/',
+      href: '/services/ecommerce/',
       ctaLabel: 'E-commerce',
     },
     {
       ...servicesPageMain.items[2],
-      href: '/web-mobile-development/',
+      href: '/services/software/',
       ctaLabel: 'Разработки',
     },
     {
       ...servicesPageMain.items[3],
-      href: '/razrabotka-prilojeniq-android/',
+      href: '/services/mobile/',
       ctaLabel: 'Мобилни приложения',
     },
     {
       ...servicesPageMain.items[4],
-      href: '/internet-marketing/',
+      href: '/services/marketing/',
       ctaLabel: 'Маркетинг',
     },
     {
       ...servicesPageMain.items[5],
-      href: '/poddrujka-administranicq-web-site/',
+      href: '/services/support/',
       ctaLabel: 'Поддръжка',
     },
   ] satisfies HomeServiceCard[],
