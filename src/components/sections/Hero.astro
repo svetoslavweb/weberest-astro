@@ -62,10 +62,45 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
         </span>
         Уеб Сайт Калкулатор
       </div>
-      <QuoteForm hero compact showIntro={false} />
+      <button class="hero__quote-open btn btn--primary btn--glow" type="button" data-quote-open aria-controls="hero-quote-modal">
+        <span class="hero__quote-open-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path
+              fill="currentColor"
+              d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm0 4v3h10V6H7zm0 5v2h2v-2H7zm3 0v2h2v-2h-2zm3 0v2h2v-2h-2zm3 0v2h2v-2h-2zM7 16v2h2v-2H7zm3 0v2h2v-2h-2zm3 0v2h2v-2h-2zm3 0v2h2v-2h-2zM7 19v2h10v-2H7z"
+            />
+          </svg>
+        </span>
+        Уеб сайт калкулатор
+      </button>
+      <div class="hero__quote-desktop">
+        <QuoteForm hero compact showIntro={false} idPrefix="hero-desktop" />
+      </div>
     </aside>
   </div>
 </section>
+
+<div class="hero__quote-modal" id="hero-quote-modal" data-quote-modal aria-hidden="true">
+  <div class="hero__quote-modal-backdrop" data-quote-close></div>
+  <div
+    class="hero__quote-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="hero-quote-modal-title"
+    tabindex="-1"
+  >
+    <div class="hero__quote-modal-head">
+      <div>
+        <span class="section-eyebrow">Уеб Сайт Калкулатор</span>
+        <h2 class="hero__quote-modal-title" id="hero-quote-modal-title">Получете персонална оферта</h2>
+      </div>
+      <button class="hero__quote-modal-close" type="button" data-quote-close aria-label="Затвори калкулатора">
+        ×
+      </button>
+    </div>
+    <QuoteForm hero compact showIntro={false} idPrefix="hero-mobile" />
+  </div>
+</div>
 
 <script>
   const video = document.querySelector('[data-hero-video]') as HTMLVideoElement | null;
@@ -76,4 +111,161 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
       /* autoplay blocked until user interaction */
     });
   }
+
+  const quoteOpen = document.querySelector('[data-quote-open]') as HTMLButtonElement | null;
+  const quoteModal = document.querySelector('[data-quote-modal]') as HTMLElement | null;
+  const quoteDialog = quoteModal?.querySelector('.hero__quote-modal-dialog') as HTMLElement | null;
+  const quoteCloseButtons = quoteModal?.querySelectorAll('[data-quote-close]');
+  const mobileQuery = window.matchMedia('(max-width: 767px)');
+  let lastFocusedQuoteTrigger: HTMLElement | null = null;
+
+  function logQuoteDebug(runId, hypothesisId, message, data = {}) {
+    // #region agent log
+    fetch('http://127.0.0.1:7804/ingest/34c149ec-8ad9-490a-8561-e8270fda01fa', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '8919de' },
+      body: JSON.stringify({
+        sessionId: '8919de',
+        runId,
+        hypothesisId,
+        location: 'src/components/sections/Hero.astro:110',
+        message,
+        data,
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+  }
+
+  logQuoteDebug('pre-fix', 'H1,H2,H3,H4', 'quote modal init', {
+    hasOpenButton: Boolean(quoteOpen),
+    hasModal: Boolean(quoteModal),
+    hasDialog: Boolean(quoteDialog),
+    closeButtonCount: quoteCloseButtons?.length ?? 0,
+    mediaMatches: mobileQuery.matches,
+    viewportWidth: window.innerWidth,
+    openButtonText: quoteOpen?.textContent?.trim() ?? null,
+    openButtonRect: quoteOpen?.getBoundingClientRect().toJSON?.() ?? null,
+    openButtonDisplay: quoteOpen ? window.getComputedStyle(quoteOpen).display : null,
+    openButtonVisibility: quoteOpen ? window.getComputedStyle(quoteOpen).visibility : null,
+    openButtonPointerEvents: quoteOpen ? window.getComputedStyle(quoteOpen).pointerEvents : null,
+    openButtonColor: quoteOpen ? window.getComputedStyle(quoteOpen).color : null,
+  });
+
+  if (quoteOpen) {
+    const rect = quoteOpen.getBoundingClientRect();
+    const centerElement = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    logQuoteDebug('pre-fix-2', 'H6,H7', 'quote open hit test', {
+      buttonRect: rect.toJSON?.() ?? null,
+      centerElementTag: centerElement?.tagName ?? null,
+      centerElementClass: centerElement instanceof Element ? centerElement.getAttribute('class') : null,
+      centerIsButton: centerElement === quoteOpen || Boolean(centerElement?.closest?.('[data-quote-open]')),
+    });
+  }
+
+  function isMobileQuoteModal() {
+    return mobileQuery.matches;
+  }
+
+  function openQuoteModal() {
+    logQuoteDebug('pre-fix', 'H1,H2,H3', 'quote modal open attempt', {
+      hasModal: Boolean(quoteModal),
+      mediaMatches: isMobileQuoteModal(),
+      viewportWidth: window.innerWidth,
+      modalClass: quoteModal?.className ?? null,
+    });
+    if (!quoteModal || !isMobileQuoteModal()) {
+      logQuoteDebug('pre-fix', 'H2,H3', 'quote modal open blocked', {
+        reason: !quoteModal ? 'missing-modal' : 'not-mobile',
+        mediaMatches: mobileQuery.matches,
+        viewportWidth: window.innerWidth,
+      });
+      return;
+    }
+    lastFocusedQuoteTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : quoteOpen;
+    quoteModal.classList.add('is-open');
+    quoteModal.setAttribute('aria-hidden', 'false');
+    quoteModal.style.opacity = '1';
+    quoteModal.style.visibility = 'visible';
+    quoteModal.style.pointerEvents = 'auto';
+    document.body.style.overflow = 'hidden';
+    if (quoteDialog) quoteDialog.scrollTop = 0;
+    logQuoteDebug('pre-fix', 'H4,H5', 'quote modal opened', {
+      modalClass: quoteModal.className,
+      ariaHidden: quoteModal.getAttribute('aria-hidden'),
+      bodyOverflow: document.body.style.overflow,
+      modalDisplay: window.getComputedStyle(quoteModal).display,
+      modalVisibility: window.getComputedStyle(quoteModal).visibility,
+      modalOpacity: window.getComputedStyle(quoteModal).opacity,
+      modalPointerEvents: window.getComputedStyle(quoteModal).pointerEvents,
+      dialogRect: quoteDialog?.getBoundingClientRect().toJSON?.() ?? null,
+    });
+    quoteDialog?.focus();
+  }
+
+  function closeQuoteModal() {
+    if (!quoteModal) return;
+    quoteModal.classList.remove('is-open');
+    quoteModal.setAttribute('aria-hidden', 'true');
+    quoteModal.style.opacity = '';
+    quoteModal.style.visibility = '';
+    quoteModal.style.pointerEvents = '';
+    document.body.style.overflow = '';
+    logQuoteDebug('pre-fix', 'H5', 'quote modal closed', {
+      modalClass: quoteModal.className,
+      ariaHidden: quoteModal.getAttribute('aria-hidden'),
+      bodyOverflow: document.body.style.overflow,
+    });
+    lastFocusedQuoteTrigger?.focus();
+  }
+
+  function syncQuoteModalState() {
+    if (!quoteModal) return;
+    if (isMobileQuoteModal()) {
+      quoteModal.setAttribute('aria-hidden', quoteModal.classList.contains('is-open') ? 'false' : 'true');
+      return;
+    }
+    quoteModal.classList.remove('is-open');
+    quoteModal.removeAttribute('aria-hidden');
+    quoteModal.style.opacity = '';
+    quoteModal.style.visibility = '';
+    quoteModal.style.pointerEvents = '';
+    document.body.style.overflow = '';
+  }
+
+  quoteOpen?.addEventListener('click', openQuoteModal);
+  quoteOpen?.addEventListener('pointerdown', (event) => {
+    logQuoteDebug('pre-fix-2', 'H6', 'quote open direct pointerdown', {
+      pointerType: event.pointerType,
+      clientX: event.clientX,
+      clientY: event.clientY,
+    });
+  });
+  document.addEventListener(
+    'pointerdown',
+    (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const heroTarget = target?.closest?.('#hero');
+      if (!heroTarget) return;
+      logQuoteDebug('pre-fix-2', 'H6,H7', 'hero pointerdown captured', {
+        targetTag: target?.tagName ?? null,
+        targetClass: target?.getAttribute('class') ?? null,
+        isQuoteOpen: Boolean(target?.closest('[data-quote-open]')),
+        clientX: event.clientX,
+        clientY: event.clientY,
+        elementFromPointClass: document.elementFromPoint(event.clientX, event.clientY)?.getAttribute?.('class') ?? null,
+      });
+    },
+    true,
+  );
+  quoteCloseButtons?.forEach((button) => button.addEventListener('click', closeQuoteModal));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) closeQuoteModal();
+  });
+  if ('addEventListener' in mobileQuery) {
+    mobileQuery.addEventListener('change', syncQuoteModalState);
+  } else {
+    mobileQuery.addListener(syncQuoteModalState);
+  }
+  syncQuoteModalState();
 </script>
