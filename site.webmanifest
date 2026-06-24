@@ -3,7 +3,19 @@
   "short_name": "Weberest",
   "start_url": "/bg/",
   "display": "standalone",
-  "background_color": "#060608",
+  "background_color": "#ffffff",
   "theme_color": "#300290",
-  "lang": "bg"
+  "lang": "bg",
+  "icons": [
+    {
+      "src": "/bg/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/bg/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
 }
