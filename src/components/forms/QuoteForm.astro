@@ -420,6 +420,16 @@ const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
       });
     });
 
+    form.addEventListener('change', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || target.name !== 'service') return;
+      form.querySelectorAll('[data-service-card]').forEach((item) => {
+        const input = item.querySelector('input[name="service"]');
+        item.setAttribute('data-selected', input instanceof HTMLInputElement && input.checked ? 'true' : 'false');
+      });
+      hideMessage();
+    });
+
     form.addEventListener('focusin', () => track('form_start'), { once: true });
 
     nextBtn?.addEventListener('click', () => {

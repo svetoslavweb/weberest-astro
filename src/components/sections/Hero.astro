@@ -119,69 +119,12 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
   const mobileQuery = window.matchMedia('(max-width: 767px)');
   let lastFocusedQuoteTrigger: HTMLElement | null = null;
 
-  function logQuoteDebug(runId, hypothesisId, message, data = {}) {
-    // #region agent log
-    fetch('http://127.0.0.1:7804/ingest/34c149ec-8ad9-490a-8561-e8270fda01fa', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '8919de' },
-      body: JSON.stringify({
-        sessionId: '8919de',
-        runId,
-        hypothesisId,
-        location: 'src/components/sections/Hero.astro:110',
-        message,
-        data,
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-  }
-
-  logQuoteDebug('pre-fix', 'H1,H2,H3,H4', 'quote modal init', {
-    hasOpenButton: Boolean(quoteOpen),
-    hasModal: Boolean(quoteModal),
-    hasDialog: Boolean(quoteDialog),
-    closeButtonCount: quoteCloseButtons?.length ?? 0,
-    mediaMatches: mobileQuery.matches,
-    viewportWidth: window.innerWidth,
-    openButtonText: quoteOpen?.textContent?.trim() ?? null,
-    openButtonRect: quoteOpen?.getBoundingClientRect().toJSON?.() ?? null,
-    openButtonDisplay: quoteOpen ? window.getComputedStyle(quoteOpen).display : null,
-    openButtonVisibility: quoteOpen ? window.getComputedStyle(quoteOpen).visibility : null,
-    openButtonPointerEvents: quoteOpen ? window.getComputedStyle(quoteOpen).pointerEvents : null,
-    openButtonColor: quoteOpen ? window.getComputedStyle(quoteOpen).color : null,
-  });
-
-  if (quoteOpen) {
-    const rect = quoteOpen.getBoundingClientRect();
-    const centerElement = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
-    logQuoteDebug('pre-fix-2', 'H6,H7', 'quote open hit test', {
-      buttonRect: rect.toJSON?.() ?? null,
-      centerElementTag: centerElement?.tagName ?? null,
-      centerElementClass: centerElement instanceof Element ? centerElement.getAttribute('class') : null,
-      centerIsButton: centerElement === quoteOpen || Boolean(centerElement?.closest?.('[data-quote-open]')),
-    });
-  }
-
   function isMobileQuoteModal() {
     return mobileQuery.matches;
   }
 
   function openQuoteModal() {
-    logQuoteDebug('pre-fix', 'H1,H2,H3', 'quote modal open attempt', {
-      hasModal: Boolean(quoteModal),
-      mediaMatches: isMobileQuoteModal(),
-      viewportWidth: window.innerWidth,
-      modalClass: quoteModal?.className ?? null,
-    });
-    if (!quoteModal || !isMobileQuoteModal()) {
-      logQuoteDebug('pre-fix', 'H2,H3', 'quote modal open blocked', {
-        reason: !quoteModal ? 'missing-modal' : 'not-mobile',
-        mediaMatches: mobileQuery.matches,
-        viewportWidth: window.innerWidth,
-      });
-      return;
-    }
+    if (!quoteModal || !isMobileQuoteModal()) return;
     lastFocusedQuoteTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : quoteOpen;
     quoteModal.classList.add('is-open');
     quoteModal.setAttribute('aria-hidden', 'false');
@@ -190,16 +133,6 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
     quoteModal.style.pointerEvents = 'auto';
     document.body.style.overflow = 'hidden';
     if (quoteDialog) quoteDialog.scrollTop = 0;
-    logQuoteDebug('pre-fix', 'H4,H5', 'quote modal opened', {
-      modalClass: quoteModal.className,
-      ariaHidden: quoteModal.getAttribute('aria-hidden'),
-      bodyOverflow: document.body.style.overflow,
-      modalDisplay: window.getComputedStyle(quoteModal).display,
-      modalVisibility: window.getComputedStyle(quoteModal).visibility,
-      modalOpacity: window.getComputedStyle(quoteModal).opacity,
-      modalPointerEvents: window.getComputedStyle(quoteModal).pointerEvents,
-      dialogRect: quoteDialog?.getBoundingClientRect().toJSON?.() ?? null,
-    });
     quoteDialog?.focus();
   }
 
@@ -211,11 +144,6 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
     quoteModal.style.visibility = '';
     quoteModal.style.pointerEvents = '';
     document.body.style.overflow = '';
-    logQuoteDebug('pre-fix', 'H5', 'quote modal closed', {
-      modalClass: quoteModal.className,
-      ariaHidden: quoteModal.getAttribute('aria-hidden'),
-      bodyOverflow: document.body.style.overflow,
-    });
     lastFocusedQuoteTrigger?.focus();
   }
 
@@ -234,30 +162,6 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
   }
 
   quoteOpen?.addEventListener('click', openQuoteModal);
-  quoteOpen?.addEventListener('pointerdown', (event) => {
-    logQuoteDebug('pre-fix-2', 'H6', 'quote open direct pointerdown', {
-      pointerType: event.pointerType,
-      clientX: event.clientX,
-      clientY: event.clientY,
-    });
-  });
-  document.addEventListener(
-    'pointerdown',
-    (event) => {
-      const target = event.target instanceof Element ? event.target : null;
-      const heroTarget = target?.closest?.('#hero');
-      if (!heroTarget) return;
-      logQuoteDebug('pre-fix-2', 'H6,H7', 'hero pointerdown captured', {
-        targetTag: target?.tagName ?? null,
-        targetClass: target?.getAttribute('class') ?? null,
-        isQuoteOpen: Boolean(target?.closest('[data-quote-open]')),
-        clientX: event.clientX,
-        clientY: event.clientY,
-        elementFromPointClass: document.elementFromPoint(event.clientX, event.clientY)?.getAttribute?.('class') ?? null,
-      });
-    },
-    true,
-  );
   quoteCloseButtons?.forEach((button) => button.addEventListener('click', closeQuoteModal));
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) closeQuoteModal();
