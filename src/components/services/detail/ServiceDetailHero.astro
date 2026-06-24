@@ -40,10 +40,14 @@ const heroSrc = service.heroImage ?? images.hero;
     <div class="service-detail-hero__content" data-reveal="left">
       <div class="service-detail-hero__meta">
         <ServicesIcon icon={service.icon} />
-        {service.isNew && <span class="service-badge-new">НОВО</span>}
       </div>
-      <span class="section-eyebrow">{service.eyebrow}</span>
-      <h1 class="service-detail-hero__title">{service.title}</h1>
+      <div class="service-detail-hero__eyebrow-row">
+        <span class="section-eyebrow">{service.eyebrow}</span>
+      </div>
+      <h1 class="service-detail-hero__title">
+        <span>{service.title}</span>
+        {service.isNew && <span class="service-detail-hero__badge">Ново</span>}
+      </h1>
       <p class="service-detail-hero__lead">{service.heroLead}</p>
       <div class="service-detail-hero__actions">
         <a href="/bg/website-klienti/" class="btn btn--secondary">Портфолио</a>
