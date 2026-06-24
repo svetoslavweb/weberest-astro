@@ -16,21 +16,22 @@ interface Props {
 }
 
 const { service } = Astro.props;
+const pagePath = service.canonicalPath ?? `/services/${service.id}/`;
 const breadcrumbs = buildBreadcrumbs(
   { name: 'Услуги', url: '/services/' },
-  { name: service.title, url: `/services/${service.id}/` },
+  { name: service.title, url: pagePath },
 );
 ---
 
 <BaseLayout
   title={service.metaTitle}
   description={service.metaDescription}
-  canonical={`/services/${service.id}/`}
+  canonical={pagePath}
   jsonLd={mergeJsonLd(
     buildWebPageSchema(
       service.metaTitle,
       service.metaDescription,
-      `https://www.weberest.com/bg/services/${service.id}/`,
+      `https://www.weberest.com/bg${pagePath}`,
     ),
     service.faq.length ? buildFaqSchema(service.faq) : undefined,
   )}
@@ -39,7 +40,7 @@ const breadcrumbs = buildBreadcrumbs(
   <article class="service-detail-page">
     <ServiceDetailHero service={service} breadcrumbs={breadcrumbs} />
     <ServiceDetailIntro service={service} />
-    <ServiceDetailBenefits service={service} />
+    {service.benefits.items.length > 0 && <ServiceDetailBenefits service={service} />}
     <ServiceDetailSections service={service} />
     <CtaBanner
       title="Получете безплатна оферта"

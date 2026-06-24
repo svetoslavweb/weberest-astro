@@ -10,65 +10,234 @@ export interface ServiceImages {
   sections: string[];
 }
 
+function set(
+  hero: string,
+  intro: string,
+  sections: [string, string, string],
+  heroAlt = 'Услуга от Weberest',
+): ServiceImages {
+  return {
+    hero: `${IMG}/${hero}`,
+    heroAlt,
+    intro: `${IMG}/${intro}`,
+    introAlt: heroAlt,
+    sections: sections.map((s) => `${IMG}/${s}`),
+  };
+}
+
+/** Снимки по категория (fallback) */
 export const serviceImagesById: Record<ServiceIcon | 'ai' | 'automation', ServiceImages> = {
-  ai: {
-    hero: `${IMG}/ai-hero.jpg`,
-    heroAlt: 'AI технологии и изкуствен интелект за бизнес',
-    intro: `${IMG}/section-team.jpg`,
-    introAlt: 'Екип, работещ с AI решения',
-    sections: [`${IMG}/section-code.jpg`, `${IMG}/section-team.jpg`, `${IMG}/ai-hero.jpg`],
-  },
-  automation: {
-    hero: `${IMG}/automation-hero.jpg`,
-    heroAlt: 'Интеграции и автоматизация на бизнес процеси',
-    intro: `${IMG}/section-code.jpg`,
-    introAlt: 'Свързани системи и автоматизация',
-    sections: [`${IMG}/automation-hero.jpg`, `${IMG}/section-ecommerce.jpg`, `${IMG}/support-hero.jpg`],
-  },
-  web: {
-    hero: `${IMG}/websites-hero.jpg`,
-    heroAlt: 'Изработка на уебсайтове и уеб дизайн',
-    intro: `${IMG}/section-design.jpg`,
-    introAlt: 'Уеб дизайн и разработка',
-    sections: [`${IMG}/section-design.jpg`, `${IMG}/websites-hero.jpg`, `${IMG}/section-team.jpg`],
-  },
-  ecommerce: {
-    hero: `${IMG}/ecommerce-hero.jpg`,
-    heroAlt: 'E-commerce и онлайн магазини',
-    intro: `${IMG}/section-ecommerce.jpg`,
-    introAlt: 'Онлайн пазаруване и електронна търговия',
-    sections: [`${IMG}/ecommerce-hero.jpg`, `${IMG}/section-ecommerce.jpg`, `${IMG}/section-design.jpg`],
-  },
-  software: {
-    hero: `${IMG}/software-hero.jpg`,
-    heroAlt: 'Бизнес софтуер и уеб приложения',
-    intro: `${IMG}/section-code.jpg`,
-    introAlt: 'Програмиране и разработка на софтуер',
-    sections: [`${IMG}/section-code.jpg`, `${IMG}/software-hero.jpg`, `${IMG}/section-team.jpg`],
-  },
-  mobile: {
-    hero: `${IMG}/mobile-hero.jpg`,
-    heroAlt: 'Мобилни приложения за Android и iOS',
-    intro: `${IMG}/mobile-hero.jpg`,
-    introAlt: 'Мобилни устройства и приложения',
-    sections: [`${IMG}/mobile-hero.jpg`, `${IMG}/section-design.jpg`, `${IMG}/section-code.jpg`],
-  },
-  marketing: {
-    hero: `${IMG}/marketing-hero.jpg`,
-    heroAlt: 'Дигитален маркетинг и онлайн реклама',
-    intro: `${IMG}/marketing-hero.jpg`,
-    introAlt: 'Маркетингова стратегия и анализ',
-    sections: [`${IMG}/marketing-hero.jpg`, `${IMG}/section-team.jpg`, `${IMG}/automation-hero.jpg`],
-  },
-  support: {
-    hero: `${IMG}/support-hero.jpg`,
-    heroAlt: 'Техническа поддръжка и хостинг',
-    intro: `${IMG}/support-hero.jpg`,
-    introAlt: 'Сървъри и техническа поддръжка',
-    sections: [`${IMG}/support-hero.jpg`, `${IMG}/section-code.jpg`, `${IMG}/section-team.jpg`],
-  },
+  ai: set('ai-tech.jpg', 'section-code.jpg', ['ai-hero.jpg', 'section-team.jpg', 'integration-api.jpg'], 'AI решения'),
+  automation: set(
+    'integration-api.jpg',
+    'section-code.jpg',
+    ['automation-hero.jpg', 'google-ads.jpg', 'section-ecommerce.jpg'],
+    'Интеграции и автоматизация',
+  ),
+  web: set(
+    'web-design.jpg',
+    'section-design.jpg',
+    ['website-dev.jpg', 'responsive-mobile.jpg', 'logo-design.jpg'],
+    'Уеб дизайн и сайтове',
+  ),
+  ecommerce: set(
+    'ecommerce-macbook.jpg',
+    'online-shop.jpg',
+    ['easyemall-shop.jpg', 'section-ecommerce.jpg', 'ecommerce-hero.jpg'],
+    'E-commerce и онлайн магазини',
+  ),
+  software: set(
+    'web-development.jpg',
+    'section-code.jpg',
+    ['software-hero.jpg', 'section-team.jpg', 'integration-api.jpg'],
+    'Бизнес софтуер',
+  ),
+  mobile: set(
+    'android-app.jpg',
+    'responsive-mobile.jpg',
+    ['mobile-hero.jpg', 'section-design.jpg', 'web-development.jpg'],
+    'Мобилни приложения',
+  ),
+  marketing: set(
+    'digital-marketing.jpg',
+    'seo-analytics.jpg',
+    ['google-ads.jpg', 'marketing-hero.jpg', 'section-team.jpg'],
+    'Дигитален маркетинг',
+  ),
+  support: set(
+    'hosting-server.jpg',
+    'support-team.jpg',
+    ['domain-global.jpg', 'support-hero.jpg', 'section-code.jpg'],
+    'Поддръжка и хостинг',
+  ),
 };
 
-export function getServiceImages(icon: ServiceIcon): ServiceImages {
+const webDesignImages = set(
+  'web-design.jpg',
+  'section-design.jpg',
+  ['website-dev.jpg', 'logo-design.jpg', 'responsive-mobile.jpg'],
+  'Уеб дизайн',
+);
+
+/** Уникални снимки за всяка страница на услуга */
+export const serviceImagesBySlug: Record<string, ServiceImages> = {
+  ai: serviceImagesById.ai,
+  automation: serviceImagesById.automation,
+  websites: set(
+    'website-dev.jpg',
+    'web-design.jpg',
+    ['responsive-mobile.jpg', 'section-design.jpg', 'websites-hero.jpg'],
+    'Изработка на уебсайтове',
+  ),
+  ecommerce: serviceImagesById.ecommerce,
+  software: serviceImagesById.software,
+  mobile: serviceImagesById.mobile,
+  marketing: serviceImagesById.marketing,
+  support: serviceImagesById.support,
+
+  'web-design': webDesignImages,
+  'adaptiven-web-dizain': set(
+    'responsive-mobile.jpg',
+    'web-design.jpg',
+    ['website-dev.jpg', 'section-design.jpg', 'mobile-hero.jpg'],
+    'Адаптивен уеб дизайн',
+  ),
+  'sazdavane-internet-stranica': set(
+    'website-dev.jpg',
+    'web-design.jpg',
+    ['section-design.jpg', 'responsive-mobile.jpg', 'websites-hero.jpg'],
+    'Изработка на сайт',
+  ),
+  'obnoviavane-web-sait': set(
+    'website-redesign.jpg',
+    'section-design.jpg',
+    ['web-design.jpg', 'website-dev.jpg', 'responsive-mobile.jpg'],
+    'Редизайн на сайт',
+  ),
+  'izrabotka-logo': set(
+    'logo-design.jpg',
+    'web-design.jpg',
+    ['section-design.jpg', 'templates.jpg', 'website-dev.jpg'],
+    'Изработка на лого',
+  ),
+  'shabloni-internet-websites': set(
+    'templates.jpg',
+    'website-dev.jpg',
+    ['web-design.jpg', 'section-design.jpg', 'responsive-mobile.jpg'],
+    'Готови шаблони за сайт',
+  ),
+  'ueb-internet-dizain-ruse': webDesignImages,
+  'izrabotvane-blog': set(
+    'blog-writing.jpg',
+    'website-dev.jpg',
+    ['section-design.jpg', 'web-design.jpg', 'digital-marketing.jpg'],
+    'Изработка на блог',
+  ),
+
+  'sazdavane-elektronen-magazin': set(
+    'ecommerce-macbook.jpg',
+    'online-shop.jpg',
+    ['easyemall-shop.jpg', 'section-ecommerce.jpg', 'ecommerce-hero.jpg'],
+    'Онлайн магазини',
+  ),
+  easyemall: set(
+    'easyemall-shop.jpg',
+    'ecommerce-macbook.jpg',
+    ['online-shop.jpg', 'section-ecommerce.jpg', 'digital-marketing.jpg'],
+    'easyEmall платформа',
+  ),
+  'izrabotka-website-restoranti': set(
+    'restaurant.jpg',
+    'website-dev.jpg',
+    ['web-design.jpg', 'online-shop.jpg', 'section-design.jpg'],
+    'Сайт за ресторанти',
+  ),
+  'izrabotka-hotelski-sait': set(
+    'hotel.jpg',
+    'website-dev.jpg',
+    ['web-design.jpg', 'responsive-mobile.jpg', 'section-design.jpg'],
+    'Хотелски сайт',
+  ),
+  'izrabotka-website-nedvijimi-imoti': set(
+    'real-estate.jpg',
+    'website-dev.jpg',
+    ['web-design.jpg', 'responsive-mobile.jpg', 'seo-analytics.jpg'],
+    'Сайт за недвижими имоти',
+  ),
+
+  'web-mobile-development': set(
+    'web-development.jpg',
+    'section-code.jpg',
+    ['software-hero.jpg', 'responsive-mobile.jpg', 'android-app.jpg'],
+    'Уеб и мобилни разработки',
+  ),
+  'razrabotka-prilojeniq-android': set(
+    'android-app.jpg',
+    'responsive-mobile.jpg',
+    ['mobile-hero.jpg', 'web-development.jpg', 'section-code.jpg'],
+    'Android приложения',
+  ),
+
+  'internet-marketing': set(
+    'digital-marketing.jpg',
+    'seo-analytics.jpg',
+    ['google-ads.jpg', 'marketing-hero.jpg', 'section-team.jpg'],
+    'Интернет маркетинг',
+  ),
+  'search-engine-optimization': set(
+    'seo-analytics.jpg',
+    'digital-marketing.jpg',
+    ['google-ads.jpg', 'seo-consulting.jpg', 'marketing-hero.jpg'],
+    'SEO оптимизация',
+  ),
+  'internet-reklama-google': set(
+    'google-ads.jpg',
+    'digital-marketing.jpg',
+    ['seo-analytics.jpg', 'marketing-hero.jpg', 'section-team.jpg'],
+    'Google реклама',
+  ),
+  'seo-konsultacia': set(
+    'seo-consulting.jpg',
+    'seo-analytics.jpg',
+    ['digital-marketing.jpg', 'google-ads.jpg', 'section-team.jpg'],
+    'SEO консултация',
+  ),
+
+  'poddrujka-administranicq-web-site': set(
+    'support-team.jpg',
+    'section-code.jpg',
+    ['hosting-server.jpg', 'support-hero.jpg', 'domain-global.jpg'],
+    'Поддръжка на сайт',
+  ),
+  'spodelen-hosting-ruse': set(
+    'hosting-server.jpg',
+    'domain-global.jpg',
+    ['support-team.jpg', 'support-hero.jpg', 'section-code.jpg'],
+    'Споделен хостинг',
+  ),
+  'registracia-sait-adres-domain': set(
+    'domain-global.jpg',
+    'hosting-server.jpg',
+    ['support-team.jpg', 'website-dev.jpg', 'support-hero.jpg'],
+    'Регистрация на домейн',
+  ),
+};
+
+const BLOCKED_IMAGE_FRAGMENTS = [
+  'customer-woman',
+  'customer-man',
+  'plus-icon',
+  'Elegant_Background',
+  'office-people',
+];
+
+export function isUsableServiceImage(url: string): boolean {
+  return !BLOCKED_IMAGE_FRAGMENTS.some((fragment) => url.includes(fragment));
+}
+
+export function getServiceImages(icon: ServiceIcon, slug?: string): ServiceImages {
+  if (slug && serviceImagesBySlug[slug]) {
+    return serviceImagesBySlug[slug];
+  }
   return serviceImagesById[icon];
 }

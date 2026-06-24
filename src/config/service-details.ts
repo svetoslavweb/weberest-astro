@@ -11,6 +11,7 @@ export interface ServiceDetailSection {
   paragraphs: string[];
   items?: string[];
   subsections?: ServiceDetailSubsection[];
+  image?: string;
 }
 
 export interface ServiceDetail {
@@ -21,9 +22,12 @@ export interface ServiceDetail {
   metaDescription: string;
   eyebrow: string;
   heroLead: string;
+  heroImage?: string;
   intro: {
     title: string;
     paragraphs: string[];
+    image?: string;
+    imageAlt?: string;
   };
   benefits: {
     title: string;
@@ -33,6 +37,8 @@ export interface ServiceDetail {
   sections: ServiceDetailSection[];
   faq: { question: string; answer: string }[];
   relatedLinks?: { label: string; href: string }[];
+  /** Път за canonical URL – по подразбиране `/services/{id}/` */
+  canonicalPath?: string;
   isNew?: boolean;
 }
 

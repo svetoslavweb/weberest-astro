@@ -8,7 +8,8 @@ interface Props {
 
 const { service } = Astro.props;
 const { intro } = service;
-const images = getServiceImages(service.icon);
+const images = getServiceImages(service.icon, service.id);
+const introImage = service.intro.image ?? images.intro;
 ---
 
 <section class="service-detail-intro section" id="service-intro">
@@ -23,11 +24,11 @@ const images = getServiceImages(service.icon);
     </div>
 
     {
-      images.intro && (
+      introImage && (
         <figure class="service-detail-intro__visual" data-reveal="right" data-reveal-delay="2">
           <img
-            src={images.intro}
-            alt={images.introAlt ?? service.title}
+            src={introImage}
+            alt={intro.imageAlt ?? service.title}
             width="640"
             height="480"
             loading="lazy"

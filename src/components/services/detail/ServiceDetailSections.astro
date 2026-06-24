@@ -7,12 +7,13 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const images = getServiceImages(service.icon);
+const images = getServiceImages(service.icon, service.id);
 ---
 
 {
   service.sections.map((section, index) => {
-    const image = images.sections[index % images.sections.length];
+    const image =
+      section.image ?? images.sections[index % images.sections.length];
     const reverse = index % 2 === 1;
 
     return (

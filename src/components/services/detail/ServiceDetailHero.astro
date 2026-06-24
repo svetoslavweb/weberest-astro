@@ -11,14 +11,15 @@ interface Props {
 }
 
 const { service, breadcrumbs } = Astro.props;
-const images = getServiceImages(service.icon);
+const images = getServiceImages(service.icon, service.id);
+const heroSrc = service.heroImage ?? images.hero;
 ---
 
 <header class="service-detail-hero" id="service-hero">
   <div class="service-detail-hero__bg" aria-hidden="true">
     <img
       class="service-detail-hero__photo"
-      src={images.hero}
+      src={heroSrc}
       alt=""
       width="1400"
       height="800"

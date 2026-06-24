@@ -5,8 +5,11 @@ import PageLayout from '@layouts/PageLayout.astro';
 import ContactLayout from '@layouts/ContactLayout.astro';
 import AboutLayout from '@layouts/AboutLayout.astro';
 import ServicesLayout from '@layouts/ServicesLayout.astro';
+import ServiceDetailLayout from '@layouts/ServiceDetailLayout.astro';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
 import { parseFaqFromMarkdown } from '@utils/faq';
+import { isLegacyServiceSlug } from '@config/legacy-service-meta';
+import { buildServiceDetailFromPage } from '@utils/service-from-markdown';
 
 export async function getStaticPaths() {
   const RESERVED_SLUGS = new Set([
@@ -55,6 +58,8 @@ const pageEntry = kind === 'page' ? (entry as CollectionEntry<'pages'>) : null;
 const isContactPage = pageEntry?.data.template === 'contact' || slug === 'it-konsultacia';
 const isAboutPage = pageEntry?.data.template === 'about' || slug === 'about-weberest';
 const isServicesPage = pageEntry?.data.template === 'services' || slug === 'services';
+const isLegacyServicePage = kind === 'page' && isLegacyServiceSlug(slug);
+const legacyService = isLegacyServicePage && pageEntry ? buildServiceDetailFromPage(pageEntry, slug) : null;
 ---
 
 {
@@ -68,6 +73,8 @@ const isServicesPage = pageEntry?.data.template === 'services' || slug === 'serv
     <AboutLayout entry={pageEntry} slug={slug} />
   ) : isServicesPage && pageEntry ? (
     <ServicesLayout entry={pageEntry} slug={slug} />
+  ) : legacyService ? (
+    <ServiceDetailLayout service={legacyService} />
   ) : (
     <PageLayout entry={entry as CollectionEntry<'pages'>} slug={slug} faqItems={faqItems}>
       <Content />
