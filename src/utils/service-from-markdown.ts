@@ -6,6 +6,7 @@ import {
   type LegacyServiceMeta,
 } from '@config/legacy-service-meta';
 import { getServiceImages, isUsableServiceImage } from '@config/service-images';
+import { buildHostingServiceDetail } from '@utils/hosting-service';
 
 function decodeEntities(text: string): string {
   return text
@@ -170,6 +171,10 @@ export function buildServiceDetailFromPage(
   entry: CollectionEntry<'pages'>,
   slug: string,
 ): ServiceDetail {
+  if (slug === 'spodelen-hosting-ruse') {
+    return buildHostingServiceDetail();
+  }
+
   const meta: LegacyServiceMeta = legacyServiceMeta[slug] ?? {
     icon: 'web',
     eyebrow: 'Weberest · Услуги',

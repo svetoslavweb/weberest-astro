@@ -1,0 +1,58 @@
+---
+import type { HostingPlan } from '@config/hosting-page';
+
+interface Props {
+  plans: HostingPlan[];
+}
+
+const { plans } = Astro.props;
+---
+
+<section class="hosting-plans section section--alt" id="hosting-plans">
+  <div class="hosting-plans__inner">
+    <div class="hosting-plans__grid">
+      {
+        plans.map((plan, index) => (
+          <article class:list={['hosting-plan', plan.featured && 'hosting-plan--featured']}>
+            <div
+              class="hosting-plan__body"
+              data-reveal="scale"
+              data-reveal-delay={String(index + 1)}
+            >
+              {plan.featured && <span class="hosting-plan__badge">Препоръчан</span>}
+              <header class="hosting-plan__header">
+              <h2 class="hosting-plan__name">{plan.name}</h2>
+              <p class="hosting-plan__subtitle">{plan.subtitle}</p>
+              <p class="hosting-plan__price">
+                <span class="hosting-plan__amount">{plan.priceBgn} лв.</span>
+                <span class="hosting-plan__sep">/</span>
+                <span class="hosting-plan__amount">{plan.priceEur} €</span>
+                <span class="hosting-plan__period">/ {plan.period}</span>
+              </p>
+            </header>
+
+            <ul class="hosting-plan__features">
+              {
+                plan.features.map((feature) => (
+                  <li class="hosting-plan__feature">
+                    <span class="hosting-plan__feature-label">{feature.label}</span>
+                    {feature.value ? (
+                      <strong class="hosting-plan__feature-value">{feature.value}</strong>
+                    ) : (
+                      <span class="hosting-plan__check" aria-label="Включено">✓</span>
+                    )}
+                  </li>
+                ))
+              }
+            </ul>
+
+            <a href="/bg/it-konsultacia/" class="btn btn--primary hosting-plan__cta">
+              Заявете хостинг
+            </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

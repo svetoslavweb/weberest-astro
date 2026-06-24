@@ -1,5 +1,7 @@
 import type { ServiceIcon } from './services-page';
 
+import type { HostingPlan } from './hosting-page';
+
 export interface ServiceDetailSubsection {
   title: string;
   paragraphs: string[];
@@ -37,6 +39,7 @@ export interface ServiceDetail {
   sections: ServiceDetailSection[];
   faq: { question: string; answer: string }[];
   relatedLinks?: { label: string; href: string }[];
+  hostingPlans?: HostingPlan[];
   /** Път за canonical URL – по подразбиране `/services/{id}/` */
   canonicalPath?: string;
   isNew?: boolean;

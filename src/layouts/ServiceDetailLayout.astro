@@ -6,6 +6,7 @@ import ServiceDetailBenefits from '@components/services/detail/ServiceDetailBene
 import ServiceDetailSections from '@components/services/detail/ServiceDetailSections.astro';
 import ServiceDetailFaq from '@components/services/detail/ServiceDetailFaq.astro';
 import ServiceDetailRelated from '@components/services/detail/ServiceDetailRelated.astro';
+import ServiceHostingPlans from '@components/services/detail/ServiceHostingPlans.astro';
 import CtaBanner from '@components/sections/CtaBanner.astro';
 import type { ServiceDetail } from '@config/service-details';
 import { buildBreadcrumbs } from '@utils/breadcrumbs';
@@ -40,8 +41,14 @@ const breadcrumbs = buildBreadcrumbs(
   <article class="service-detail-page">
     <ServiceDetailHero service={service} breadcrumbs={breadcrumbs} />
     <ServiceDetailIntro service={service} />
-    {service.benefits.items.length > 0 && <ServiceDetailBenefits service={service} />}
-    <ServiceDetailSections service={service} />
+    {service.hostingPlans && service.hostingPlans.length > 0 ? (
+      <ServiceHostingPlans plans={service.hostingPlans} />
+    ) : (
+      <>
+        {service.benefits.items.length > 0 && <ServiceDetailBenefits service={service} />}
+        <ServiceDetailSections service={service} />
+      </>
+    )}
     <CtaBanner
       title="Получете безплатна оферта"
       text="Свържете се с нас и разберете как можем да помогнем на вашия бизнес. Ще подготвим персонално предложение, съобразено с вашите нужди и бюджет."
@@ -51,12 +58,24 @@ const breadcrumbs = buildBreadcrumbs(
     />
     <ServiceDetailFaq service={service} />
     <ServiceDetailRelated service={service} />
-    <CtaBanner
-      title={`Поръчайте ${service.title.toLowerCase()}`}
-      text="Разгледайте нашето портфолио за вдъхновение и се свържете с нас, за да започнем вашия проект."
-      href="/zapitanie/"
-      label="Безплатна оферта"
-      class="service-detail-page__cta service-detail-page__cta--final"
-    />
+    {
+      service.hostingPlans?.length ? (
+        <CtaBanner
+          title="Нуждаете се от хостинг за вашия сайт?"
+          text="Свържете се с нас за безплатна консултация и активиране на хостинг пакет Weberest Старт или Weberest Про."
+          href="/it-konsultacia/"
+          label="Заявете консултация"
+          class="service-detail-page__cta service-detail-page__cta--final"
+        />
+      ) : (
+        <CtaBanner
+          title={`Поръчайте ${service.title.toLowerCase()}`}
+          text="Разгледайте нашето портфолио за вдъхновение и се свържете с нас, за да започнем вашия проект."
+          href="/zapitanie/"
+          label="Безплатна оферта"
+          class="service-detail-page__cta service-detail-page__cta--final"
+        />
+      )
+    }
   </article>
 </BaseLayout>
