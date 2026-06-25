@@ -44,9 +44,11 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
 
   <div class="hero__inner">
     <div class="hero__content" data-reveal="left">
-      <div class="hero__headline">
-        <span class="section-eyebrow">Weberest · Digital Studio · Русе</span>
+      <div class="hero__meta">
+        <span class="section-eyebrow hero__eyebrow">Weberest · Digital Studio · Русе</span>
         {ratingHref && <LocalRatingBadge href={ratingHref} class="hero__rating-badge" />}
+      </div>
+      <div class="hero__headline">
         <h1 class="hero__title">{title}</h1>
       </div>
       {subtitle && <p class="hero__lead">{subtitle}</p>}
