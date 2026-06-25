@@ -41,8 +41,10 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
 
   <div class="hero__inner">
     <div class="hero__content" data-reveal="left">
-      <span class="section-eyebrow">Weberest · Digital Studio · Русе</span>
-      <h1 class="hero__title">{title}</h1>
+      <div class="hero__headline">
+        <span class="section-eyebrow">Weberest · Digital Studio · Русе</span>
+        <h1 class="hero__title">{title}</h1>
+      </div>
       {subtitle && <p class="hero__lead">{subtitle}</p>}
       <div class="hero__actions">
         <a href={primaryLink} class="btn btn--primary btn--glow">{primaryLabel}</a>

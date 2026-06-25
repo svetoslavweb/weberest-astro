@@ -86,6 +86,10 @@
   max-width: 44rem;
 }
 
+.hero__headline {
+  display: block;
+}
+
 .hero--video .hero__content {
   color: #f8fafc;
 
@@ -357,6 +361,10 @@
 }
 
 @media (max-width: ($breakpoint-md - 1px)) {
+  .hero__headline {
+    transform: translateY(clamp(-5.5rem, -16vw, -7rem));
+  }
+
   .hero__actions {
     display: none;
   }
