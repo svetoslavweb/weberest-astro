@@ -191,9 +191,16 @@ const fieldId = (name: string) => `${idPrefix}-${name}`;
       </div>
 
       <div class="quote-form__success" data-success hidden>
-        <div class="quote-form__success-icon" aria-hidden="true">✓</div>
+        <div class="quote-form__success-countdown" aria-hidden="true" data-success-countdown>
+          <svg viewBox="0 0 44 44">
+            <circle class="quote-form__success-countdown-track" cx="22" cy="22" r="19"></circle>
+            <circle class="quote-form__success-countdown-progress" cx="22" cy="22" r="19"></circle>
+          </svg>
+          <span class="quote-form__success-icon">✓</span>
+        </div>
         <h3>Запитването е изпратено!</h3>
         <p>Консултант от Weberest ще се свърже с вас в рамките на 1 работен ден.</p>
+        <p class="quote-form__success-close-note">Прозорецът ще се затвори автоматично след 5 секунди.</p>
       </div>
 
       <div class="quote-form__actions" data-actions>
@@ -275,6 +282,13 @@ const fieldId = (name: string) => `${idPrefix}-${name}`;
 
     function hideMessage() {
       if (message) message.hidden = true;
+    }
+
+    function resetFormScroll() {
+      const scrollParent = form.closest('.hero__quote-modal-dialog');
+      if (scrollParent instanceof HTMLElement) {
+        scrollParent.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
     function updateUI() {
@@ -390,11 +404,14 @@ const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
 
       for (const url of candidates) {
         try {
+          const isExternal = /^https?:\/\//.test(url) && !url.startsWith(window.location.origin);
           const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+            mode: isExternal ? 'no-cors' : 'cors',
+            ...(isExternal ? {} : { headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }),
             body: params,
           });
+          if (response.type === 'opaque') return true;
           const html = await response.text();
           if (response.ok && html.includes('изпратена успешно')) return true;
         } catch {
@@ -441,12 +458,14 @@ const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
       currentStep += 1;
       track('step_completed', { step: String(currentStep - 1) });
       updateUI();
+      resetFormScroll();
     });
 
     prevBtn?.addEventListener('click', () => {
       hideMessage();
       currentStep = Math.max(1, currentStep - 1);
       updateUI();
+      resetFormScroll();
     });
 
     form.addEventListener('submit', async (event) => {
@@ -502,6 +521,7 @@ const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
         form.querySelectorAll('[data-service-card]').forEach((item) => {
           item.setAttribute('data-selected', 'false');
         });
+        form.dispatchEvent(new CustomEvent('quote-form:success', { bubbles: true }));
         track('form_submit_success');
       } catch {
         showMessage(

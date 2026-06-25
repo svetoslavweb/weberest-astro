@@ -163,6 +163,11 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
 
   quoteOpen?.addEventListener('click', openQuoteModal);
   quoteCloseButtons?.forEach((button) => button.addEventListener('click', closeQuoteModal));
+  quoteModal?.addEventListener('quote-form:success', () => {
+    window.setTimeout(() => {
+      closeQuoteModal();
+    }, 5000);
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) closeQuoteModal();
   });

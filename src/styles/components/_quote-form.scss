@@ -400,9 +400,50 @@
   }
 }
 
+.quote-form__success-countdown {
+  position: relative;
+  width: 4.25rem;
+  height: 4.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.quote-form__success-countdown svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.quote-form__success-countdown-track,
+.quote-form__success-countdown-progress {
+  fill: none;
+  stroke-width: 4;
+}
+
+.quote-form__success-countdown-track {
+  stroke: rgba(255, 255, 255, 0.14);
+}
+
+.quote-form__success-countdown-progress {
+  stroke: #22c55e;
+  stroke-linecap: round;
+  stroke-dasharray: 119.38;
+  stroke-dashoffset: 0;
+  animation: quoteSuccessCountdown 5s linear forwards;
+}
+
+@keyframes quoteSuccessCountdown {
+  to {
+    stroke-dashoffset: 119.38;
+  }
+}
+
 .quote-form__success-icon {
-  width: 3.5rem;
-  height: 3.5rem;
+  position: relative;
+  width: 3.1rem;
+  height: 3.1rem;
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -411,6 +452,11 @@
   color: #fff;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
+}
+
+.quote-form__success-close-note {
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.9);
 }
 
 .quote-form__message {
@@ -459,7 +505,7 @@
   border: none;
   box-shadow: none;
   background: transparent;
-  padding: 0;
+  padding: 0 8px;
   backdrop-filter: none;
   border-radius: 0;
 
@@ -657,6 +703,12 @@
       border-color: rgba(255, 255, 255, 0.22);
       color: #fff;
     }
+
+    [data-next],
+    [data-submit] {
+      background: linear-gradient(135deg, #34d399, #16a34a);
+      box-shadow: 0 0 32px rgba(34, 197, 94, 0.28), 0 12px 28px rgba(22, 163, 74, 0.24);
+    }
   }
 
   .quote-form__success {
@@ -771,5 +823,13 @@
     backdrop-filter: blur(8px);
     border-color: rgba(18, 19, 26, 0.12);
     color: var(--color-text);
+  }
+
+  .quote-form__success-countdown-track {
+    stroke: rgba(15, 23, 42, 0.12);
+  }
+
+  .quote-form__success-close-note {
+    color: var(--color-text-muted);
   }
 }
