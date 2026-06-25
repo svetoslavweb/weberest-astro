@@ -1,5 +1,11 @@
 import { servicesNavFlat } from './services-nav';
 
+export interface SocialLink {
+  id: 'facebook' | 'youtube';
+  label: string;
+  href: string;
+}
+
 export const siteConfig = {
   name: 'Weberest',
   tagline: 'Върхов Интернет Дизайн и Маркетинг',
@@ -19,11 +25,21 @@ export const siteConfig = {
     postalCode: '7000',
     addressCountry: 'BG',
   },
-  social: {
-    facebook: 'https://www.facebook.com/weberest',
-    linkedin: 'https://www.linkedin.com/company/weberest',
-  },
+  socialLinks: [
+    {
+      id: 'facebook',
+      label: 'Facebook',
+      href: 'https://www.facebook.com/weberest',
+    },
+    {
+      id: 'youtube',
+      label: 'YouTube',
+      href: 'https://www.youtube.com/@weberest',
+    },
+  ] as const satisfies readonly SocialLink[],
   defaultOgImage: '/bg/images/og-default.jpg',
+  defaultOgImageWidth: 1200,
+  defaultOgImageHeight: 630,
   nav: [
     { label: 'За Weberest', href: '/about-weberest/' },
     {
@@ -55,5 +71,7 @@ export const siteConfig = {
     ],
   },
 } as const;
+
+export const socialLinks: SocialLink[] = [...siteConfig.socialLinks];
 
 export type SiteConfig = typeof siteConfig;

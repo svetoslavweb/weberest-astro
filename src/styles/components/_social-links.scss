@@ -1,0 +1,83 @@
+@use '../mixins' as *;
+
+.social-links {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.social-links__label {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.social-links__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.social-links__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(142, 99, 171, 0.8);
+    outline-offset: 2px;
+  }
+}
+
+[data-theme='light'] .social-links__link {
+  background: #12131a;
+  border-color: rgba(18, 19, 26, 0.16);
+  color: #fff;
+}
+
+.social-links__link--facebook:hover {
+  border-color: rgba(24, 119, 242, 0.55);
+  background: rgba(24, 119, 242, 0.14);
+  color: #1877f2;
+}
+
+.social-links__link--youtube:hover {
+  border-color: rgba(255, 0, 0, 0.45);
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff0000;
+}
+
+.site-footer__social {
+  margin-top: 1.25rem;
+}
+
+.contact-offices__social {
+  margin-top: 1rem;
+}

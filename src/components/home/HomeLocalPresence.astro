@@ -1,0 +1,141 @@
+---
+import { starFill } from '@utils/local-rating';
+import GoogleMaps from '@components/integrations/GoogleMaps.astro';
+import { localPresence } from '@config/local-presence';
+
+interface Props {
+  showMap?: boolean;
+}
+
+const { showMap = true } = Astro.props;
+const { name, category, rating, reviewCount, reviewsUrl, directionsUrl, phone, phoneTel, addressFull, featuredReviews, map } =
+  localPresence;
+---
+
+<section class="home-local section section--alt" id="local-presence" aria-labelledby="home-local-title">
+  <div class="home-local__inner">
+    <div class:list={['home-local__header', !showMap && 'home-local__header--no-map']}>
+      <div class="home-local__intro" data-reveal="left">
+        <span class="section-eyebrow">Google · Локално присъствие</span>
+        <h2 class="section-title" id="home-local-title">Доверени от клиенти в Русе и региона</h2>
+        <p class="section-lead">
+          Вижте как ни оценяват в Google — реални отзиви от бизнеси, с които сме работили по уеб сайтове, магазини и маркетинг.
+        </p>
+      </div>
+
+      {
+        showMap ? (
+          <div class="home-local__map" data-reveal="right" data-reveal-delay="1">
+            <GoogleMaps
+              variant="card"
+              title={map.title}
+              eyebrow={map.eyebrow}
+              address={map.address}
+              mapUrl={map.mapUrl}
+              embedUrl={map.embedUrl}
+              height={260}
+              flush
+            />
+          </div>
+        ) : null
+      }
+    </div>
+
+    <div class="home-local__grid">
+      <aside class="home-local__scorecard" data-reveal="scale" data-reveal-delay="1">
+        <div class="home-local__scorecard-glow" aria-hidden="true"></div>
+        <div class="home-local__scorecard-top">
+          <span class="home-local__google-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            Google
+          </span>
+          <p class="home-local__business">{name}</p>
+          <p class="home-local__category">{category}</p>
+        </div>
+
+        <div class="home-local__rating-block">
+          <p class="home-local__rating-value">{rating.toFixed(1)}</p>
+          <div class="home-local__stars" role="img" aria-label={`${rating} от 5 звезди`}>
+            {
+              Array.from({ length: 5 }, (_, index) => {
+                const fill = starFill(index, rating);
+                return (
+                  <span class:list={['home-local__star', `home-local__star--${fill}`]}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path
+                        fill="currentColor"
+                        d="M12 2l2.9 6.02 6.64.58-5.02 4.36 1.52 6.48L12 16.9l-6.04 3.58 1.52-6.48-5.02-4.36 6.64-.58L12 2z"
+                      />
+                    </svg>
+                  </span>
+                );
+              })
+            }
+          </div>
+          <p class="home-local__review-count">
+            <a href={reviewsUrl} target="_blank" rel="noopener noreferrer">{reviewCount} отзива в Google</a>
+          </p>
+        </div>
+
+        {
+          showMap ? (
+            <dl class="home-local__meta">
+              <div>
+                <dt>Адрес</dt>
+                <dd>{addressFull}</dd>
+              </div>
+              <div>
+                <dt>Работно време</dt>
+                <dd><span class="home-local__open-badge">Отворено</span> · Затваря в 18:30</dd>
+              </div>
+            </dl>
+          ) : null
+        }
+
+        <div class="home-local__actions">
+          <a href={`tel:${phoneTel}`} class="home-local__action">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.47a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.18 2.2z" /></svg>
+            {phone}
+          </a>
+          <a href={directionsUrl} class="home-local__action" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" /></svg>
+            Упътвания
+          </a>
+          <a href={reviewsUrl} class="home-local__action home-local__action--accent" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l2.9 6.02 6.64.58-5.02 4.36 1.52 6.48L12 16.9l-6.04 3.58 1.52-6.48-5.02-4.36 6.64-.58L12 2z" /></svg>
+            Отзиви
+          </a>
+        </div>
+      </aside>
+
+      <div class="home-local__reviews" data-reveal="right" data-reveal-delay="2">
+        {
+          featuredReviews.map((review, index) => (
+            <article class="home-local__review" data-reveal="scale" data-reveal-delay={String(index + 1)}>
+              <header class="home-local__review-head">
+                <span class="home-local__avatar" aria-hidden="true">{review.author.charAt(0)}</span>
+                <div>
+                  <h3 class="home-local__review-author">{review.author}</h3>
+                  {review.relativeDate && <p class="home-local__review-date">{review.relativeDate}</p>}
+                </div>
+                <div class="home-local__review-stars" aria-hidden="true">
+                  {'★'.repeat(review.rating)}
+                </div>
+              </header>
+              <p class="home-local__review-text">„{review.text}"</p>
+              <p class="home-local__review-source">Отзив в Google</p>
+            </article>
+          ))
+        }
+        <a href={reviewsUrl} class="home-local__reviews-all" target="_blank" rel="noopener noreferrer">
+          Виж всички {reviewCount} отзива в Google ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

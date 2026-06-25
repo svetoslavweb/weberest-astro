@@ -1,6 +1,7 @@
 ---
 import heroVideo from '../../assets/videos/weberest-video.mp4?url';
 import QuoteForm from '@components/forms/QuoteForm.astro';
+import LocalRatingBadge from '@components/local/LocalRatingBadge.astro';
 
 interface Props {
   title: string;
@@ -9,6 +10,7 @@ interface Props {
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  ratingHref?: string;
 }
 
 const {
@@ -18,6 +20,7 @@ const {
   primaryLabel = 'Безплатна консултация',
   secondaryHref = '/website-klienti/',
   secondaryLabel = 'Вижте портфолиото',
+  ratingHref,
 } = Astro.props;
 
 const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHref}`;
@@ -43,6 +46,7 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
     <div class="hero__content" data-reveal="left">
       <div class="hero__headline">
         <span class="section-eyebrow">Weberest · Digital Studio · Русе</span>
+        {ratingHref && <LocalRatingBadge href={ratingHref} class="hero__rating-badge" />}
         <h1 class="hero__title">{title}</h1>
       </div>
       {subtitle && <p class="hero__lead">{subtitle}</p>}

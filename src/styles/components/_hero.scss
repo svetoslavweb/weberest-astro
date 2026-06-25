@@ -87,7 +87,13 @@
 }
 
 .hero__headline {
-  display: block;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.hero__rating-badge {
+  width: fit-content;
+  max-width: 100%;
 }
 
 .hero--video .hero__content {

@@ -1,5 +1,9 @@
 import type { CollectionEntry } from 'astro:content';
 
+function portfolioSlug(item: CollectionEntry<'portfolio'>): string {
+  return item.data.wpSlug ?? item.id;
+}
+
 /** По-новите WordPress записи имат по-висок wpId */
 export function sortPortfolioNewestFirst(
   items: CollectionEntry<'portfolio'>[],
@@ -15,4 +19,26 @@ export function sortPortfolioNewestFirst(
 
     return a.data.title.localeCompare(b.data.title, 'bg');
   });
+}
+
+/** Портфолио за началната страница — pinned проекти първи, после най-новите */
+export function getHomePortfolioItems(
+  items: CollectionEntry<'portfolio'>[],
+  featuredSlugs: string[] = [],
+  limit = 6,
+  excludedSlugs: string[] = [],
+): CollectionEntry<'portfolio'>[] {
+  const excludedSet = new Set(excludedSlugs);
+  const eligible = items.filter((item) => !excludedSet.has(portfolioSlug(item)));
+  const sorted = sortPortfolioNewestFirst(eligible);
+  const bySlug = new Map(sorted.map((item) => [portfolioSlug(item), item]));
+
+  const featured = featuredSlugs
+    .map((slug) => bySlug.get(slug))
+    .filter((item): item is CollectionEntry<'portfolio'> => Boolean(item));
+
+  const featuredSet = new Set(featured.map(portfolioSlug));
+  const rest = sorted.filter((item) => !featuredSet.has(portfolioSlug(item)));
+
+  return [...featured, ...rest].slice(0, limit);
 }

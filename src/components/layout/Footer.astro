@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@config/site';
+import SocialLinks from '@components/ui/SocialLinks.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -13,6 +14,7 @@ const year = new Date().getFullYear();
         <p>
           <a href={`tel:${siteConfig.phoneTel}`} class="site-footer__phone">{siteConfig.phone}</a>
         </p>
+        <SocialLinks class="site-footer__social" />
       </div>
 
       <div>

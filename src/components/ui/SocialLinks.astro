@@ -1,0 +1,33 @@
+---
+import { socialLinks } from '@config/site';
+import SocialIcon from '@components/ui/SocialIcon.astro';
+
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const { class: className, label = 'Последвайте ни' } = Astro.props;
+---
+
+<div class:list={['social-links', className]}>
+  <span class="social-links__label">{label}</span>
+  <ul class="social-links__list">
+    {
+      socialLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['social-links__link', `social-links__link--${link.id}`]}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Weberest в ${link.label}`}
+            title={link.label}
+          >
+            <SocialIcon network={link.id} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

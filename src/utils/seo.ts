@@ -6,6 +6,9 @@ export interface SeoProps {
   canonical?: string;
   robots?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   ogType?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -42,7 +45,7 @@ export function buildOrganizationSchema() {
       '@type': 'PostalAddress',
       ...siteConfig.address,
     },
-    sameAs: Object.values(siteConfig.social),
+    sameAs: siteConfig.socialLinks.map((link) => link.href),
     areaServed: ['BG', 'EU'],
     priceRange: '$$',
   };
@@ -153,6 +156,50 @@ export function buildServiceSchema(title: string, description: string, url: stri
       url: absoluteUrl('/'),
     },
     areaServed: 'BG',
+  };
+}
+
+export function buildLocalBusinessSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  rating: number;
+  reviewCount: number;
+  address: string;
+  telephone: string;
+  reviews?: { author: string; text: string; rating: number }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'ProfessionalService'],
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    telephone: input.telephone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: input.address,
+      addressLocality: 'Русе',
+      postalCode: '7000',
+      addressCountry: 'BG',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: input.rating,
+      reviewCount: input.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: input.reviews?.map((review) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: review.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: 5,
+      },
+      reviewBody: review.text,
+    })),
   };
 }
 

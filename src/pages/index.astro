@@ -2,18 +2,26 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/sections/Hero.astro';
 import StatsStrip from '@components/sections/StatsStrip.astro';
+import HomeLocalPresence from '@components/home/HomeLocalPresence.astro';
 import HomeServicesNew from '@components/home/HomeServicesNew.astro';
 import HomeServicesGrid from '@components/home/HomeServicesGrid.astro';
 import HomeVideos from '@components/home/HomeVideos.astro';
 import CtaBanner from '@components/sections/CtaBanner.astro';
 import { getCollection } from 'astro:content';
-import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
+import { buildWebPageSchema, buildLocalBusinessSchema, mergeJsonLd } from '@utils/seo';
+import { localPresence } from '@config/local-presence';
 import { getPortfolioCategoryLabel } from '@config/portfolio-categories';
-import { sortPortfolioNewestFirst } from '@utils/portfolio-sort';
+import { getHomePortfolioItems } from '@utils/portfolio-sort';
+import { homeFeaturedPortfolioSlugs, homeExcludedPortfolioSlugs } from '@config/home-page';
 
 const pages = await getCollection('pages');
 const home = pages.find((page) => page.id === 'home') ?? pages.find((page) => page.data.wpSlug === 'home');
-const portfolio = sortPortfolioNewestFirst(await getCollection('portfolio')).slice(0, 6);
+const portfolio = getHomePortfolioItems(
+  await getCollection('portfolio'),
+  [...homeFeaturedPortfolioSlugs],
+  6,
+  [...homeExcludedPortfolioSlugs],
+);
 
 const title = home?.data.title ?? 'Върхов Уеб Дизайн и Онлайн Маркетинг от Weberest - Русе';
 const description =
@@ -25,13 +33,26 @@ const description =
   title={title}
   description={description}
   canonical="/"
-  jsonLd={mergeJsonLd(buildWebPageSchema(title, description, 'https://www.weberest.com/bg/'))}
+  jsonLd={mergeJsonLd(
+    buildWebPageSchema(title, description, 'https://www.weberest.com/bg/'),
+    buildLocalBusinessSchema({
+      name: localPresence.name,
+      description,
+      url: 'https://www.weberest.com/bg/',
+      rating: localPresence.rating,
+      reviewCount: localPresence.reviewCount,
+      address: localPresence.addressFull,
+      telephone: localPresence.phoneTel,
+      reviews: localPresence.featuredReviews,
+    }),
+  )}
   showFloatingQuote={false}
 >
   <div class="home-page">
     <Hero
       title="Над 15 години създаваме дигитални решения на световно ниво"
       subtitle="Съчетаваме уеб дизайн, разработка и маркетинг, за да превръщаме идеите в реални резултати за вашия бизнес."
+      ratingHref="#local-presence"
     />
 
     <StatsStrip />
@@ -77,6 +98,8 @@ const description =
       </div>
     </div>
   </section>
+
+  <HomeLocalPresence />
 
   <CtaBanner class="home-page__cta" />
   </div>

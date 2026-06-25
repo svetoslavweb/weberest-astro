@@ -1,6 +1,7 @@
 ---
 import { contactOffices, contactIntro, contactMap } from '@config/contact';
 import GoogleMaps from '@components/integrations/GoogleMaps.astro';
+import SocialLinks from '@components/ui/SocialLinks.astro';
 ---
 
 <section class="contact-offices">
@@ -8,6 +9,7 @@ import GoogleMaps from '@components/integrations/GoogleMaps.astro';
     <span class="section-eyebrow">Контактна информация</span>
     <h2 class="contact-offices__title">Къде да ни намерите</h2>
     <p class="contact-offices__intro">{contactIntro}</p>
+    <SocialLinks class="contact-offices__social" label="Weberest в социалните мрежи" />
   </div>
 
   <div class="contact-offices__grid">

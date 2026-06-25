@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ContactHero from '@components/contact/ContactHero.astro';
 import ContactOffices from '@components/contact/ContactOffices.astro';
+import HomeLocalPresence from '@components/home/HomeLocalPresence.astro';
 import InquiryForm from '@components/forms/InquiryForm.astro';
 import type { CollectionEntry } from 'astro:content';
 import { buildBreadcrumbs } from '@utils/breadcrumbs';
@@ -51,5 +52,7 @@ const breadcrumbs = buildBreadcrumbs({ name: 'Контакти', url: `/${slug}/
         </div>
       </div>
     </section>
+
+    <HomeLocalPresence showMap={false} />
   </article>
 </BaseLayout>

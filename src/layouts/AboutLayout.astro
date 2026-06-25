@@ -8,6 +8,7 @@ import AboutTeam from '@components/about/AboutTeam.astro';
 import AboutMission from '@components/about/AboutMission.astro';
 import AboutImpact from '@components/about/AboutImpact.astro';
 import AboutMedia from '@components/about/AboutMedia.astro';
+import HomeLocalPresence from '@components/home/HomeLocalPresence.astro';
 import CtaBanner from '@components/sections/CtaBanner.astro';
 import type { CollectionEntry } from 'astro:content';
 import { buildBreadcrumbs } from '@utils/breadcrumbs';
@@ -41,6 +42,7 @@ const breadcrumbs = buildBreadcrumbs({ name: 'За Weberest', url: `/${slug}/` }
     <AboutTeam />
     <AboutMission />
     <AboutImpact />
+    <HomeLocalPresence />
     <CtaBanner
       title="Обещаваме да разговаряме на разбираем език"
       text="Без излишни термини и безсмислени понятия. Получете безплатна консултация от нашите специалисти."

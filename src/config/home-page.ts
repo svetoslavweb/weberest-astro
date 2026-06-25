@@ -49,6 +49,10 @@ export const homeServicesMain = {
   ] satisfies HomeServiceCard[],
 };
 
+/** Проекти, които винаги се показват първи в портфолиото на началната страница */
+export const homeFeaturedPortfolioSlugs = ['realistimo-com'] as const;
+export const homeExcludedPortfolioSlugs = ['trfish'] as const;
+
 export const homeVideos = {
   eyebrow: '03 · Медии',
   title: 'Weberest в медиите',
