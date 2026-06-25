@@ -524,6 +524,14 @@
     color: #300290;
   }
 
+  .local-rating-badge__arrow {
+    color: rgba(48, 2, 144, 0.72);
+  }
+
+  .local-rating-badge:hover .local-rating-badge__arrow {
+    color: #300290;
+  }
+
   .home-local__scorecard {
     background:
       linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(248, 249, 251, 0.92)),
