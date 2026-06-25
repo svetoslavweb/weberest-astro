@@ -241,10 +241,10 @@ const fieldId = (name: string) => `${idPrefix}-${name}`;
   }
 
   function initQuoteForm() {
-    document.querySelectorAll<HTMLFormElement>('[data-quote-form]').forEach((form) => bindQuoteForm(form));
+    document.querySelectorAll('[data-quote-form]').forEach((form) => bindQuoteForm(form));
   }
 
-  function bindQuoteForm(form: HTMLFormElement) {
+  function bindQuoteForm(form) {
     if (form.dataset.bound === 'true') return;
     form.dataset.bound = 'true';
 

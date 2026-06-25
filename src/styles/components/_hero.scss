@@ -449,12 +449,18 @@
     margin-inline: auto;
     overflow: auto;
     overscroll-behavior: contain;
-    padding: 0;
+    padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 1.5rem;
     background: rgba(8, 8, 14, 0.96);
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
     outline: none;
+  }
+
+  .hero__quote-modal-dialog::after {
+    content: '';
+    display: block;
+    height: 1rem;
   }
 
   .hero__quote-modal-head {
@@ -465,8 +471,9 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1rem;
+    padding: 1.25rem 1.25rem 1.15rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem 1rem 0 0;
     background: rgba(8, 8, 14, 0.98);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -495,7 +502,7 @@
   }
 
   .hero__quote-modal .quote-form {
-    padding: 1rem;
+    padding: 0 0.25rem 0.25rem;
     border: 0;
     background: transparent;
     box-shadow: none;
@@ -503,12 +510,27 @@
   }
 
   .hero__quote-modal .quote-form__progress {
-    gap: 0.35rem;
-    margin-bottom: 1rem;
+    gap: 0.65rem;
+    margin-bottom: 1.35rem;
+    padding-top: 20px;
+    padding-inline: 0.25rem;
   }
 
   .hero__quote-modal .quote-form__progress-label {
     display: none;
+  }
+
+  .hero__quote-modal .quote-form__step-title {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__quote-modal .quote-form__field {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__quote-modal .quote-form__actions {
+    margin-top: 1.65rem;
+    padding-top: 0.25rem;
   }
 
   [data-theme='light'] .hero__quote-modal-backdrop {
