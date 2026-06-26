@@ -1,0 +1,45 @@
+---
+import { getBusinessHoursStatus } from '@utils/business-hours';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const status = getBusinessHoursStatus();
+---
+
+<span class:list={['business-hours-status', className]} data-business-hours>
+  <span
+    class:list={['home-local__open-badge', !status.isOpen && 'home-local__open-badge--closed']}
+    data-business-hours-badge
+  >
+    {status.badgeLabel}
+  </span>
+  · <span data-business-hours-detail>{status.detailLabel}</span>
+</span>
+
+<script>
+  import { getBusinessHoursStatus } from '@utils/business-hours';
+
+  function updateBusinessHours() {
+    const status = getBusinessHoursStatus();
+
+    document.querySelectorAll('[data-business-hours]').forEach((element) => {
+      const badge = element.querySelector('[data-business-hours-badge]');
+      const detail = element.querySelector('[data-business-hours-detail]');
+
+      if (badge) {
+        badge.textContent = status.badgeLabel;
+        badge.classList.toggle('home-local__open-badge--closed', !status.isOpen);
+      }
+
+      if (detail) {
+        detail.textContent = status.detailLabel;
+      }
+    });
+  }
+
+  updateBusinessHours();
+  window.setInterval(updateBusinessHours, 60_000);
+</script>

@@ -1,6 +1,7 @@
 ---
 import { starFill } from '@utils/local-rating';
 import GoogleMaps from '@components/integrations/GoogleMaps.astro';
+import BusinessHoursStatus from '@components/local/BusinessHoursStatus.astro';
 import { localPresence } from '@config/local-presence';
 
 interface Props {
@@ -91,7 +92,7 @@ const { name, category, rating, reviewCount, reviewsUrl, directionsUrl, phone, p
               </div>
               <div>
                 <dt>Работно време</dt>
-                <dd><span class="home-local__open-badge">Отворено</span> · Затваря в 18:30</dd>
+                <dd><BusinessHoursStatus /></dd>
               </div>
             </dl>
           ) : null

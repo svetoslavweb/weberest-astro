@@ -1,5 +1,6 @@
 import { contactMap } from './contact';
 import { siteConfig } from './site';
+import { businessHours } from './business-hours';
 
 export interface LocalReview {
   author: string;
@@ -22,8 +23,7 @@ export const localPresence = {
   phoneTel: siteConfig.phoneTel,
   address: contactMap.address,
   addressFull: 'Русе Център, ул. „Пристанищна“ 22А, 7000 Русе',
-  hoursLabel: 'Пон – Пет, 09:00 – 18:30',
-  hoursStatus: 'Отворено · Затваря в 18:30',
+  hoursLabel: businessHours.label,
   featuredReviews: [
     {
       author: 'Милена И.',

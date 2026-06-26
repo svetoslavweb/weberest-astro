@@ -49,7 +49,7 @@ export const contactOffices: ContactOffice[] = [
     phone: siteConfig.phone,
     phoneTel: siteConfig.phoneTel,
     email: siteConfig.email,
-    hours: 'Пон – Пет, 09:00 – 18:00 · GMT+2',
+    hours: 'Пон – Пет, 09:00 – 17:00 · GMT+2',
     mapUrl: contactMap.mapUrl,
   },
 ];
