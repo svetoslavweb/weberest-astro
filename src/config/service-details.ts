@@ -50,7 +50,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: 'ai',
     icon: 'ai',
     title: 'AI решения за бизнеса',
-    metaTitle: 'AI решения за бизнеса | Интеграции с ChatGPT, Claude и Gemini | Weberest',
+    metaTitle: 'AI решения за бизнеса | ChatGPT и автоматизация | Weberest',
     metaDescription:
       'Интегрираме изкуствен интелект в реални бизнес процеси – AI чатботи, асистенти, автоматизация, генериране на съдържание и анализ на данни.',
     eyebrow: 'Weberest · AI услуги',
@@ -234,7 +234,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: 'websites',
     icon: 'web',
     title: 'Изработка на уебсайтове',
-    metaTitle: 'Изработка на уебсайтове | Корпоративни и презентационни сайтове | Weberest',
+    metaTitle: 'Изработка на уебсайтове | Корпоративни сайтове | Weberest',
     metaDescription:
       'Професионална изработка на уебсайтове – корпоративни, презентационни, каталожни и многоезични сайтове с UX/UI дизайн, SEO оптимизация и адаптивност.',
     eyebrow: 'Weberest · Уебсайтове',
@@ -356,7 +356,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: 'ecommerce',
     icon: 'ecommerce',
     title: 'E-commerce решения',
-    metaTitle: 'E-commerce решения | WooCommerce и custom онлайн магазини | Weberest',
+    metaTitle: 'E-commerce решения | Онлайн магазини | Weberest',
     metaDescription:
       'Изработка на онлайн магазини с WooCommerce и custom e-commerce платформата на Weberest. B2B портали, интеграции с куриери, плащания и ERP.',
     eyebrow: 'Weberest · E-commerce',
@@ -662,7 +662,7 @@ export const serviceDetails: ServiceDetail[] = [
     id: 'support',
     icon: 'support',
     title: 'Поддръжка и развитие',
-    metaTitle: 'Поддръжка и развитие на уебсайтове | Техническа поддръжка | Weberest',
+    metaTitle: 'Поддръжка на уебсайтове | Техническа поддръжка | Weberest',
     metaDescription:
       'Техническа поддръжка, обновления, сигурност, backup, мониторинг и SLA поддръжка за уебсайтове, онлайн магазини и бизнес системи от Weberest.',
     eyebrow: 'Weberest · Поддръжка',

@@ -15,19 +15,31 @@ interface Props {
 }
 
 const { entry, slug, faqItems = [] } = Astro.props;
-const { title, description, showQuoteForm, template, heroTitle } = entry.data;
+const {
+  title,
+  description,
+  showQuoteForm,
+  template,
+  heroTitle,
+  canonical,
+  robots,
+  noindex,
+} = entry.data;
 const isFaq = template === 'faq' || slug === 'chesto-zadavani-vaprosi';
 const pageTitle =
   heroTitle ?? title.replace(/\s*(?:\||-)\s*Weberest\s*$/i, '').trim();
-const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: `/${slug}/` });
+const pagePath = canonical ?? `/${slug}/`;
+const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: pagePath });
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  canonical={`/${slug}/`}
+  canonical={pagePath}
+  robots={robots}
+  noindex={noindex}
   jsonLd={mergeJsonLd(
-    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg/${slug}/`),
+    buildWebPageSchema(title, description ?? '', `https://www.weberest.com/bg${pagePath}`),
     isFaq && faqItems.length ? buildFaqSchema(faqItems) : undefined,
   )}
   breadcrumbs={breadcrumbs}

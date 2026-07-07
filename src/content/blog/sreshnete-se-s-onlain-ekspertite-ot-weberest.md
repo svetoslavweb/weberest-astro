@@ -1,5 +1,5 @@
 ---
-title: "Срещнете се с онлайн експертите от Weberest"
+title: "Срещнете се с онлайн експертите от Weberest - Weberest"
 description: "eCommerce Academy Conference 2018 в Русе — среща с екипа на Weberest и индивидуална консултация за вашия онлайн магазин или фирмен уеб сайт."
 pubDate: "2018-04-11 09:14:06"
 author: "Weberest"

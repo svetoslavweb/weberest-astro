@@ -11,6 +11,20 @@ const PHP_PROXY_TARGET = 'https://www.weberest.com/bg/scripts/contact-form.php';
 
 const PHP_PATHS = new Set(['/bg/scripts/contact-form.php', '/scripts/contact-form.php']);
 const API_PATHS = new Set(['/bg/api/quote', '/bg/api/quote/', '/api/quote', '/api/quote/']);
+const EXCLUDED_SITEMAP_PATHS = new Set([
+  '/bg/elektrabg-com/',
+  '/bg/rutech-bg-инфо-сайт/',
+  '/bg/vostok-motors/',
+  '/bg/ес-пак/',
+  '/bg/примерна-страница/',
+]);
+
+function shouldIncludeInSitemap(page) {
+  const { pathname } = new URL(page);
+  const decodedPathname = decodeURI(pathname);
+
+  return !decodedPathname.includes('/scripts/') && !EXCLUDED_SITEMAP_PATHS.has(decodedPathname);
+}
 
 async function readRequestBody(req) {
   const chunks = [];
@@ -115,7 +129,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/scripts/'),
+      filter: shouldIncludeInSitemap,
     }),
   ],
   vite: {

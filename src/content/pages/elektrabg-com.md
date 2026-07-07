@@ -1,6 +1,7 @@
 ---
 title: "elektrabg.com"
 template: "default"
+noindex: true
 showQuoteForm: false
 wpId: 5395
 wpSlug: "elektrabg-com"

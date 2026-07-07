@@ -10,7 +10,7 @@ wpUrl: "/obshti-usloviq/"
 
 ![](https://www.weberest.com/bg/wp-content/uploads/2014/09/Elegant_Background-1-1024x576.jpg)
 
-# Условия за Използване
+## Условия за Използване
 
 ## Какво представляват “бисквитките”?
 
