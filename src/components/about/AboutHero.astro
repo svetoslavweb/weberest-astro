@@ -8,11 +8,12 @@ interface Props {
 }
 
 const { breadcrumbs } = Astro.props;
+const heroPoster = `${import.meta.env.BASE_URL}images/video-posters/weberest-video-poster.jpg`;
 ---
 
 <header class="about-hero" id="about-hero">
   <div class="about-hero__media" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" class="about-hero__video" data-about-video>
+    <video autoplay muted loop playsinline preload="auto" poster={heroPoster} class="about-hero__video" data-about-video>
       <source src={heroVideo} type="video/mp4" />
     </video>
     <div class="about-hero__overlay"></div>

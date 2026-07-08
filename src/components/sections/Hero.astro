@@ -24,6 +24,7 @@ const {
 } = Astro.props;
 
 const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHref}`;
+const heroPoster = `${import.meta.env.BASE_URL}images/video-posters/weberest-video-poster.jpg`;
 ---
 
 <section class="hero hero--pop hero--video" id="hero">
@@ -34,6 +35,7 @@ const primaryLink = primaryHref.startsWith('#') ? primaryHref : `/bg${primaryHre
       loop
       playsinline
       preload="auto"
+      poster={heroPoster}
       class="hero__video-media"
       data-hero-video
     >
