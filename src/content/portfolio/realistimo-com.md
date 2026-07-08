@@ -6,7 +6,7 @@ categories:
   - "saitove-nedvijimi-imoti"
 featuredImage: "/bg/images/uploads/2025/09/thumb-realistimo.jpg"
 featuredImageAlt: "realistimo.com"
-order: 0
+order: -1
 wpId: 10222
 wpSlug: "realistimo-com"
 ---

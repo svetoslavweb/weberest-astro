@@ -200,7 +200,7 @@ const fieldId = (name: string) => `${idPrefix}-${name}`;
         </div>
         <h3>Запитването е изпратено!</h3>
         <p>Консултант от Weberest ще се свърже с вас в рамките на 1 работен ден.</p>
-        <p class="quote-form__success-close-note">Прозорецът ще се затвори автоматично след 5 секунди.</p>
+        <p class="quote-form__success-close-note">Страницата ще се обнови автоматично след 5 секунди.</p>
       </div>
 
       <div class="quote-form__actions" data-actions>
@@ -523,6 +523,9 @@ const PHP_FALLBACK_URL = 'https://www.weberest.com/bg/scripts/contact-form.php';
         });
         form.dispatchEvent(new CustomEvent('quote-form:success', { bubbles: true }));
         track('form_submit_success');
+        window.setTimeout(() => {
+          window.location.reload();
+        }, 5000);
       } catch {
         showMessage(
           'error',

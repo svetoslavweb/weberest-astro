@@ -9,6 +9,10 @@ export function sortPortfolioNewestFirst(
   items: CollectionEntry<'portfolio'>[],
 ): CollectionEntry<'portfolio'>[] {
   return [...items].sort((a, b) => {
+    const orderA = a.data.order ?? 0;
+    const orderB = b.data.order ?? 0;
+    if (orderA !== orderB) return orderA - orderB;
+
     const dateA = a.data.pubDate?.valueOf() ?? 0;
     const dateB = b.data.pubDate?.valueOf() ?? 0;
     if (dateA !== dateB) return dateB - dateA;

@@ -9,6 +9,10 @@ import { buildWebPageSchema, mergeJsonLd } from '@utils/seo';
 const pages = await getCollection('pages');
 const blog = await getCollection('blog');
 const portfolio = await getCollection('portfolio');
+const reservedPageSlugs = new Set(['home', 'blog', 'portfolio', 'website-klienti', 'sitemap', 'zapitanie']);
+const visiblePages = pages.filter(
+  (page) => !reservedPageSlugs.has(page.id) && !reservedPageSlugs.has(page.data.wpSlug ?? page.id),
+);
 
 const pageTitle = 'Карта на сайта';
 const pageDescription = 'Карта на сайта на Weberest.';
@@ -32,7 +36,7 @@ const breadcrumbs = buildBreadcrumbs({ name: pageTitle, url: '/sitemap/' });
         <li><a href={`/bg${item.href}`}>{item.label}</a></li>,
         ...(item.children?.map((child) => <li><a href={`/bg${child.href}`}>{child.label}</a></li>) ?? []),
       ])}
-      {pages.map((page) => (
+      {visiblePages.map((page) => (
         <li><a href={`/bg/${page.data.wpSlug ?? page.id}/`}>{page.data.title}</a></li>
       ))}
       {blog.map((post) => (

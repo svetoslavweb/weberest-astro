@@ -59,7 +59,7 @@ wpUrl: "/sazdavane-elektronen-magazin/"
 
 - [easyEmall &#8211; Платформа за Е-магазини](/bg/easyemall/)
 
-- [Модули и Добавки за Онлайн Магазини](/bg/easyemall/moduli/)
+- [Модули и Добавки за Онлайн Магазини](/bg/moduli/)
 
 - [Клиенти на easyEmall](/bg/easyemall/klienti/)
 

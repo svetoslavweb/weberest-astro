@@ -16,35 +16,35 @@ wpUrl: "/moduli/"
 
 &nbsp;
 
-[1. Електронен бюлетин – система за разпращане на имейли](/bg/easyemall/moduli/#modul1)
+[1. Електронен бюлетин – система за разпращане на имейли](/bg/moduli/#modul1)
 
-[2. Метод за разплащане чрез PayPal](/bg/easyemall/moduli/#modul2)
+[2. Метод за разплащане чрез PayPal](/bg/moduli/#modul2)
 
-[3. Метод за разплащане чрез ePay](/bg/easyemall/moduli/#modul3)
+[3. Метод за разплащане чрез ePay](/bg/moduli/#modul3)
 
-[4. Метод за разплащане по Банков път](/bg/easyemall/moduli/#modul4)
+[4. Метод за разплащане по Банков път](/bg/moduli/#modul4)
 
-[5. Филтър на поръчките](/bg/easyemall/moduli/#modul5)
+[5. Филтър на поръчките](/bg/moduli/#modul5)
 
-[6. Подредба на категории и групи](/bg/easyemall/moduli/#modul6)
+[6. Подредба на категории и групи](/bg/moduli/#modul6)
 
-[7. Продукти&nbsp; „В наличност“, „По поръчка“ или „Не е наличен“](/bg/easyemall/moduli/#modul7)
+[7. Продукти&nbsp; „В наличност“, „По поръчка“ или „Не е наличен“](/bg/moduli/#modul7)
 
-[8. Сродни продукти](/bg/easyemall/moduli/#modul8)
+[8. Сродни продукти](/bg/moduli/#modul8)
 
-[9. Пресмятане на цената за доставка по тегло](/bg/easyemall/moduli/#modul9)
+[9. Пресмятане на цената за доставка по тегло](/bg/moduli/#modul9)
 
-[10. Промо Кодове](/bg/easyemall/moduli/#modul10)
+[10. Промо Кодове](/bg/moduli/#modul10)
 
-[11. Моят Акаунт](/bg/easyemall/moduli/#modul11)
+[11. Моят Акаунт](/bg/moduli/#modul11)
 
-[12. Филтри](/bg/easyemall/moduli/#modul12)
+[12. Филтри](/bg/moduli/#modul12)
 
-[13. Подробен имейл](/bg/easyemall/moduli/#modul13)
+[13. Подробен имейл](/bg/moduli/#modul13)
 
-[14. XML Sitemap](/bg/easyemall/moduli/#modul14)
+[14. XML Sitemap](/bg/moduli/#modul14)
 
-[15. Използване на „бисквитки“ (Cookies)](/bg/easyemall/moduli/#modul15)
+[15. Използване на „бисквитки“ (Cookies)](/bg/moduli/#modul15)
 
 
 
