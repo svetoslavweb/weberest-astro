@@ -1,0 +1,22 @@
+Options -MultiViews
+RewriteEngine On
+
+# Canonicalize old Visual Portfolio query URLs to the main portfolio page.
+RewriteCond %{QUERY_STRING} (^|&)vp_(filter|page)= [NC]
+RewriteRule ^(?:bg/)?website-klienti/?$ /bg/website-klienti/? [R=301,L]
+
+# Legacy endpoints and archive URLs from the WordPress site.
+RewriteRule ^(?:bg/)?scripts/contact-form\.php$ /bg/zapitanie/ [R=301,L]
+RewriteRule ^(?:bg/)?author/admin/?$ /bg/blog/ [R=301,L]
+RewriteRule ^(?:bg/)?category/(новини|uncategorized|без-категория)/?$ /bg/blog/ [R=301,L]
+
+# Legacy pages that no longer have a one-to-one page in the new site.
+RewriteRule ^(?:bg/)?evtin-sait(?:\.htm|/)?$ /bg/services/ [R=301,L]
+RewriteRule ^(?:bg/)?portfolio\.htm$ /bg/website-klienti/ [R=301,L]
+RewriteRule ^(?:bg/)?website-klienti/(panaceya|aviohelp)(?:\.htm|/)?$ /bg/website-klienti/ [R=301,L]
+RewriteRule ^(?:bg/)?върхов-уеб-дизайн-и-онлайн-маркетинг-о(?:\.htm|/)?$ /bg/ [R=301,L]
+
+# Generic migration rule for old .htm URLs.
+RewriteRule ^(?:bg/)?(.+)\.htm$ /bg/$1/ [R=301,L]
+
+ErrorDocument 404 /bg/404/
