@@ -24,7 +24,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          cp .env.example .env
+          npm run build
 
       - name: Push dist to hosting branch
         run: |
